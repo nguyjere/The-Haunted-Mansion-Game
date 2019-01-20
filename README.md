@@ -1,2 +1,2 @@
-# The_Haunted_Mansion_Game
+# The Haunted Mansion Game
 A CS 467 Project
