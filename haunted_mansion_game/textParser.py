@@ -23,12 +23,13 @@ class TextParser:
         parsedWords = self.parseCommand(command)
         verb = self.findWord(parsedWords, "verb")
         room = self.findWord(parsedWords, "room")
-        userCommand = (verb, room)
-
-        valid = self.errorCheckRoomCommand(userCommand)
-
+        direction = self.findWord(parsedWords, "direction")
+        
+        userCommandDict = {"verb":verb, "room": room, "direction":direction}
+        valid = self.errorCheckRoomCommand(userCommandDict)
+        
         if valid == True:
-            return userCommand
+            return userCommandDict
         else:
             return "Invalid Command"
             
@@ -39,6 +40,8 @@ class TextParser:
             listToSearch = self.verbs
         if type == "room":
             listToSearch = self.rooms
+        if type == "direction":
+            listToSearch = self.directions
         for word in words:
             for c in listToSearch:
                 if word == c:
@@ -47,10 +50,10 @@ class TextParser:
         return foundWord
         
 
-    def errorCheckRoomCommand(self, userCommand):
-        if userCommand[0] == "go" and userCommand[1] != "":
+    def errorCheckRoomCommand(self, userCommandDict):
+        if userCommandDict["verb"] == "go" and (userCommandDict["room"] != "" or userCommandDict["direction"] != ""):
             return True
-        elif userCommand[0] == "" and userCommand[1] != "":
+        elif userCommandDict["verb"] == "" and (userCommandDict["room"] != "" or userCommandDict["direction"] != ""):
             return True
         else:
             return False
