@@ -18,21 +18,22 @@ class TextParser:
         return words
 
     # parameters 
-    # words: a list of words that represents that command
-    def interpretBasic(self, words):
-        verb = findWord(words, "verb")
-        room = findWord(words, "room")
+    # words: a command
+    def interpretBasic(self, command):
+        parsedWords = self.parseCommand(command)
+        verb = self.findWord(parsedWords, "verb")
+        room = self.findWord(parsedWords, "room")
         userCommand = (verb, room)
 
-        valid = errorCheckRoomCommand(userCommand)
+        valid = self.errorCheckRoomCommand(userCommand)
 
-        if valid == true:
+        if valid == True:
             return userCommand
         else:
             return "Invalid Command"
             
     
-    def findVerb(self, word, type):
+    def findWord(self, words, type):
         foundWord = ""
         if type == "verb":
             listToSearch = self.verbs
@@ -48,8 +49,8 @@ class TextParser:
 
     def errorCheckRoomCommand(self, userCommand):
         if userCommand[0] == "go" and userCommand[1] != "":
-            return true
+            return True
         elif userCommand[0] == "" and userCommand[1] != "":
-            return true
+            return True
         else:
-            return false
+            return False

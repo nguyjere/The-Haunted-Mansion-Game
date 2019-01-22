@@ -2,4 +2,6 @@ from textParser import TextParser
 
 textParser = TextParser()
 
-textParser.promptUser('hey')
+command = textParser.promptUser('Where to? ')
+parsedCommand = textParser.interpretBasic(command)
+print parsedCommand
