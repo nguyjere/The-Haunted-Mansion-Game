@@ -12,7 +12,7 @@ class TextParser:
     def promptUser(self, prompt):
         command = raw_input(prompt)
         return command
-
+    #parses commands
     def parseCommand(self, command):
         words = command.split()
         return words
