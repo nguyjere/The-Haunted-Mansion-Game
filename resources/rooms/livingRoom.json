@@ -1,0 +1,9 @@
+{
+  "connectedTo": [{"roomName":"diningRoom"},
+    {"roomName":"barLounge"},
+    {"roomName":"hallway1"},
+    {"roomName":"courtYard"},
+    {"roomName":"garage"}],
+  "features": "frontDoor",
+  "objects": "NONE"
+}
