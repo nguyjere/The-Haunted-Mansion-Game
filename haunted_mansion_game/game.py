@@ -20,7 +20,7 @@ def play():
         user_input = raw_input(">>")
         print "Parse and execute action with user input: {}".format(user_input)
         if user_input == "end game":
-            print "Game Over"
+            print "You Died"
             break
 
 
