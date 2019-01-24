@@ -2,12 +2,11 @@
 This class describes the items defined in ../resources/items/
 """
 
+from mansion_object import MansionObject
 
-class Item:
 
-    def __init__(self, item_file):
-        # loads class properties from item_file
-        pass
+class Item(MansionObject):
 
-    def save_item_data(self, item_file):
-        pass
+    def __init__(self, item_name):
+        item_file = "../resources/items/{}.json".format(item_name)
+        MansionObject.__init__(self, item_file)
