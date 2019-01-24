@@ -1,0 +1,6 @@
+{
+  "roomName": "Bathroom",
+  "connectedTo": ["hallway1"],
+  "features": ["Medicine Cabinet", "Sink"],
+  "objects": ["Antidote"]
+}

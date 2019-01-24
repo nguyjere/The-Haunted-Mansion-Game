@@ -1,9 +1,6 @@
 {
-  "connectedTo": [{"roomName":"diningRoom"},
-    {"roomName":"barLounge"},
-    {"roomName":"hallway1"},
-    {"roomName":"courtYard"},
-    {"roomName":"garage"}],
+  "roomName": "Living Room",
+  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtYard", "garage"],
   "features": "frontDoor",
   "objects": "NONE"
 }
