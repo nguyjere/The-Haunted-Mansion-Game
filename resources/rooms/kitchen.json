@@ -1,6 +1,10 @@
 {
-  "roomName": "Kitchen",
+  "roomName": "kitchen",
   "connectedTo": ["diningRoom", "garden"],
-  "features": ["Kitchen Island", "Back Door", "French Door", "Pantry"],
-  "objects": ["Recipe Book", "Picture Book"]
+  "displayRoomName": "Kitchen",
+  "features": ["island", "backDoor", "frenchDoor", "pantry"],
+  "objects": ["recipeBook", "pictureBook"],
+  "visited": false
 }
+
+

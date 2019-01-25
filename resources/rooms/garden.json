@@ -1,6 +1,8 @@
 {
-  "roomName": "Garden",
+  "roomName": "garden",
   "connectedTo": ["kitchen"],
-  "features": ["Gazebo", "Shed", "Backdoor", "Gate"],
-  "objects": ["Hammer", "Car Battery Jumper"]
+  "displayRoomName": "Garden",
+  "features": ["gazebo", "shed", "backdoor", "gardenGate"],
+  "objects": ["hammer", "carBatteryJumper"],
+  "visited": false
 }

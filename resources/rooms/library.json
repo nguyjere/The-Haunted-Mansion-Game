@@ -1,6 +1,9 @@
 {
-  "roomName": "Library",
+  "roomName": "library",
   "connectedTo": ["hallway1", "secretRoom"],
-  "features": ["Bookshelf", "Fireplace"],
-  "objects": ["Books"]
+  "displayRoomName": "Library",
+  "features": ["bookshelf", "fireplace"],
+  "objects": ["Books"],
+  "visited": false
 }
+

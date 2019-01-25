@@ -1,6 +1,8 @@
 {
-  "roomName": "Courtyard",
+  "roomName": "courtyard",
   "connectedTo": ["garden", "garage", "livingRoom"],
-  "features": ["Garden Gate", "Garage Door", "Entrance", "Main Gate"],
-  "objects": ["Water Fountain"]
+  "displayRoomName": "Courtyard",
+  "features": ["gardenGate", "garageDoor", "entrance", "mainGate"],
+  "objects": ["mainGateLock"],
+  "visited": false
 }
