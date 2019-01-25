@@ -2,6 +2,8 @@
 Contains the main loop of the game and core functions
 """
 
+from save_and_load import *
+
 
 def main_main():
     print "Title"
@@ -12,8 +14,13 @@ def main_main():
     return raw_input(">>")
 
 
-def play():
-    # game loop here
+def select_saved_games():
+    print "Here's a list of saved games. Pick one"
+    # display list of saved game files
+    return raw_input(">>")
+
+
+def play(player, rooms, items):
     while True:
         print "Displays current room description"
         print "Displays features and objects in the room"
@@ -24,29 +31,13 @@ def play():
             break
 
 
-def load_game(saved_game):
-    print "Loading {0}...".format(saved_game)
-    # loads player, room, and item data
-
-
-def save_game():
-    # saves player, room, and item data
-    pass
-
-
-def select_saved_games():
-    print "Here's a list of saved games. Pick one"
-    # display list of saved game files
-    return raw_input(">>")
-
-
 if __name__ == "__main__":
     menu_input = main_main()
     if menu_input == '1':
-        play()
+        player, rooms, items = load_new_game()
     elif menu_input == '2':
         selected_game_save = select_saved_games()
-        load_game(selected_game_save)
-        play()
+        player, rooms, items = load_game(selected_game_save)
     elif menu_input == '3':
         exit()
+    play(player, rooms, items)
