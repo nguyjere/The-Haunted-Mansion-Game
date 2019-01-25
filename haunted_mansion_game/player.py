@@ -8,7 +8,7 @@ from mansion_object import MansionObject
 class Player(MansionObject):
 
     def __init__(self, player):
-        player_file = "../resources/player/{}.json".format(player)
+        player_file = "../resources/player/{}".format(player)
         MansionObject.__init__(self, player_file)
 
     def add_to_inventory(self, item):

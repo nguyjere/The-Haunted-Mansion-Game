@@ -8,8 +8,11 @@ from mansion_object import MansionObject
 class Room(MansionObject):
 
     def __init__(self, room_name):
-        room_file = "../resources/room/{}.json".format(room_name)
+        room_file = "../resources/rooms/{}".format(room_name)
         MansionObject.__init__(self, room_file)
+
+    def __str__(self):
+        return self.roomName
 
     def include_item(self, item):
         pass

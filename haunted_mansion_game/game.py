@@ -2,6 +2,9 @@
 Contains the main loop of the game and core functions
 """
 
+import os
+from room import *
+from item import *
 
 def main_main():
     print "Title"
@@ -29,6 +32,17 @@ def load_game(saved_game):
     # loads player, room, and item data
 
 
+def load_new_game():
+    global list_of_rooms
+    # global list_of_items
+    list_of_rooms = []
+    # list_of_items = []
+    for file_name in os.listdir('../resources/rooms/'):
+        list_of_rooms.append(Room(file_name))
+    # for file_name in os.listdir('../resources/items/'):
+        # list_of_items.append(Item(file_name))
+
+
 def save_game():
     # saves player, room, and item data
     pass
@@ -43,10 +57,10 @@ def select_saved_games():
 if __name__ == "__main__":
     menu_input = main_main()
     if menu_input == '1':
-        play()
+        load_new_game()
     elif menu_input == '2':
         selected_game_save = select_saved_games()
         load_game(selected_game_save)
-        play()
     elif menu_input == '3':
         exit()
+    play()
