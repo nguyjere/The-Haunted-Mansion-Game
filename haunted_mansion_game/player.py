@@ -1,24 +1,25 @@
 """
-This class describes the player
+This class describes the player defined in ../resources/player/
 """
 
+from mansion_object import MansionObject
 
-class Player:
 
-    def __init__(self, player_file):
-        # defines player by player_file
-        pass
+class Player(MansionObject):
 
-    def save_player_data(self, player_file):
-        pass
+    def __init__(self, player):
+        player_file = "../resources/player/{}.json".format(player)
+        MansionObject.__init__(self, player_file)
 
     def add_to_inventory(self, item):
-        pass
+        self.inventory.append(item)
 
     def remove_from_inventory(self, item):
-        pass
+        self.inventory.remove(item)
 
-
+    def show_inventory(self):
+        for item in self.inventory:
+            print item
 
 
 
