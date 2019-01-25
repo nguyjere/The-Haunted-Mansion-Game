@@ -20,5 +20,5 @@ class MansionObject:
         return res
 
     def save_json(self, file_name):
-        with open(file_name, "w") as write_file:
+        with open(file_name, "w+") as write_file:
             json.dump(self.__dict__, write_file)
