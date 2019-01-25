@@ -1,0 +1,8 @@
+{
+  "roomName": "basement",
+  "connectedTo": ["hallway1"],
+  "displayRoomName": "Basement",
+  "features": ["stairs", "piano", "washerMachine"],
+  "objects": ["boltCutter"],
+  "visited": false
+}
