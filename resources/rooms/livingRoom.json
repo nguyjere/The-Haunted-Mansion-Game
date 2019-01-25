@@ -1,0 +1,6 @@
+{
+  "roomName": "Living Room",
+  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtYard", "garage"],
+  "features": "frontDoor",
+  "objects": "NONE"
+}

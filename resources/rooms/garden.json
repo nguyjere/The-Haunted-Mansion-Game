@@ -1,0 +1,6 @@
+{
+  "roomName": "Garden",
+  "connectedTo": ["kitchen"],
+  "features": ["Gazebo", "Shed", "Backdoor", "Gate"],
+  "objects": ["Hammer", "Car Battery Jumper"]
+}

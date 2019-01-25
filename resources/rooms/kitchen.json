@@ -1,0 +1,6 @@
+{
+  "roomName": "Kitchen",
+  "connectedTo": ["diningRoom", "garden"],
+  "features": ["Kitchen Island", "Back Door", "French Door", "Pantry"],
+  "objects": ["Recipe Book", "Picture Book"]
+}

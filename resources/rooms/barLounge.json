@@ -1,0 +1,6 @@
+{
+  "roomName": "Bar Lounge",
+  "connectedTo": ["livingRoom"],
+  "features": ["Stools","Pool Table", "Bar Counter", "Bar Cabinet", "French Door"],
+  "objects": ["Wine Bottle"]
+}

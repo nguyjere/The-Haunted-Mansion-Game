@@ -1,0 +1,6 @@
+{
+  "roomName": "Courtyard",
+  "connectedTo": ["garden", "garage", "livingRoom"],
+  "features": ["Garden Gate", "Garage Door", "Entrance", "Main Gate"],
+  "objects": ["Water Fountain"]
+}

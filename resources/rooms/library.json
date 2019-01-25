@@ -1,0 +1,6 @@
+{
+  "roomName": "Library",
+  "connectedTo": ["hallway1", "secretRoom"],
+  "features": ["Bookshelf", "Fireplace"],
+  "objects": ["Books"]
+}

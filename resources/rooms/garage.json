@@ -1,0 +1,6 @@
+{
+  "roomName": "Garage",
+  "connectedTo": ["livingRoom", "courtYard"],
+  "features": ["Door", "Garage Door", "Car", "Tool Cabinet"],
+  "objects": "NONE"
+}
