@@ -2,7 +2,7 @@
   "roomName": "basement",
   "connectedTo": ["hallway1"],
   "displayRoomName": "Basement",
-  "features": ["stairs", "piano", "washingmachine"],
-  "objects": ["boltcutter"],
+  "features": ["stairs", "piano", "washerMachine"],
+  "objects": ["boltCutter"],
   "visited": false
 }

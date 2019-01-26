@@ -1,6 +1,6 @@
 {
   "roomName": "library",
-  "connectedTo": ["hallway1", "secretroom"],
+  "connectedTo": ["hallway1", "secretRoom"],
   "displayRoomName": "Library",
   "features": ["bookshelf", "fireplace"],
   "objects": ["Books"],
