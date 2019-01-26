@@ -7,6 +7,7 @@ from mansion_object import MansionObject
 
 class Player(MansionObject):
 
+    # TODO: Modify this __init__ to take saved_game, like the example in room.py
     def __init__(self, player):
         player_file = "../resources/player/{}".format(player)
         MansionObject.__init__(self, player_file)
