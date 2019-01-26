@@ -1,5 +1,5 @@
 {
-  "roomName": "masterBedroom",
+  "roomName": "masterbedroom",
   "connectedTo": ["hallway2","attic"],
   "displayRoomName": "Master Bedroom",
   "features": ["door","bed","mirror","stairs"],

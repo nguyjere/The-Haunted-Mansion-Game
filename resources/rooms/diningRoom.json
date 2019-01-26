@@ -1,8 +1,8 @@
 {
-  "roomName": "diningRoom",
-  "connectedTo": ["livingRoom", "kitchen"],
+  "roomName": "diningroom",
+  "connectedTo": ["livingroom", "kitchen"],
   "displayRoomName": "Dining Room",
-  "features": ["diningTable", "chairs", "chinaCabinet", "archedEntryways"],
+  "features": ["diningtable", "chairs", "chinacabinet", "archedentryways"],
   "objects": null,
   "visited": false
 }

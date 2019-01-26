@@ -1,8 +1,8 @@
 {
-  "roomName": "barLounge",
-  "connectedTo": ["livingRoom"],
-  "displayRoomName": "Bar Lounge",
-  "features": ["stools","poolTable", "barCounter", "barCabinet", "frenchDoor"],
-  "objects": ["wineBottle"],
+  "roomName": "bar",
+  "connectedTo": ["livingroom"],
+  "displayRoomName": "Bar",
+  "features": ["stools","pooltable", "barcounter", "cabinet", "frenchdoor"],
+  "objects": ["winebottle"],
   "visited": false
 }

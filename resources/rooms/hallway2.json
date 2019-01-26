@@ -1,6 +1,6 @@
 {
   "roomName": "hallway2",
-  "connectedTo": ["stewardRoom", "masterBedroom", "guestroom"],
+  "connectedTo": ["stewardroom", "masterbedroom", "guestroom"],
   "displayRoomName": "Hallway 2",
   "features": ["stairs", "doors"],
   "objects": null,
