@@ -1,8 +1,8 @@
 {
   "roomName": "garage",
-  "connectedTo": ["livingroom", "courtyard"],
+  "connectedTo": ["livingRoom", "courtYard"],
   "displayRoomName": "Garage",
-  "features": ["door", "garagedoor", "car", "toolcabinet"],
+  "features": ["door", "garageDoor", "car", "toolCabinet"],
   "objects": null,
   "visited": false
 }

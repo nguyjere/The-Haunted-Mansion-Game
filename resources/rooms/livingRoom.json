@@ -1,8 +1,8 @@
 {
-  "roomName": "livingroom",
-  "connectedTo": ["diningroom", "bar","hallway1", "courtyard", "garage"],
+  "roomName": "livingRoom",
+  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtYard", "garage"],
   "displayRoomName": "Living Room",
-  "features": "frontdoor",
+  "features": "frontDoor",
   "objects": "NONE",
   "visited": false
 }
