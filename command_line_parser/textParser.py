@@ -20,12 +20,33 @@ class TextParser:
         return words
 
     '''
+    normalizes words by making them lowercase
+    finds rooms that may have space such as dining room and makes it one word, i.e. diningroom
+    '''
+    def preParseRoomCommand(self, command):
+        parsedWords = self.parseCommand(command)
+        preParsedCommandList = []
+        spaceRooms = ["dining", "guest", "living", "master", "secret", "stewards"]
+        #make all words lowercase
+        for word in parsedWords:
+            preParsedCommandList.append(word.lower())
+        #diningroom guestroom livingroom masterbedroom secretroom stewardsroom
+        for word in preParsedCommandList:
+            if word in spaceRooms:
+                roomTypeIndex = preParsedCommandList.index(word)
+                if preParsedCommandList[roomTypeIndex+1] == "room":
+                    preParsedCommandList[roomTypeIndex] = word + "room"
+                    del preParsedCommandList[roomTypeIndex+1]
+        return preParsedCommandList
+
+
+    '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
     '''
 
     def interpretRoom(self, command):
-        parsedWords = self.parseCommand(command)
+        parsedWords = self.preParseRoomCommand(command)
         verb = self.findWord(parsedWords, "verb")
         room = self.findWord(parsedWords, "room")
         direction = self.findWord(parsedWords, "direction")
