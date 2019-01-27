@@ -1,8 +1,8 @@
 {
-  "roomName": "stewardRoom",
+  "roomName": "stewardroom",
   "connectedTo": ["hallway2"],
   "displayRoomName": "Steward Room",
-  "features": ["door","bed","desk","fileCabinet"],
-  "objects": ["zombieSteward","familyEmblems"],
+  "features": ["door","bed","desk","filecabinet"],
+  "objects": ["zombiesteward","familyemblems"],
   "visited": false
 }

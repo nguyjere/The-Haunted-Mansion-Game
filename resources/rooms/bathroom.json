@@ -2,7 +2,7 @@
   "roomName": "bathroom",
   "connectedTo": ["hallway1"],
   "displayRoomName": "Bathroom",
-  "features": ["medicineCabinet", "sink"],
+  "features": ["medicinecabinet", "sink"],
   "objects": ["antidote"],
   "visited": false
 }
