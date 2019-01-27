@@ -17,6 +17,14 @@ class TextParser:
         words = command.split()
         return words
 
+    def getCommand(self, command, roomObj):
+        parsedRoomCommand = self.interpretRoom(command, roomObj)
+        parsedFeatureCommand = self.interpretLook(command, roomObj)
+
+        finalParsedCommand = parsedRoomCommand.copy()
+        finalParsedCommand.update(parsedFeatureCommand)
+        return finalParsedCommand
+
     '''
         normalizes words by making them lowercase
         finds features that may have space such as pool table and makes it one word, i.e. pooltable
@@ -72,8 +80,8 @@ class TextParser:
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
     '''
 
-    def interpretRoom(self, command, roomAsDict):
-        connectedRooms = roomAsDict["connectedTo"]
+    def interpretRoom(self, command, roomObj):
+        connectedRooms = roomObj.connectedTo
         parsedWords = self.preParseRoomCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         room = self.findWord(parsedWords, "room", connectedRooms)
@@ -91,8 +99,8 @@ class TextParser:
     if look at feature is returned, then describe feature
     '''
 
-    def interpretLook(self, command, roomAsDict):
-        availableFeatures = roomAsDict["features"]
+    def interpretLook(self, command, roomObj):
+        availableFeatures = roomObj.features
         parsedWords = self.preParseFeatureCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         feature = self.findWord(parsedWords, "feature", availableFeatures)

@@ -1,23 +1,30 @@
 from textParser import TextParser
-#
+import sys
+sys.path.insert(0, '../haunted_mansion_game')
+from room import *
+
+testRoomObj = Room("barLounge.json")
+
 textParser = TextParser()
-testRoomDict = {
-  "roomName": "bar",
-  "connectedTo": ["livingroom"],
-  "displayRoomName": "Bar",
-  "features": ["stools","pooltable", "barcounter", "cabinet", "frenchdoor"],
-  "objects": ["winebottle"],
-  "visited": "false"
-}
+
 
 while True:
+
     command = textParser.promptUser('Where to? ')
-    parsedCommand = textParser.interpretRoom(command, testRoomDict)
+    parsedCommand = textParser.getCommand(command, testRoomObj)
     print parsedCommand
 
     command = textParser.promptUser('Look where? ')
-    parsedCommand = textParser.interpretLook(command, testRoomDict)
+    parsedCommand = textParser.getCommand(command, testRoomObj)
     print parsedCommand
+
+    #command = textParser.promptUser('Where to? ')
+    #parsedCommand = textParser.interpretRoom(command, testRoomObj)
+    #print parsedCommand
+
+    #command = textParser.promptUser('Look where? ')
+    #parsedCommand = textParser.interpretLook(command, testRoomObj)
+    #print parsedCommand
 
     ##command = textParser.promptUser('Where to? ')
     ##parsedCommand = textParser.preParseRoomCommand(command)
