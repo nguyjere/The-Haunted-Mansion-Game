@@ -18,6 +18,10 @@ while True:
     parsedCommand = textParser.getCommand(command, testRoomObj)
     print parsedCommand
 
+    command = textParser.promptUser('What object? ')
+    parsedCommand = textParser.getCommand(command, testRoomObj)
+    print parsedCommand
+
     #command = textParser.promptUser('Where to? ')
     #parsedCommand = textParser.interpretRoom(command, testRoomObj)
     #print parsedCommand

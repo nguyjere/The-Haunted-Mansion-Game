@@ -3,6 +3,6 @@
   "connectedTo": ["diningroom", "bar","hallway1", "courtyard", "garage"],
   "displayRoomName": "Living Room",
   "features": "frontdoor",
-  "objects": "NONE",
+  "objects": null,
   "visited": false
 }

@@ -17,18 +17,23 @@ class TextParser:
         words = command.split()
         return words
 
+    '''
+    Use this function in the execution engine to get back a dictionary that represents the parsed user command.
+    '''
     def getCommand(self, command, roomObj):
         parsedRoomCommand = self.interpretRoom(command, roomObj)
         parsedFeatureCommand = self.interpretLook(command, roomObj)
+        parsedObjectCommand = self.interpretTake(command, roomObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedFeatureCommand)
+        finalParsedCommand.update(parsedObjectCommand)
         return finalParsedCommand
 
     '''
-        normalizes words by making them lowercase
-        finds features that may have space such as pool table and makes it one word, i.e. pooltable
-        '''
+    normalizes words by making them lowercase
+    finds features that may have space such as pool table and makes it one word, i.e. pooltable
+    '''
 
     def preParseFeatureCommand(self, command):
         parsedWords = self.parseCommand(command)
@@ -52,6 +57,38 @@ class TextParser:
                 if preParsedCommandList[featureIndex + 1] == spaceFeaturesDict[word]:
                     preParsedCommandList[featureIndex] = word + spaceFeaturesDict[word]
                     del preParsedCommandList[featureIndex + 1]
+        return preParsedCommandList
+
+    '''
+    normalizes words by making them lowercase
+    finds objects that may have spaces such as main gate lock and makes it one word, i.e. maingatelock
+    '''
+
+    def preParseObjectCommand(self, command):
+        parsedWords = self.parseCommand(command)
+        preParsedCommandList = []
+        oneSpaceObjects = ["wine", "bolt", "recipe", "picture", "herb", "tea", "zombie", "family"]
+        oneSpaceObjectsDict = {"wine":"bottle", "bolt":"cutter", "recipe":"book", "picture":"book",
+                            "herb":"bottles", "tea":"kettle", "zombie":"steward", "family":"emblems"}
+        twoSpaceObjects = ["old", "main", "car"]
+        twoSpaceObjectsDict = {"old":"familypicture", "main":"gatelock", "car":"batteryjumper"}
+        # make all words lowercase
+        for word in parsedWords:
+            preParsedCommandList.append(word.lower())
+        for word in preParsedCommandList:
+            if word in oneSpaceObjects:
+                objectIndex = preParsedCommandList.index(word)
+                if preParsedCommandList[objectIndex + 1] == oneSpaceObjectsDict[word]:
+                    preParsedCommandList[objectIndex] = word + oneSpaceObjectsDict[word]
+                    del preParsedCommandList[objectIndex + 1]
+        for word in preParsedCommandList:
+            if word in twoSpaceObjects:
+                objectIndex = preParsedCommandList.index(word)
+                if preParsedCommandList[objectIndex + 1] + \
+                        preParsedCommandList[objectIndex + 2] == twoSpaceObjectsDict[word]:
+                    preParsedCommandList[objectIndex] = word + twoSpaceObjectsDict[word]
+                    del preParsedCommandList[objectIndex + 1]
+                    del preParsedCommandList[objectIndex + 1]
         return preParsedCommandList
 
     '''
@@ -91,7 +128,7 @@ class TextParser:
         if valid == True:
             userCommandDict = {"verb": verb["word"], "room": room["word"], "direction": direction["word"]}
         if valid != True:
-            userCommandDict = {"verb": '', "room": '', "direction": ''}
+            userCommandDict = {}
         return userCommandDict
 
     '''
@@ -110,7 +147,24 @@ class TextParser:
         if valid == True:
             userCommandDict = {"verb": verb["word"], "feature": feature["word"], "preposition": preposition["word"]}
         if valid != True:
-            userCommandDict = {"verb": '', "feature": '', "preposition": ''}
+            userCommandDict = {}
+        return userCommandDict
+
+    '''
+    if valid take command found, returns dictionary containing take verb and object user wishes to take
+    else returns empty dictionary
+    '''
+    def interpretTake(self, command, roomObj):
+        availableObjects = roomObj.objects
+        parsedWords = self.preParseObjectCommand(command)
+        verb = self.findWord(parsedWords, "verb", {})
+        object = self.findWord(parsedWords, "object", availableObjects)
+        userCommandDict = {"verb": verb, "object": object}
+        valid = self.errorCheckObjectCommand(userCommandDict)
+        if valid == True:
+            userCommandDict = {"verb": verb["word"], "object": object["word"]}
+        if valid != True:
+            userCommandDict = {}
         return userCommandDict
 
     def findWord(self, words, type, listFromRoom):
@@ -125,6 +179,8 @@ class TextParser:
             listToSearch = listFromRoom
         if type == "preposition":
             listToSearch = self.prepositions
+        if type == "object":
+            listToSearch = listFromRoom
         index = ""
         for word in words:
             for c in listToSearch:
@@ -133,6 +189,21 @@ class TextParser:
                     index = words.index(foundWord)
                     break
         return {"word": foundWord, "index": index}
+
+    '''
+    take object is valid. nothing else is.
+    '''
+    def errorCheckObjectCommand(self, userCommandDict):
+        verb = userCommandDict["verb"]["word"]
+        object = userCommandDict["object"]["word"]
+
+        verbindex = userCommandDict["verb"]["index"]
+        objectindex = userCommandDict["object"]["index"]
+
+        if verb == "take" and object != "" and verbindex < objectindex:
+            return True
+        else:
+            return False
 
     '''
     go room, room, go direction, direction are valid
