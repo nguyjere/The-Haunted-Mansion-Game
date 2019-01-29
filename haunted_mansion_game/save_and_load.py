@@ -4,7 +4,6 @@ from item import *
 from player import *
 
 
-# TODO: This function is broken until player, room, and item __init__ is fixed to take file_name and saved_game
 # see the example in room.py
 def load_game(saved_game):
     player = None
