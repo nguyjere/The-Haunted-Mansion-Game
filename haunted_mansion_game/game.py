@@ -1,8 +1,13 @@
 """
 Contains the main loop of the game and core functions
 """
-
+from command_line_parser.textParser import *
 from save_and_load import *
+from utilities import *
+
+global player
+global rooms
+global items
 
 
 def main_main():
@@ -20,12 +25,20 @@ def select_saved_games():
     return raw_input(">>")
 
 
-def play(player, rooms, items):
+def play():
+    text_parser = TextParser()
     while True:
+        current_room = get_room_by_name(player.currentRoom, rooms)
+        # TODO: Print current room long, or short, description and display objects and features
         print "Displays current room description"
         print "Displays features and objects in the room"
         user_input = raw_input(">>")
-        print "Parse and execute action with user input: {}".format(user_input)
+        parsed_command = text_parser.getCommand(user_input, current_room)
+        if parsed_command:
+            # TODO: Pass parsed_command to a parsed_command_handler that will call an action
+            print parsed_command
+        else:
+            print "I don't understand that"
         if user_input == "end game":
             print "You Died"
             break
@@ -40,4 +53,4 @@ if __name__ == "__main__":
         player, rooms, items = load_game(selected_game_save)
     elif menu_input == '3':
         exit()
-    play(player, rooms, items)
+    play()

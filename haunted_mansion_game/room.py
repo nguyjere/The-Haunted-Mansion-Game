@@ -7,10 +7,9 @@ from mansion_object import MansionObject
 
 class Room(MansionObject):
 
-    # TODO: Fix this function to take saved_game to load from saved game folder
-    def __init__(self, room_name, saved_game = None):
+    def __init__(self, room_name, saved_game=None):
         if saved_game:
-            room_file = "the path to the room folder in saved game"
+            room_file = "../saved_games/{}/rooms/{}".format(saved_game, room_name)
         else:
             room_file = "../resources/rooms/{}".format(room_name)
         MansionObject.__init__(self, room_file)
