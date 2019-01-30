@@ -1,0 +1,22 @@
+[
+  {
+    "name": "knife",
+    "displayName": "knife",
+    "description": "a sharp combat knife"
+  },
+  {
+    "name": "carKey",
+    "displayName": "car key",
+    "description": "a car key for a Corbet"
+  },
+  {
+    "name": "carBatteryJumper",
+    "displayName": "car battery jumper",
+    "description": "a car battery jumper to reboot a battery"
+  },
+  {
+    "name": "boltCutter",
+    "displayName": "bolt cutter",
+    "description": "an industrial bolt cutter that can cut any materials"
+  }
+]

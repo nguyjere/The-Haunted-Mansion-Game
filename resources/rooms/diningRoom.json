@@ -1,8 +1,10 @@
 {
-  "roomName": "diningroom",
-  "connectedTo": ["livingroom", "kitchen"],
+  "roomName": "diningRoom",
+  "connectedTo": ["livingRoom", "kitchen"],
   "displayRoomName": "Dining Room",
-  "features": ["diningtable", "chairs", "chinacabinet", "archedentryways"],
+  "features": ["diningTable", "chairs", "chinaCabinet", "entryLR", "kitchenDoor"],
   "objects": null,
-  "visited": false
+  "visited": false,
+  "shortMSG": "You are at a dining room. \n There are a dining table, chairs, and a china cabinet.\n You may go check other areas through an entryway at east, or a door at west.\n",
+  "longMsg": "You are at a dining room. \n There are a dining table, chairs, and a china cabinet.\n You may go check other areas through an entryway at east, or a door at west.\n"
 }
