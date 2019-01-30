@@ -1,8 +1,10 @@
 {
-  "roomName": "livingroom",
-  "connectedTo": ["diningroom", "bar","hallway1", "courtyard", "garage"],
+  "roomName": "livingRoom",
+  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtYard", "garage"],
   "displayRoomName": "Living Room",
-  "features": "frontdoor",
-  "objects": null,
-  "visited": false
+  "features": ["frontDoor", "garageDoor", "entryHW1", "entryDR", "loungeDoor", "sofa", "consoleTable"],
+  "objects": "NONE",
+  "visited": false,
+  "shortMSG": "You are at a living room.\n There are a sofa and a console table. \n You may go check other areas through a front door, a garage door, an arched entryway at north, a entryway at west, or a  french door at east. \n",
+  "longMSG": "You are at a living room.\n There are a sofa and a console table. \n You may go check other areas through a front door, a garage door, an arched entryway at north, a entryway at west, or a door at east. \n"
 }
