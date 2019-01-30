@@ -5,6 +5,6 @@
   "features": ["door","bed","desk","fileCabinet"],
   "objects": ["zombieSteward","familyEmblems"],
   "visited": false,
-  "shortMSG": "You are in a steward room. \n There are a desk, a bed and a fileCabinet.\n You may go to other areas through a door.\n"
+  "shortMSG": "You are in a steward room. \n There are a desk, a bed and a fileCabinet.\n You may go to other areas through a door.\n",
   "longMSG": "You are in a steward room. \n There are a desk, a bed and a fileCabinet.\n You may go to other areas through a door.\n"
 }
