@@ -1,8 +1,10 @@
 {
   "roomName": "attic",
-  "connectedTo": ["masterbedroom"],
+  "connectedTo": ["masterBedroom"],
   "displayRoomName": "Attic",
-  "features": ["stairs", "dollhouse","chest"],
-  "objects": ["oldfamilypicture","doll"],
-  "visited": false
+  "features": ["ladder","dollHouse","chest"],
+  "objects": ["oldFamilyPicture","doll"],
+  "visited": false,
+  "shortMSG": "You are in an attic. \n There are a chest, dollHouse and a ladder.\n You may go to other areas through a door.\n",
+  "longMSG": "You are in an attic. \n There are a chest, dollHouse and a ladder.\n You may go to other areas through a door.\n"
 }

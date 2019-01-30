@@ -4,5 +4,7 @@
   "displayRoomName": "Guestroom",
   "features": ["door","bed","mirror","closet"],
   "objects": null,
-  "visited": false
+  "visited": false,
+  "shortMSG": "You are in a master bedroom. \n There are a closet, a bed and a mirror.\n You may go to other areas through a door.\n",
+  "longMSG": "You are in a master bedroom. \n There are a closet, a bed and a mirror.\n You may go to other areas through a door.\n"
 }
