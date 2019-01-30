@@ -1,8 +1,10 @@
 {
   "roomName": "hallway2",
-  "connectedTo": ["stewardroom", "masterbedroom", "guestroom"],
+  "connectedTo": ["stewardRoom", "masterBedroom", "guestRoom"],
   "displayRoomName": "Hallway 2",
-  "features": ["stairs", "doors"],
+  "features": ["stairs", "doorSR", "doorMB", "doorGR"],
   "objects": null,
-  "visited": false
+  "visited": false,
+  "shortMSG": "You are in a hallway on the second floor. \n You may go upstairs or check other areas through a doors on the east, the southwest, or the southeast..\n",
+  "longMSG": "You are in a hallway on the second floor. \n You may go upstairs or check other areas through a doors on the east, the southwest, or the southeast..\n"
 }

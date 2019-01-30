@@ -2,7 +2,10 @@
   "roomName": "bathroom",
   "connectedTo": ["hallway1"],
   "displayRoomName": "Bathroom",
-  "features": ["medicinecabinet", "sink"],
+  "features": ["medicineCabinet", "sink", "door"],
   "objects": ["antidote"],
-  "visited": false
+  "visited": false,
+  "shortMSG": "You are in a bathroom. \n There are a medicine cabinet,and a sink.\n You may go check other areas through a door.\n",
+  "longMSG": "You are in a bathroom. \n There are a medicine cabinet,and a sink.\n You may go check other areas through a door.\n"
 }
+

@@ -1,8 +1,10 @@
 {
-  "roomName": "bar",
-  "connectedTo": ["livingroom"],
-  "displayRoomName": "Bar",
-  "features": ["stools","pooltable", "barcounter", "cabinet", "frenchdoor"],
-  "objects": ["winebottle"],
-  "visited": false
+  "roomName": "barLounge",
+  "connectedTo": ["livingRoom"],
+  "displayRoomName": "bar lounge",
+  "features": ["stools","poolTable", "barCounter", "cabinet", "frenchDoor"],
+  "objects": ["wineBottle"],
+  "visited": false,
+  "shortMSG":"You are in a bar lounge. \n There are a bar counter, stools, a cabinet, and a pool table.\n You may go check other areas through a french door at west side of the bar lounge.\n",
+  "longMSG": "You are in a bar lounge. \n There are a bar counter, stools, a cabinet, and a pool table.\n You may go check other areas through a french door at west side of the bar lounge.\n"
 }
