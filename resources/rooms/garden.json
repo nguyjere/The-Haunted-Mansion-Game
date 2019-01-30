@@ -2,7 +2,9 @@
   "roomName": "garden",
   "connectedTo": ["kitchen"],
   "displayRoomName": "Garden",
-  "features": ["gazebo", "shed", "backdoor", "gardengate"],
-  "objects": ["hammer", "carbatteryjumper"],
-  "visited": false
+  "features": ["gazebo", "shed", "backdoor", "gardenGate"],
+  "objects": ["hammer", "carBatteryJumper"],
+  "visited": false,
+  "shortMSG": "You are in a garden. \n There are a gazebo and a shed.\n You may go check other areas through a backdoor, or a garden gate at south side of the garden.\n",
+  "longMSG": "You are in a garden. \n There are a gazebo and a shed.\n You may go check other areas through a backdoor, or a garden gate at south side of the garden.\n"
 }
