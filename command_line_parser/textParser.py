@@ -54,9 +54,10 @@ class TextParser:
         for word in preParsedCommandList:
             if word in spaceFeatures:
                 featureIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[featureIndex + 1] == spaceFeaturesDict[word]:
-                    preParsedCommandList[featureIndex] = word + spaceFeaturesDict[word]
-                    del preParsedCommandList[featureIndex + 1]
+                if featureIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[featureIndex + 1] == spaceFeaturesDict[word]:
+                        preParsedCommandList[featureIndex] = word + spaceFeaturesDict[word]
+                        del preParsedCommandList[featureIndex + 1]
         return preParsedCommandList
 
     '''
@@ -78,17 +79,19 @@ class TextParser:
         for word in preParsedCommandList:
             if word in oneSpaceObjects:
                 objectIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[objectIndex + 1] == oneSpaceObjectsDict[word]:
-                    preParsedCommandList[objectIndex] = word + oneSpaceObjectsDict[word]
-                    del preParsedCommandList[objectIndex + 1]
+                if objectIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[objectIndex + 1] == oneSpaceObjectsDict[word]:
+                        preParsedCommandList[objectIndex] = word + oneSpaceObjectsDict[word]
+                        del preParsedCommandList[objectIndex + 1]
         for word in preParsedCommandList:
             if word in twoSpaceObjects:
                 objectIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[objectIndex + 1] + \
-                        preParsedCommandList[objectIndex + 2] == twoSpaceObjectsDict[word]:
-                    preParsedCommandList[objectIndex] = word + twoSpaceObjectsDict[word]
-                    del preParsedCommandList[objectIndex + 1]
-                    del preParsedCommandList[objectIndex + 1]
+                if objectIndex + 1 <= len(preParsedCommandList) - 1 and objectIndex + 2 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[objectIndex + 1] + \
+                            preParsedCommandList[objectIndex + 2] == twoSpaceObjectsDict[word]:
+                        preParsedCommandList[objectIndex] = word + twoSpaceObjectsDict[word]
+                        del preParsedCommandList[objectIndex + 1]
+                        del preParsedCommandList[objectIndex + 1]
         return preParsedCommandList
 
     '''
@@ -107,9 +110,10 @@ class TextParser:
         for word in preParsedCommandList:
             if word in spaceRooms:
                 roomTypeIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[roomTypeIndex + 1] == "room":
-                    preParsedCommandList[roomTypeIndex] = word + "room"
-                    del preParsedCommandList[roomTypeIndex + 1]
+                if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[roomTypeIndex + 1] == "room":
+                        preParsedCommandList[roomTypeIndex] = word + "room"
+                        del preParsedCommandList[roomTypeIndex + 1]
         return preParsedCommandList
 
     '''
@@ -118,7 +122,9 @@ class TextParser:
     '''
 
     def interpretRoom(self, command, roomObj):
-        connectedRooms = roomObj.connectedTo
+        connectedRooms = []
+        for room in roomObj.connectedTo:
+            connectedRooms.append(room.lower())
         parsedWords = self.preParseRoomCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         room = self.findWord(parsedWords, "room", connectedRooms)
@@ -137,7 +143,9 @@ class TextParser:
     '''
 
     def interpretLook(self, command, roomObj):
-        availableFeatures = roomObj.features
+        availableFeatures = []
+        for feat in roomObj.features:
+            availableFeatures.append(feat.lower())
         parsedWords = self.preParseFeatureCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         feature = self.findWord(parsedWords, "feature", availableFeatures)
@@ -155,7 +163,9 @@ class TextParser:
     else returns empty dictionary
     '''
     def interpretTake(self, command, roomObj):
-        availableObjects = roomObj.objects
+        availableObjects = []
+        for obj in roomObj.objects:
+            availableObjects.append(obj.lower())
         parsedWords = self.preParseObjectCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         object = self.findWord(parsedWords, "object", availableObjects)
