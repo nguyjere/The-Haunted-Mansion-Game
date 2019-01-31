@@ -3,7 +3,7 @@
   "connectedTo": ["garden", "garage", "livingRoom"],
   "displayRoomName": "Courtyard",
   "features": ["gardenGate", "garageDoor", "entrance", "mainGate"],
-  "objects": ["mainGateLock"],
+  "objects": null,
   "visited": false,
   "shortMSG": "You are in a courtyard. \n There is a main gate that you can escape from this mansion.\n You may go check other areas through a garden gate at north west side, a garage door or a entrance at north side of the courtyard.\n",
   "longMSG": "You are in a courtyard. \n There is a main gate that you can escape from this mansion.\n You may go check other areas through a garden gate at north west side, a garage door or a entrance at north side of the courtyard.\n"

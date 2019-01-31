@@ -29,9 +29,9 @@ def play():
     text_parser = TextParser()
     while True:
         current_room = get_room_by_name(player.currentRoom, rooms)
-        # TODO: Print current room long, or short, description and display objects and features
-        print "Displays current room description"
-        print "Displays features and objects in the room"
+        # Print current room long, or short, description and display objects and features
+        display_room_msg(current_room)
+
         user_input = raw_input(">>")
         parsed_command = text_parser.getCommand(user_input, current_room)
         if parsed_command:

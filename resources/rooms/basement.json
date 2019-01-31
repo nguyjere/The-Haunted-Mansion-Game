@@ -2,7 +2,7 @@
   "roomName": "basement",
   "connectedTo": ["hallway1"],
   "displayRoomName": "Basement",
-  "features": ["stairs", "piano", "washingMachine"],
+  "features": ["stairs", "piano", "washerMachine"],
   "objects": ["boltCutter"],
   "visited": false,
   "shortMSG": "You are in a basement. \n There are a washing machine and a piano.\n You may go to the first floor through stairs.\n",
