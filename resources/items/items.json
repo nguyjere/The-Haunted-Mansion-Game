@@ -30,6 +30,11 @@
     "description": "clears the intoxicated condition"
   },
   {
+    "name": "recipe book",
+    "displayName": "recipeBook",
+    "description": "contains the antidote formula"
+  },
+  {
     "name": "wine",
     "displayName": "wine",
     "description": "looks like a vintage wine"
