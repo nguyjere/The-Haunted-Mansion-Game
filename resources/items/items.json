@@ -7,16 +7,31 @@
   {
     "name": "carKey",
     "displayName": "car key",
-    "description": "a car key for a Corbet"
+    "description": "a car key to start the car in the garage"
   },
   {
     "name": "carBatteryJumper",
     "displayName": "car battery jumper",
-    "description": "a car battery jumper to reboot a battery"
+    "description": "a car battery jumper to jump start the car"
   },
   {
     "name": "boltCutter",
     "displayName": "bolt cutter",
-    "description": "an industrial bolt cutter that can cut any materials"
+    "description": "an industrial bolt cutter. It can cut any materials"
+  },
+  {
+    "name": "masterKey",
+    "displayName": "master key",
+    "description": "a key that can unlock rooms"
+  },
+  {
+    "name": "antidote",
+    "displayName": "antidote",
+    "description": "clears the intoxicated condition"
+  },
+  {
+    "name": "wine",
+    "displayName": "wine",
+    "description": "looks like a vintage wine"
   }
 ]
