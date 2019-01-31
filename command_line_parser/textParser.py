@@ -24,10 +24,12 @@ class TextParser:
         parsedRoomCommand = self.interpretRoom(command, roomObj)
         parsedFeatureCommand = self.interpretLook(command, roomObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
+        parsedMetaCommand = self.interpretMeta(command, roomObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedFeatureCommand)
         finalParsedCommand.update(parsedObjectCommand)
+        finalParsedCommand.update(parsedMetaCommand)
         return finalParsedCommand
 
     '''
@@ -117,6 +119,28 @@ class TextParser:
         return preParsedCommandList
 
     '''
+    normalizes words by making them lowercase
+    finds metacommands that may have space such as save game and makes it one word, i.e. savegame
+    '''
+
+    def preParseMetaCommand(self, command):
+        parsedWords = self.parseCommand(command)
+        preParsedCommandList = []
+        spaceMeta = ["save", "load"]
+        # make all words lowercase
+        for word in parsedWords:
+            preParsedCommandList.append(word.lower())
+        # savegame loadgame
+        for word in preParsedCommandList:
+            if word in spaceMeta:
+                metaIndex = preParsedCommandList.index(word)
+                if metaIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[metaIndex + 1] == "game":
+                        preParsedCommandList[metaIndex] = word + "game"
+                        del preParsedCommandList[metaIndex + 1]
+        return preParsedCommandList
+
+    '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
     '''
@@ -133,6 +157,23 @@ class TextParser:
         valid = self.errorCheckRoomCommand(userCommandDict)
         if valid == True:
             userCommandDict = {"verb": verb["word"], "room": room["word"], "direction": direction["word"]}
+        if valid != True:
+            userCommandDict = {}
+        return userCommandDict
+
+    '''
+    interpretMeta, among other interpret commands can be used in a loop to figure out the user command
+    if interpretMeta returns a non-empty dictionary, then we know the user wants: help, inventory, savegame, or 
+    loadgame
+    '''
+
+    def interpretMeta(self, command, roomObj):
+        parsedWords = self.preParseMetaCommand(command)
+        verb = self.findWord(parsedWords, "verb", {})
+        userCommandDict = {"verb": verb}
+        valid = self.errorCheckMetaCommand(userCommandDict)
+        if valid == True:
+            userCommandDict = {"verb": verb["word"]}
         if valid != True:
             userCommandDict = {}
         return userCommandDict
@@ -195,9 +236,12 @@ class TextParser:
         for word in words:
             for c in listToSearch:
                 if word == c:
-                    foundWord = c
-                    index = words.index(foundWord)
-                    break
+                    if index == "":
+                        foundWord = c
+                        index = words.index(foundWord)
+                        break
+                    else:
+                        return {"word": "", "index": ""}
         return {"word": foundWord, "index": index}
 
     '''
@@ -211,6 +255,16 @@ class TextParser:
         objectindex = userCommandDict["object"]["index"]
 
         if verb == "take" and object != "" and verbindex < objectindex:
+            return True
+        else:
+            return False
+
+    '''
+    help, inventory, savegame, loadgame are valid. nothing else is.
+    '''
+    def errorCheckMetaCommand(self, userCommandDict):
+        verb = userCommandDict["verb"]["word"]
+        if verb == "help" or verb == "inventory" or verb == "savegame" or verb == "loadgame":
             return True
         else:
             return False
@@ -231,6 +285,8 @@ class TextParser:
         roomindex = userCommandDict["room"]["index"]
         directionindex = userCommandDict["direction"]["index"]
 
+        if room != "" and direction != "" and verb != "":
+            return False
         if verb == "go" and room != "" and verbindex < roomindex:
             return True
         elif verb == "go" and direction != "" and verbindex < directionindex:
