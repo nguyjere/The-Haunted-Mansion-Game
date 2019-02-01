@@ -24,10 +24,12 @@ class TextParser:
         parsedRoomCommand = self.interpretRoom(command, roomObj)
         parsedFeatureCommand = self.interpretLook(command, roomObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
+        parsedMetaCommand = self.interpretMeta(command, roomObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedFeatureCommand)
         finalParsedCommand.update(parsedObjectCommand)
+        finalParsedCommand.update(parsedMetaCommand)
         return finalParsedCommand
 
     '''
@@ -54,9 +56,10 @@ class TextParser:
         for word in preParsedCommandList:
             if word in spaceFeatures:
                 featureIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[featureIndex + 1] == spaceFeaturesDict[word]:
-                    preParsedCommandList[featureIndex] = word + spaceFeaturesDict[word]
-                    del preParsedCommandList[featureIndex + 1]
+                if featureIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[featureIndex + 1] == spaceFeaturesDict[word]:
+                        preParsedCommandList[featureIndex] = word + spaceFeaturesDict[word]
+                        del preParsedCommandList[featureIndex + 1]
         return preParsedCommandList
 
     '''
@@ -78,17 +81,19 @@ class TextParser:
         for word in preParsedCommandList:
             if word in oneSpaceObjects:
                 objectIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[objectIndex + 1] == oneSpaceObjectsDict[word]:
-                    preParsedCommandList[objectIndex] = word + oneSpaceObjectsDict[word]
-                    del preParsedCommandList[objectIndex + 1]
+                if objectIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[objectIndex + 1] == oneSpaceObjectsDict[word]:
+                        preParsedCommandList[objectIndex] = word + oneSpaceObjectsDict[word]
+                        del preParsedCommandList[objectIndex + 1]
         for word in preParsedCommandList:
             if word in twoSpaceObjects:
                 objectIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[objectIndex + 1] + \
-                        preParsedCommandList[objectIndex + 2] == twoSpaceObjectsDict[word]:
-                    preParsedCommandList[objectIndex] = word + twoSpaceObjectsDict[word]
-                    del preParsedCommandList[objectIndex + 1]
-                    del preParsedCommandList[objectIndex + 1]
+                if objectIndex + 1 <= len(preParsedCommandList) - 1 and objectIndex + 2 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[objectIndex + 1] + \
+                            preParsedCommandList[objectIndex + 2] == twoSpaceObjectsDict[word]:
+                        preParsedCommandList[objectIndex] = word + twoSpaceObjectsDict[word]
+                        del preParsedCommandList[objectIndex + 1]
+                        del preParsedCommandList[objectIndex + 1]
         return preParsedCommandList
 
     '''
@@ -107,9 +112,32 @@ class TextParser:
         for word in preParsedCommandList:
             if word in spaceRooms:
                 roomTypeIndex = preParsedCommandList.index(word)
-                if preParsedCommandList[roomTypeIndex + 1] == "room":
-                    preParsedCommandList[roomTypeIndex] = word + "room"
-                    del preParsedCommandList[roomTypeIndex + 1]
+                if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[roomTypeIndex + 1] == "room":
+                        preParsedCommandList[roomTypeIndex] = word + "room"
+                        del preParsedCommandList[roomTypeIndex + 1]
+        return preParsedCommandList
+
+    '''
+    normalizes words by making them lowercase
+    finds metacommands that may have space such as save game and makes it one word, i.e. savegame
+    '''
+
+    def preParseMetaCommand(self, command):
+        parsedWords = self.parseCommand(command)
+        preParsedCommandList = []
+        spaceMeta = ["save", "load"]
+        # make all words lowercase
+        for word in parsedWords:
+            preParsedCommandList.append(word.lower())
+        # savegame loadgame
+        for word in preParsedCommandList:
+            if word in spaceMeta:
+                metaIndex = preParsedCommandList.index(word)
+                if metaIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[metaIndex + 1] == "game":
+                        preParsedCommandList[metaIndex] = word + "game"
+                        del preParsedCommandList[metaIndex + 1]
         return preParsedCommandList
 
     '''
@@ -118,7 +146,9 @@ class TextParser:
     '''
 
     def interpretRoom(self, command, roomObj):
-        connectedRooms = roomObj.connectedTo
+        connectedRooms = []
+        for room in roomObj.connectedTo:
+            connectedRooms.append(room.lower())
         parsedWords = self.preParseRoomCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         room = self.findWord(parsedWords, "room", connectedRooms)
@@ -132,12 +162,31 @@ class TextParser:
         return userCommandDict
 
     '''
+    interpretMeta, among other interpret commands can be used in a loop to figure out the user command
+    if interpretMeta returns a non-empty dictionary, then we know the user wants: help, inventory, savegame, or 
+    loadgame
+    '''
+
+    def interpretMeta(self, command, roomObj):
+        parsedWords = self.preParseMetaCommand(command)
+        verb = self.findWord(parsedWords, "verb", {})
+        userCommandDict = {"verb": verb}
+        valid = self.errorCheckMetaCommand(userCommandDict)
+        if valid == True:
+            userCommandDict = {"verb": verb["word"]}
+        if valid != True:
+            userCommandDict = {}
+        return userCommandDict
+
+    '''
     if just look is returned, then repeat description of room
     if look at feature is returned, then describe feature
     '''
 
     def interpretLook(self, command, roomObj):
-        availableFeatures = roomObj.features
+        availableFeatures = []
+        for feat in roomObj.features:
+            availableFeatures.append(feat.lower())
         parsedWords = self.preParseFeatureCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         feature = self.findWord(parsedWords, "feature", availableFeatures)
@@ -155,7 +204,9 @@ class TextParser:
     else returns empty dictionary
     '''
     def interpretTake(self, command, roomObj):
-        availableObjects = roomObj.objects
+        availableObjects = []
+        for obj in roomObj.objects:
+            availableObjects.append(obj.lower())
         parsedWords = self.preParseObjectCommand(command)
         verb = self.findWord(parsedWords, "verb", {})
         object = self.findWord(parsedWords, "object", availableObjects)
@@ -185,9 +236,12 @@ class TextParser:
         for word in words:
             for c in listToSearch:
                 if word == c:
-                    foundWord = c
-                    index = words.index(foundWord)
-                    break
+                    if index == "":
+                        foundWord = c
+                        index = words.index(foundWord)
+                        break
+                    else:
+                        return {"word": "", "index": ""}
         return {"word": foundWord, "index": index}
 
     '''
@@ -201,6 +255,16 @@ class TextParser:
         objectindex = userCommandDict["object"]["index"]
 
         if verb == "take" and object != "" and verbindex < objectindex:
+            return True
+        else:
+            return False
+
+    '''
+    help, inventory, savegame, loadgame are valid. nothing else is.
+    '''
+    def errorCheckMetaCommand(self, userCommandDict):
+        verb = userCommandDict["verb"]["word"]
+        if verb == "help" or verb == "inventory" or verb == "savegame" or verb == "loadgame":
             return True
         else:
             return False
@@ -221,6 +285,8 @@ class TextParser:
         roomindex = userCommandDict["room"]["index"]
         directionindex = userCommandDict["direction"]["index"]
 
+        if room != "" and direction != "" and verb != "":
+            return False
         if verb == "go" and room != "" and verbindex < roomindex:
             return True
         elif verb == "go" and direction != "" and verbindex < directionindex:
