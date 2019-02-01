@@ -8,6 +8,7 @@ class TextParser:
         self.directions = vocabulary.directions
         self.features = vocabulary.features
         self.prepositions = vocabulary.prepositions
+        self.ourcommands = vocabulary.ourcommands
 
     def promptUser(self, prompt):
         command = raw_input(prompt)
@@ -25,11 +26,13 @@ class TextParser:
         parsedFeatureCommand = self.interpretLook(command, roomObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
         parsedMetaCommand = self.interpretMeta(command, roomObj)
+        parsedOurCommand = self.interpretOurCommand(command, roomObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedFeatureCommand)
         finalParsedCommand.update(parsedObjectCommand)
         finalParsedCommand.update(parsedMetaCommand)
+        finalParsedCommand.update(parsedOurCommand)
         return finalParsedCommand
 
     '''
@@ -141,8 +144,32 @@ class TextParser:
         return preParsedCommandList
 
     '''
+    normalizes words by making them lowercase
+    finds commands that may have space and makes them one word, i.e. turn on and turn off
+    '''
+
+    def preParseOurCommand(self, command):
+        parsedWords = self.parseCommand(command)
+        preParsedCommandList = []
+        # make all words lowercase
+        for word in parsedWords:
+            preParsedCommandList.append(word.lower())
+        # turn on turn off
+        for word in preParsedCommandList:
+            if word == "turn":
+                ourcommandIndex = preParsedCommandList.index(word)
+                if ourcommandIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[ourcommandIndex + 1] == "on" or \
+                            preParsedCommandList[ourcommandIndex + 1] == "off" :
+                        preParsedCommandList[ourcommandIndex] = word + preParsedCommandList[ourcommandIndex + 1]
+                        del preParsedCommandList[ourcommandIndex + 1]
+        return preParsedCommandList
+
+    '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
+    takes both roomObj and playerObj as parameters because a player can use our commands on features/objects in rooms
+    and objects in a player's inventory
     '''
 
     def interpretRoom(self, command, roomObj):
@@ -174,6 +201,43 @@ class TextParser:
         valid = self.errorCheckMetaCommand(userCommandDict)
         if valid == True:
             userCommandDict = {"verb": verb["word"]}
+        if valid != True:
+            userCommandDict = {}
+        return userCommandDict
+
+    '''
+       interpretOurCommands, among other interpret commands can be used in a loop to figure out the user command
+       if interpretMeta returns a non-empty dictionary, then we know the user wants to use one of our unique commands:
+       lift, drop, push, pull, consume, open, close, turn on, turn off, hit
+       
+       To do: should also accept playerObj as parameter because player can perform commands on objects in their 
+       inventory
+       '''
+
+    def interpretOurCommand(self, command, roomObj):
+        availableFeatures = []
+        for feat in roomObj.features:
+            availableFeatures.append(feat.lower())
+        availableObjects = []
+        for obj in roomObj.objects:
+            availableObjects.append(obj.lower())
+
+        # to do: refactor this section of code
+        parsedWords1 = self.preParseOurCommand(command)
+        str1 = ' '.join(str(e) for e in parsedWords1)
+        parsedWords2 = self.preParseFeatureCommand(str1)
+        str2 = ' '.join(str(e) for e in parsedWords2)
+        parsedWords3 = self.preParseObjectCommand(str2)
+        parsedWords = parsedWords3
+        #
+
+        verb = self.findWord(parsedWords, "ourcommands", {})
+        object = self.findWord(parsedWords, "object", availableObjects)
+        feature = self.findWord(parsedWords, "feature", availableFeatures)
+        userCommandDict = {"verb": verb, "object": object, "feature": feature}
+        valid = self.errorCheckOurCommand(userCommandDict)
+        if valid == True:
+            userCommandDict = {"verb": verb["word"], "object": object["word"], "feature": feature["word"]}
         if valid != True:
             userCommandDict = {}
         return userCommandDict
@@ -232,6 +296,8 @@ class TextParser:
             listToSearch = self.prepositions
         if type == "object":
             listToSearch = listFromRoom
+        if type == "ourcommands":
+            listToSearch = self.ourcommands
         index = ""
         for word in words:
             for c in listToSearch:
@@ -265,6 +331,29 @@ class TextParser:
     def errorCheckMetaCommand(self, userCommandDict):
         verb = userCommandDict["verb"]["word"]
         if verb == "help" or verb == "inventory" or verb == "savegame" or verb == "loadgame":
+            return True
+        else:
+            return False
+
+    '''
+    one of our unique commands, plus a feature XOR object.
+    verb validation not needed here because only vocabulary.ourcommands is searched
+    
+    To do: more advanced implementation that limits which of our commands can be performed on which objects
+    For example, you obviously cannot each a french door. We should check for things like this here.
+    '''
+    def errorCheckOurCommand(self, userCommandDict):
+        verb = userCommandDict["verb"]["word"]
+        feature = userCommandDict["feature"]["word"]
+        object = userCommandDict["object"]["word"]
+
+        verbindex = userCommandDict["verb"]["index"]
+        featureindex = userCommandDict["feature"]["index"]
+        objectindex = userCommandDict["object"]["index"]
+
+        if verb != "" and feature != "" and object == "" and verbindex < featureindex:
+            return True
+        elif verb != "" and object != "" and feature == "" and verbindex < objectindex:
             return True
         else:
             return False
