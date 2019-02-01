@@ -13,3 +13,6 @@ class Item(MansionObject):
         else:
             item_file = "../resources/items/{}".format(item_name)
         MansionObject.__init__(self, item_file)
+
+    def __str__(self):
+        return self.name
