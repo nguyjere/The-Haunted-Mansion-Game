@@ -89,5 +89,38 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj)
         assert parsedCommand == {}
 
+    def test_our_commands(self):
+        test_room_obj = Room("barLounge.json")
+
+        command = "consume wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {'verb': 'consume', 'object': 'winebottle', 'feature': ''}
+
+        command = "wine bottle consume"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {}
+
+        command = "consume"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {}
+
+        command = "hit pooltable"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {'verb': 'hit', 'feature': 'pooltable', 'object': ''}
+
+        #you can only do one thing at a time
+        command = "consume wine bottle hit pool table"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {}
+
+        command = "consume winebottle pooltable"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {}
+
+        #eventually, this should fail because it doesnt make sense. just testing turn on for now
+        command = "turn on cabinet"
+        parsedCommand = textParser.getCommand(command, test_room_obj)
+        assert parsedCommand == {'verb': 'turnon', 'feature': 'cabinet', 'object': ''}
+
 if __name__ == '__main__':
     unittest.main()
