@@ -6,6 +6,6 @@
   "objects": ["books"],
   "visited": false,
   "shortMSG": "You are in a library. \n There are a bookshelf and a fireplace.\n You may go check other areas through a door.\n",
-  "longMST": "You are in a library. \n There are a bookshelf and a fireplace.\n You may go check other areas through a door.\n"
+  "longMSG": "You are in a library. \n There are a bookshelf and a fireplace.\n You may go check other areas through a door.\n"
 }
 

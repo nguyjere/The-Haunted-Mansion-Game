@@ -6,5 +6,5 @@
   "objects": ["journal"],
   "visited": false,
   "shortMSG": "You are in a master bedroom. \n There are a ladder, a bed and a mirror.\n You may go to other areas through a door.\n",
-  "longMST": "You are in a master bedroom. \n There are a ladder, a bed and a mirror.\n You may go to other areas through a door.\n"
+  "longMSG": "You are in a master bedroom. \n There are a ladder, a bed and a mirror.\n You may go to other areas through a door.\n"
 }

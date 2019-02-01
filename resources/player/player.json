@@ -1,6 +1,6 @@
 {
-  "name": "Bobby",
-  "currentRoom" : "kitchen",
+  "previousRoom" : "",
+  "currentRoom" : "livingRoom",
   "inventory" : ["knife", "spatula"],
   "status" : "Alive"
 }
