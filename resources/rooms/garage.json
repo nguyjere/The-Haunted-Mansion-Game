@@ -3,7 +3,7 @@
   "connectedTo": ["livingRoom", "courtyard"],
   "displayRoomName": "Garage",
   "features": ["door", "garageDoor", "car", "toolCabinet"],
-  "objects": null,
+  "objects": [],
   "visited": false,
   "shortMSG": "You are in a garage. \n There are a car, and a tool cabinet.\n You may go check other areas through a door at north west side of the corner, or a garage door at south side of the garage.\n",
   "longMSG": "You are in a garage. \n There are a car, and a tool cabinet.\n You may go check other areas through a door at north west side of the corner, or a garage door at south side of the garage.\n"
