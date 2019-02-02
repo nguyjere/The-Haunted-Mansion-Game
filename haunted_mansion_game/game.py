@@ -25,18 +25,15 @@ def select_saved_games():
     return raw_input(">>")
 
 
-def play():
+def play(game_state):
     text_parser = TextParser()
+    game_state.get_current_room().display_room_msg()
     while True:
-        current_room = get_room_by_name(player.currentRoom, rooms)
-        # Print current room long, or short, description and display objects and features
-        display_room_msg(current_room)
-
         user_input = raw_input(">>")
-        parsed_command = text_parser.getCommand(user_input, current_room)
+        parsed_command = text_parser.getCommand(user_input, game_state.get_current_room())
         if parsed_command:
-            # TODO: Pass parsed_command to a parsed_command_handler that will call an action
             print parsed_command
+            execute_action(parsed_command, game_state)
         else:
             print "I don't understand that"
         if user_input == "end game":
@@ -47,10 +44,12 @@ def play():
 if __name__ == "__main__":
     menu_input = main_main()
     if menu_input == '1':
-        player, rooms, items = load_new_game()
+        game = GameState()
+        play(game)
     elif menu_input == '2':
         selected_game_save = select_saved_games()
-        player, rooms, items = load_game(selected_game_save)
+        game = GameState(selected_game_save)
+        play(game)
     elif menu_input == '3':
         exit()
-    play()
+

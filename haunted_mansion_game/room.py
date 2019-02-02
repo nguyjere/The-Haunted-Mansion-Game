@@ -17,6 +17,18 @@ class Room(MansionObject):
     def __str__(self):
         return self.roomName
 
+    def display_room_msg(self):
+        if self.visited:
+            print self.shortMSG
+        else:
+            print self.longMSG
+        print "***ROOM FEATURE***"
+        for feature in self.features:
+            print feature
+        print "***Debug: connectedTo***"
+        for room in self.connectedTo:
+            print room
+
     def include_item(self, item):
         pass
 

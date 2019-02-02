@@ -3,7 +3,7 @@
   "connectedTo": ["livingRoom", "bathroom", "library"],
   "displayRoomName": "Hallway 1",
   "features": ["stairs", "entryway", "doorBR", "doorL"],
-  "objects": null,
+  "objects": [],
   "visited": false,
   "shortMSG": "You are in a hallway 1. \n You may go upstairs or check other areas through a entryway, door on the west or door on the east..\n",
   "longMSG": "You are in a hallway 1. \n You may go upstairs or check other areas through a entryway, door on the west or door on the east..\n"
