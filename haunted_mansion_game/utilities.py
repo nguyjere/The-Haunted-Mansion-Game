@@ -17,11 +17,10 @@ def get_item_by_name(item_name, list_of_items):
 
 
 def execute_action(parsed_command, game_state):
-    # TODO: Jeremy to handle missing keys
     method = getattr(Actions, parsed_command["verb"])
-    if parsed_command["room"]:
+    if "room" in parsed_command and parsed_command["room"]:
         method(game_state, parsed_command["room"])
-    elif parsed_command["feature"]:
+    elif "feature" in parsed_command and parsed_command["feature"]:
         method(game_state, parsed_command["feature"])
-    elif parsed_command["object"]:
+    elif "object" in parsed_command and parsed_command["object"]:
         method(game_state, parsed_command["object"])
