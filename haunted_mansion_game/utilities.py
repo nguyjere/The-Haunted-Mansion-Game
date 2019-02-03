@@ -16,11 +16,12 @@ def get_item_by_name(item_name, list_of_items):
             return item
 
 
+def get_feature_by_name(feature_name, list_of_features):
+    for feature in list_of_features:
+        if feature_name == feature.name:
+            return feature
+
+
 def execute_action(parsed_command, game_state):
     method = getattr(Actions, parsed_command["verb"])
-    if "room" in parsed_command and parsed_command["room"]:
-        method(game_state, parsed_command["room"])
-    elif "feature" in parsed_command and parsed_command["feature"]:
-        method(game_state, parsed_command["feature"])
-    elif "object" in parsed_command and parsed_command["object"]:
-        method(game_state, parsed_command["object"])
+    method(game_state, parsed_command)
