@@ -1,0 +1,6 @@
+{
+  "name": "recipebook",
+  "displayName": "recipeBook",
+  "description": "contains the antidote formula",
+  "ourCompatibleCommands": ["drop", "hit", "open", "close", "consume", "lift"]
+}

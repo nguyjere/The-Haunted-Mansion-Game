@@ -1,5 +1,5 @@
 import vocabulary
-
+from haunted_mansion_game.item import *
 
 class TextParser:
 
@@ -21,12 +21,12 @@ class TextParser:
     '''
     Use this function in the execution engine to get back a dictionary that represents the parsed user command.
     '''
-    def getCommand(self, command, roomObj):
+    def getCommand(self, command, roomObj, playerObj):
         parsedRoomCommand = self.interpretRoom(command, roomObj)
         parsedFeatureCommand = self.interpretLook(command, roomObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
         parsedMetaCommand = self.interpretMeta(command, roomObj)
-        parsedOurCommand = self.interpretOurCommand(command, roomObj)
+        parsedOurCommand = self.interpretOurCommand(command, roomObj, playerObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedFeatureCommand)
@@ -214,13 +214,19 @@ class TextParser:
        inventory
        '''
 
-    def interpretOurCommand(self, command, roomObj):
+    def interpretOurCommand(self, command, roomObj, playerObj):
         availableFeatures = []
+        compatibleCommands = {}
         for feat in roomObj.features:
             availableFeatures.append(feat.lower())
         availableObjects = []
         for obj in roomObj.objects:
             availableObjects.append(obj.lower())
+        for obj in playerObj.inventory:
+            availableObjects.append(obj.lower())
+            # create dictionary mapping compatible commands to item
+            item = Item(obj+".json")
+            compatibleCommands[obj] = item.ourCompatibleCommands
 
         # to do: refactor this section of code
         parsedWords1 = self.preParseOurCommand(command)
@@ -235,7 +241,7 @@ class TextParser:
         object = self.findWord(parsedWords, "object", availableObjects)
         feature = self.findWord(parsedWords, "feature", availableFeatures)
         userCommandDict = {"verb": verb, "object": object, "feature": feature}
-        valid = self.errorCheckOurCommand(userCommandDict)
+        valid = self.errorCheckOurCommand(userCommandDict, compatibleCommands)
         if valid == True:
             userCommandDict = {"verb": verb["word"], "object": object["word"], "feature": feature["word"]}
         if valid != True:
@@ -342,7 +348,7 @@ class TextParser:
     To do: more advanced implementation that limits which of our commands can be performed on which objects
     For example, you obviously cannot each a french door. We should check for things like this here.
     '''
-    def errorCheckOurCommand(self, userCommandDict):
+    def errorCheckOurCommand(self, userCommandDict, compatibleCommands):
         verb = userCommandDict["verb"]["word"]
         feature = userCommandDict["feature"]["word"]
         object = userCommandDict["object"]["word"]
@@ -350,6 +356,9 @@ class TextParser:
         verbindex = userCommandDict["verb"]["index"]
         featureindex = userCommandDict["feature"]["index"]
         objectindex = userCommandDict["object"]["index"]
+
+        if verb != "" and object != "" and verb not in compatibleCommands[object]:
+            return False
 
         if verb != "" and feature != "" and object == "" and verbindex < featureindex:
             return True

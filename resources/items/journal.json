@@ -1,5 +1,6 @@
 {
   "name": "journal",
   "displayName": "journal",
-  "description": "unknown who wrote"
+  "description": "unknown who wrote",
+  "ourCompatibleCommands": ["drop", "open", "close", "lift"]
 }
