@@ -2,7 +2,7 @@
 Contains the main loop of the game and core functions
 """
 from command_line_parser.textParser import *
-from save_and_load import *
+from game_state import *
 from utilities import *
 
 global player
