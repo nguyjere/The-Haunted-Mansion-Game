@@ -169,5 +169,21 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'open', 'feature': '', 'object': 'recipebook'}
 
+    def test_synonym_replacement(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+
+        command = "lose knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+
+        command = "eat wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'consume', 'feature': '', 'object': 'winebottle'}
+
+        command = "shut recipe book"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'close', 'feature': '', 'object': 'recipebook'}
+
 if __name__ == '__main__':
     unittest.main()
