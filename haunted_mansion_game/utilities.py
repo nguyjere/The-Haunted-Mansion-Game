@@ -23,5 +23,8 @@ def get_feature_by_name(feature_name, list_of_features):
 
 
 def execute_action(parsed_command, game_state):
-    method = getattr(Actions, parsed_command["verb"])
+    if parsed_command["verb"] is "" or "verb" not in parsed_command:
+        method = getattr(Actions, "go")
+    else:
+        method = getattr(Actions, parsed_command["verb"])
     method(game_state, parsed_command)
