@@ -30,7 +30,7 @@ def play(game_state):
     game_state.get_current_room().display_room_msg()
     while True:
         user_input = raw_input(">>")
-        parsed_command = text_parser.getCommand(user_input, game_state.get_current_room())
+        parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command:
             print parsed_command
             execute_action(parsed_command, game_state)

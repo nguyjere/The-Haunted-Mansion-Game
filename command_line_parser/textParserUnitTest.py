@@ -1,5 +1,6 @@
 import unittest
 from haunted_mansion_game.room import *
+from haunted_mansion_game.player import *
 from textParser import *
 
 textParser = TextParser()
@@ -9,68 +10,75 @@ class TestTextParser(unittest.TestCase):
 
     def test_go_north(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "go north"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'direction': 'north', 'verb': 'go', 'room': ''}
 
     def test_go_living_room(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "go to living room"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'direction': '', 'verb': 'go', 'room': 'livingroom'}
 
     def test_look_pool_table(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "look at pool table"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': u'pooltable'}
 
-    # def test_open_french_door(self):
-    #     test_room_obj = Room("barLounge.json")
-    #     command = "open the french door"
-    #     parsedCommand = textParser.getCommand(command, test_room_obj)
-    #     assert parsedCommand == {'preposition': '', 'verb': 'open', 'feature': u'frenchdoor'}
-    #     print parsedCommand
+    def test_open_french_door(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+        command = "open the french door"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'open', 'feature': u'frenchdoor', 'object': ''}
 
     def test_take_wine_bottle(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "take the wine bottle"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'take', 'object': u'winebottle'}
 
     def test_look_without_at(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "look"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'preposition':'', 'verb': 'look', 'feature':''}
 
     def test_meta_command(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "inventory"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'inventory'}
         command = "help"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'help'}
         command = "savegame"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'savegame'}
         command = "load game"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'loadgame'}
 
     def test_duplicate_keyword_prevention(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "go take winebottle"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         command = "take winebottle look"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         command = "take winebottle look help"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         # to run this, temporarily add pear to barLounge
@@ -85,42 +93,81 @@ class TestTextParser(unittest.TestCase):
 
     def test_room_and_direction_prevention(self):
         test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
         command = "go north living room"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
     def test_our_commands(self):
         test_room_obj = Room("barLounge.json")
-
+        test_player_obj = Player("player.json")
         command = "consume wine bottle"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'consume', 'object': 'winebottle', 'feature': ''}
 
         command = "wine bottle consume"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         command = "consume"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         command = "hit pooltable"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'hit', 'feature': 'pooltable', 'object': ''}
 
         #you can only do one thing at a time
         command = "consume wine bottle hit pool table"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         command = "consume winebottle pooltable"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
         #eventually, this should fail because it doesnt make sense. just testing turn on for now
         command = "turn on cabinet"
-        parsedCommand = textParser.getCommand(command, test_room_obj)
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'turnon', 'feature': 'cabinet', 'object': ''}
+
+    def test_command_on_object_in_inventory(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+        command = "drop knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+        command = "knife drop"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {}
+
+    def test_command_is_compatible_with_object(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+
+        command = "drop knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+
+        command = "consume knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {}
+
+        command = "hit doll"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'hit', 'feature': '', 'object': 'doll'}
+
+        command = "consume wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'consume', 'feature': '', 'object': 'winebottle'}
+
+        command = "turn off knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {}
+
+        command = "open recipe Book"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'open', 'feature': '', 'object': 'recipebook'}
 
 if __name__ == '__main__':
     unittest.main()
