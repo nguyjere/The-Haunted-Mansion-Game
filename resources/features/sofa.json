@@ -1,7 +1,7 @@
 {
   "name": "sofa",
   "displayName" : "sofa",
-  "description" : "hello",
-  "locked" : true,
+  "description" : "a luxury sofa",
+  "locked" : false,
   "status" : "off"
 }
