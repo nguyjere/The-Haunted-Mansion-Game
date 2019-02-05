@@ -1,4 +1,5 @@
 {
+  "saveName" : null,
   "previousRoom" : "",
   "currentRoom" : "livingRoom",
   "inventory" : ["knife", "doll", "masterkey", "winebottle", "recipebook"],
