@@ -1,8 +1,9 @@
 {
   "roomName": "diningRoom",
   "connectedTo": ["livingRoom", "kitchen"],
-  "displayRoomName": "Dining Room",
-  "features": ["diningTable", "chairs", "chinaCabinet", "entryLR", "kitchenDoor"],
+  "displayName": "Dining Room",
+  "features": ["diningTable", "chairs", "chinaCabinet"],
+  "Convert_this_to_Room_Entry" : ["entryLR", "kitchenDoor"],
   "objects": [],
   "visited": false,
   "shortMSG": "You are in a dining room. \n There are a dining table, chairs, and a china cabinet.\n You may go check other areas through an entryway at east, or a door at west.\n",

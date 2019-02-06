@@ -1,7 +1,7 @@
 {
   "roomName": "library",
   "connectedTo": ["hallway1", "secretRoom"],
-  "displayRoomName": "Library",
+  "displayName": "Library",
   "features": ["bookshelf", "fireplace", "door"],
   "objects": ["books"],
   "visited": false,

@@ -17,12 +17,16 @@ class Actions:
         # Update player's current room to the new room
         game_state.player.currentRoom = new_room_name
         # Display new room description
-        new_room = game_state.get_current_room()
-        new_room.display_room_msg()
+        game_state.display_current_room()
+
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
-        game_state.player.show_inventory()
+        for item in game_state.player.inventory:
+            item_obj = util.get_item_by_name(item, game_state.items)
+            item_name = item_obj.displayName
+            item_desc = item_obj.description
+            print "{} - {}".format(item_name, item_desc)
 
     @classmethod
     def help(cls, game_state):
@@ -39,7 +43,10 @@ class Actions:
         if "feature" in parsed_command and parsed_command["feature"]:
             feature = util.get_feature_by_name(parsed_command["feature"], game_state.features)
             print feature.description
-        # TODO: Need to parse for item before implementing "look at item"
+        # FIXME: getCommand() for "look at <object>" does not return "object" key
+        elif "object" in parsed_command and parsed_command["object"]:
+            item = util.get_item_by_name(parsed_command[parsed_command["object"], game_state.features])
+            print item.description
 
     @classmethod
     def take(cls, game_state, parsed_command):

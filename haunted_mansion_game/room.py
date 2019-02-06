@@ -22,15 +22,6 @@ class Room(MansionObject):
             print self.shortMSG
         else:
             print self.longMSG
-        print "***ROOM FEATURE***"
-        for feature in self.features:
-            print feature
-        print "***Debug: connectedTo***"
-        for room in self.connectedTo:
-            print room
-        print "***Debug: connectedTo***"
-        for item in self.objects:
-            print item
 
     def include_item(self, item):
         self.objects.append(item)

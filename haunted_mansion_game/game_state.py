@@ -61,3 +61,17 @@ class GameState:
 
     def get_current_room(self):
         return get_room_by_name(self.player.currentRoom, self.rooms)
+
+    # FIXME: Crashes when it tries to print displayName of features without json files
+    def display_current_room(self):
+        current_room = self.get_current_room()
+        current_room.display_room_msg()
+        print "***ROOM FEATURE***"
+        for feature in current_room.features:
+            print get_feature_by_name(feature, self.features).displayName
+        print "***NEXT ROOMS***"
+        for room in current_room.connectedTo:
+            print get_room_by_name(room, self.rooms).displayName
+        print "***ITEMS***"
+        for item in current_room.objects:
+            print get_item_by_name(item, self.items).displayName

@@ -27,7 +27,7 @@ def select_saved_games():
 
 def play(game_state):
     text_parser = TextParser()
-    game_state.get_current_room().display_room_msg()
+    game_state.display_current_room()
     while True:
         user_input = raw_input(">>")
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)

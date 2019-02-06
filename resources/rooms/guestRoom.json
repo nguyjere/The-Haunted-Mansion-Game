@@ -1,7 +1,7 @@
 {
   "roomName": "guestroom",
   "connectedTo": ["hallway2"],
-  "displayRoomName": "Guestroom",
+  "displayName": "Guestroom",
   "features": ["door","bed","mirror","closet"],
   "objects": ["knife"],
   "visited": false,

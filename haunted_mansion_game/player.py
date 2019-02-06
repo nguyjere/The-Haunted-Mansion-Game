@@ -20,9 +20,6 @@ class Player(MansionObject):
     def remove_from_inventory(self, item):
         self.inventory.remove(item)
 
-    def show_inventory(self):
-        for item in self.inventory:
-            print item
 
 
 
