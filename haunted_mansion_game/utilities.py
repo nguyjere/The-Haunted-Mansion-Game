@@ -12,13 +12,13 @@ def get_room_by_name(room_name, list_of_rooms):
 
 def get_item_by_name(item_name, list_of_items):
     for item in list_of_items:
-        if item_name == item.itemName:
+        if item_name.lower() == item.name.lower():
             return item
 
 
 def get_feature_by_name(feature_name, list_of_features):
     for feature in list_of_features:
-        if feature_name == feature.name:
+        if feature_name.lower() == feature.name.lower():
             return feature
 
 

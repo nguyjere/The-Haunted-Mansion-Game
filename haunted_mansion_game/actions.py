@@ -21,7 +21,7 @@ class Actions:
         new_room.display_room_msg()
 
     @classmethod
-    def inventory(cls, game_state):
+    def inventory(cls, game_state, *parsed_command):
         game_state.player.show_inventory()
 
     @classmethod
@@ -43,5 +43,22 @@ class Actions:
 
     @classmethod
     def take(cls, game_state, parsed_command):
-        # TODO: Need command parser to parse items before implementing
-        pass
+        if "object" in parsed_command and parsed_command["object"] is not "":
+            item_name = parsed_command["object"]
+            item = util.get_item_by_name(item_name, game_state.items)
+            game_state.player.add_to_inventory(item.name)
+            game_state.get_current_room().remove_item(item.name)
+            print "{} is added to your inventory.".format(item.name)
+        else:
+            print "You cannot take that."
+
+    @classmethod
+    def drop(cls, game_state, parsed_command):
+        if "object" in parsed_command and parsed_command["object"] is not "":
+            item_name = parsed_command["object"]
+            item = util.get_item_by_name(item_name, game_state.items)
+            game_state.player.remove_from_inventory(item.name)
+            game_state.get_current_room().include_item(item.name)
+            print "{} is dropped from your inventory.".format(item.name)
+        else:
+            print "You cannot drop that."

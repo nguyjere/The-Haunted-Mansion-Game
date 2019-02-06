@@ -28,9 +28,13 @@ class Room(MansionObject):
         print "***Debug: connectedTo***"
         for room in self.connectedTo:
             print room
+        print "***Debug: connectedTo***"
+        for item in self.objects:
+            print item
 
     def include_item(self, item):
-        pass
+        self.objects.append(item)
 
     def remove_item(self, item):
-        pass
+        self.objects.remove(item)
+
