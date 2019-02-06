@@ -15,7 +15,8 @@ class Actions:
         # Update player's previous room to current room
         game_state.player.previousRoom = game_state.player.currentRoom
         # Update player's current room to the new room
-        game_state.player.currentRoom = new_room_name
+        new_room = util.get_room_by_name(new_room_name, game_state.rooms)
+        game_state.player.currentRoom = new_room.roomName
         # Display new room description
         game_state.display_current_room()
 

@@ -5,10 +5,6 @@ from command_line_parser.textParser import *
 from game_state import *
 from utilities import *
 
-global player
-global rooms
-global items
-
 
 def main_main():
     print "Title"
