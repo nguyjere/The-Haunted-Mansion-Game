@@ -226,7 +226,7 @@ class TextParser:
             availableObjects.append(obj.lower())
             # create dictionary mapping compatible commands to item
             item = Item(obj+".json")
-            compatibleCommands[obj] = item.ourCompatibleCommands
+            compatibleCommands[obj.lower()] = item.ourCompatibleCommands
 
         # to do: refactor this section of code
         parsedWords1 = self.preParseOurCommand(command)
