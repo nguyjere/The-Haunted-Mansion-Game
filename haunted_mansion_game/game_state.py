@@ -78,7 +78,7 @@ class GameState:
             print self.get_item_by_name(item).displayName
 
     def execute_action(self, parsed_command):
-        if parsed_command["verb"] is "" or "verb" not in parsed_command:
+        if "verb" not in parsed_command or parsed_command["verb"] is "":
             method = getattr(Actions, "go")
         else:
             method = getattr(Actions, parsed_command["verb"])

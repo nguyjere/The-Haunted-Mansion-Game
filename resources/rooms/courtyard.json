@@ -1,7 +1,7 @@
 {
   "roomName": "courtyard",
   "connectedTo": ["garden", "garage", "livingRoom"],
-  "displayRoomName": "Courtyard",
+  "displayName": "Courtyard",
   "features": ["mainGate"],
   "objects": [],
   "visited": false,

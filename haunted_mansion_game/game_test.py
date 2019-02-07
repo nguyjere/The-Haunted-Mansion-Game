@@ -33,7 +33,7 @@ class TestTextParser(unittest.TestCase):
         game_state.execute_action(parsed_command)
         assert "carKey" in game_state.player.inventory
 
-    def test_drop_car_key(self):
+    def test_drop_carkey(self):
         game_state = GameState()
         user_input = "take carkey"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
@@ -44,7 +44,7 @@ class TestTextParser(unittest.TestCase):
         assert "carKey" not in game_state.player.inventory
         assert "carKey" in game_state.get_current_room().objects
 
-    def test_drop_carkey(self):
+    def test_drop_car_key(self):
         game_state = GameState()
         user_input = "take car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
