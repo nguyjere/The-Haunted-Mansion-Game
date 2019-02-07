@@ -3,7 +3,6 @@ Contains the main loop of the game and core functions
 """
 from command_line_parser.textParser import *
 from game_state import *
-from utilities import *
 
 
 def main_main():
@@ -29,7 +28,7 @@ def play(game_state):
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command:
             print parsed_command
-            execute_action(parsed_command, game_state)
+            game_state.execute_action(parsed_command)
         else:
             print "I don't understand that"
         if user_input == "end game":

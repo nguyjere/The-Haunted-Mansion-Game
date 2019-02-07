@@ -1,4 +1,4 @@
-import utilities as util
+import haunted_mansion_game.game_state
 
 
 class Actions:
@@ -15,7 +15,7 @@ class Actions:
         # Update player's previous room to current room
         game_state.player.previousRoom = game_state.player.currentRoom
         # Update player's current room to the new room
-        new_room = util.get_room_by_name(new_room_name, game_state.rooms)
+        new_room = game_state.get_room_by_name(new_room_name)
         game_state.player.currentRoom = new_room.roomName
         # Display new room description
         game_state.display_current_room()
@@ -24,7 +24,7 @@ class Actions:
     @classmethod
     def inventory(cls, game_state, *parsed_command):
         for item in game_state.player.inventory:
-            item_obj = util.get_item_by_name(item, game_state.items)
+            item_obj = game_state.get_item_by_name(item)
             item_name = item_obj.displayName
             item_desc = item_obj.description
             print "{} - {}".format(item_name, item_desc)
@@ -42,18 +42,18 @@ class Actions:
     @classmethod
     def look(cls, game_state, parsed_command):
         if "feature" in parsed_command and parsed_command["feature"]:
-            feature = util.get_feature_by_name(parsed_command["feature"], game_state.features)
+            feature = game_state.get_feature_by_name(parsed_command["feature"])
             print feature.description
         # FIXME: getCommand() for "look at <object>" does not return "object" key
         elif "object" in parsed_command and parsed_command["object"]:
-            item = util.get_item_by_name(parsed_command[parsed_command["object"], game_state.features])
+            item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
 
     @classmethod
     def take(cls, game_state, parsed_command):
         if "object" in parsed_command and parsed_command["object"] is not "":
             item_name = parsed_command["object"]
-            item = util.get_item_by_name(item_name, game_state.items)
+            item = game_state.get_item_by_name(item_name)
             game_state.player.add_to_inventory(item.name)
             game_state.get_current_room().remove_item(item.name)
             print "{} is added to your inventory.".format(item.name)
@@ -64,7 +64,7 @@ class Actions:
     def drop(cls, game_state, parsed_command):
         if "object" in parsed_command and parsed_command["object"] is not "":
             item_name = parsed_command["object"]
-            item = util.get_item_by_name(item_name, game_state.items)
+            item = game_state.get_item_by_name(item_name)
             game_state.player.remove_from_inventory(item.name)
             game_state.get_current_room().include_item(item.name)
             print "{} is dropped from your inventory.".format(item.name)
