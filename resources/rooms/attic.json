@@ -1,10 +1,18 @@
 {
   "roomName": "attic",
   "connectedTo": ["masterBedroom"],
-  "displayName": "Attic",
-  "features": ["ladder","dollHouse","chest"],
+  "displayRoomName": "Attic",
+  "features": ["dollHouse","chest"],
   "objects": ["oldFamilyPicture","doll"],
   "visited": false,
-  "shortMSG": "You are in an attic. \n There are a chest, dollHouse and a ladder.\n You may go to other areas through a door.\n",
-  "longMSG": "You are in an attic. \n There are a chest, dollHouse and a ladder.\n You may go to other areas through a door.\n"
+  "longMSG": "You are in the attic on the 3rd floor. It is very dark and dusty. \n There are a chest and a dollHouse.\n You may go down the ladder to the master bedroom.\n",
+  "shortMSG": "You are in the attic on the 3rd floor. \n Features: chest, dollHouse \n Areas you may go to: down - ladder to mater bedroom - 2nd floor\n",
+  "roomEntry": {
+                "ladder": "masterBedroom"
+                },
+  "directions": {
+                "down": "masterBedroom"
+              },
+  "locked" : false,
+  "hidden" : true
 }

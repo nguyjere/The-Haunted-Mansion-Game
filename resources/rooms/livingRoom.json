@@ -1,19 +1,26 @@
 {
   "roomName": "livingRoom",
-  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtYard", "garage"],
-  "displayName": "Living Room",
+  "connectedTo": ["diningRoom", "barLounge","hallway1", "courtyard", "garage"],
+  "displayRoomName": "Living Room",
   "features": ["sofa", "consoleTable"],
   "objects": ["carKey"],
   "visited": false,
-  "shortMSG": "You are in a living room.\n There are a sofa and a console table. \n You may go check other areas through a front door, a garage door, an arched entryway at north, a entryway at west, or a  french door at east. \n",
-  "longMSG": "You are in a living room.\n There are a sofa and a console table. \n You may go check other areas through a front door, a garage door, an arched entryway at north, a entryway at west, or a door at east. \n",
-  "roomEntry" : {
-                  "front door" : "courtYard",
-                  "garage door" : "garage",
-                  "northern door" :  "hallway1",
-                  "entryDR" :  "diningRoom",
-                  "french door" :  "bar"
+  "longMSG": "You are in the living room.\nThere are a sofa and a console table. \nYou may go...\n    north to the hallway1 through the northern entryway,\n    east to the bar lounge through the french door,\n    southeast to the garage through the house-to-garage door,\n    south to the courtyard through the front door\n    west to the dining room through the western entryway\n",
+  "shortMSG": "You are in a living room on the 1st floor. \nFeatures: sofa, chairs, console table\nAreas you may go to:\nnorth - northern entryway to hallway1 - 1st floor\neast - french door to bar lounge - 1st floor\nsoutheast - house-to-garage door to garage - 1st floor\nsouth - front door to courtyard - 1st floor\nwest - western entryway to dining room - 1st floor\n",
+  "roomEntry": {
+                "northern entryway": "hallway1",
+                "french door": "barLounge",
+                "garage door": "garage",
+                "front door": "courtyard",
+                "western entryway": "diningRoom"
                 },
+  "directions": {
+                "north": "hallway1",
+                "east": "barLounge",
+                "southeast": "garage",
+                "south": "courtYard",
+                "west": "diningRoom"
+              },
   "locked" : true,
   "hidden" : true
 }
