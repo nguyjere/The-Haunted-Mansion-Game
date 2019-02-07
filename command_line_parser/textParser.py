@@ -23,13 +23,13 @@ class TextParser:
     '''
     def getCommand(self, command, roomObj, playerObj):
         parsedRoomCommand = self.interpretRoom(command, roomObj)
-        parsedFeatureCommand = self.interpretLook(command, roomObj)
+        parsedLookCommand = self.interpretLook(command, roomObj, playerObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
         parsedMetaCommand = self.interpretMeta(command, roomObj)
         parsedOurCommand = self.interpretOurCommand(command, roomObj, playerObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
-        finalParsedCommand.update(parsedFeatureCommand)
+        finalParsedCommand.update(parsedLookCommand)
         finalParsedCommand.update(parsedObjectCommand)
         finalParsedCommand.update(parsedMetaCommand)
         finalParsedCommand.update(parsedOurCommand)
@@ -253,18 +253,27 @@ class TextParser:
     if look at feature is returned, then describe feature
     '''
 
-    def interpretLook(self, command, roomObj):
+    def interpretLook(self, command, roomObj, playerObj):
         availableFeatures = []
         for feat in roomObj.features:
             availableFeatures.append(feat.lower())
-        parsedWords = self.preParseFeatureCommand(command)
-        verb = self.findWord(parsedWords, "verb", {})
-        feature = self.findWord(parsedWords, "feature", availableFeatures)
-        preposition = self.findWord(parsedWords, "preposition", {})
-        userCommandDict = {"verb": verb, "feature": feature, "preposition": preposition}
+        availableObjects = []
+        for obj in roomObj.objects:
+            availableObjects.append(obj.lower())
+        for obj in playerObj.inventory:
+            availableObjects.append(obj.lower())
+        parsedWords1 = self.preParseFeatureCommand(command)
+        str1 = ' '.join(str(e) for e in parsedWords1)
+        parsedWords2 = self.preParseObjectCommand(str1)
+        verb = self.findWord(parsedWords2, "verb", {})
+        feature = self.findWord(parsedWords2, "feature", availableFeatures)
+        preposition = self.findWord(parsedWords2, "preposition", {})
+        object = self.findWord(parsedWords2, "object", availableObjects)
+        userCommandDict = {"verb": verb, "feature": feature, "preposition": preposition, "object": object}
         valid = self.errorCheckLookCommand(userCommandDict)
         if valid == True:
-            userCommandDict = {"verb": verb["word"], "feature": feature["word"], "preposition": preposition["word"]}
+            userCommandDict = {"verb": verb["word"], "feature": feature["word"], "preposition": preposition["word"],
+                               "object": object["word"]}
         if valid != True:
             userCommandDict = {}
         return userCommandDict
@@ -397,7 +406,7 @@ class TextParser:
             return False
 
     '''
-    look, look at feature are valid
+    look, look at feature, and look at object are valid
     everything else is not
     TO DO: check for extraneous words
     '''
@@ -406,14 +415,20 @@ class TextParser:
         verb = userCommandDict["verb"]["word"]
         feature = userCommandDict["feature"]["word"]
         preposition = userCommandDict["preposition"]["word"]
+        object = userCommandDict["object"]["word"]
 
         verbindex = userCommandDict["verb"]["index"]
         prepositionindex = userCommandDict["preposition"]["index"]
         featureindex = userCommandDict["feature"]["index"]
+        objectindex = userCommandDict["object"]["index"]
 
-        if verb == "look" and feature == "" and preposition == "":
+        if verb == "look" and feature == "" and object == "" and preposition == "":
             return True
-        elif verb == "look" and feature != "" and preposition == "at" and verbindex < prepositionindex < featureindex:
+        elif verb == "look" and feature != "" and object == "" \
+                and preposition == "at" and verbindex < prepositionindex < featureindex:
+            return True
+        elif verb == "look" and feature == "" and object != "" \
+                and preposition == "at" and verbindex < prepositionindex < objectindex:
             return True
         else:
             return False

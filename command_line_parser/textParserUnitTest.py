@@ -27,7 +27,14 @@ class TestTextParser(unittest.TestCase):
         test_player_obj = Player("player.json")
         command = "look at pool table"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': u'pooltable'}
+        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': u'pooltable', 'object': ''}
+
+    def test_look_wine_bottle(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+        command = "look at wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'winebottle'}
 
     def test_open_french_door(self):
         test_room_obj = Room("barLounge.json")
@@ -48,7 +55,7 @@ class TestTextParser(unittest.TestCase):
         test_player_obj = Player("player.json")
         command = "look"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'preposition':'', 'verb': 'look', 'feature':''}
+        assert parsedCommand == {'preposition':'', 'verb': 'look', 'feature':'', 'object': ''}
 
     def test_meta_command(self):
         test_room_obj = Room("barLounge.json")
