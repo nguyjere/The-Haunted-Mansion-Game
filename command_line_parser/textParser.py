@@ -1,4 +1,5 @@
 import vocabulary
+from synonymRetriever import *
 from haunted_mansion_game.item import *
 
 class TextParser:
@@ -22,6 +23,8 @@ class TextParser:
     Use this function in the execution engine to get back a dictionary that represents the parsed user command.
     '''
     def getCommand(self, command, roomObj, playerObj):
+        synonymRetriever1 = SynonymRetriever()
+        command = synonymRetriever1.synonymSwap(command)
         parsedRoomCommand = self.interpretRoom(command, roomObj)
         parsedLookCommand = self.interpretLook(command, roomObj, playerObj)
         parsedObjectCommand = self.interpretTake(command, roomObj)
