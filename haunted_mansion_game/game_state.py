@@ -3,10 +3,11 @@ from room import *
 from feature import *
 from item import *
 from player import *
-from utilities import *
+from actions import *
 
 
 class GameState:
+
     def __init__(self, saved_game=None):
         self.player = None
         self.rooms = None
@@ -60,4 +61,40 @@ class GameState:
             item.save_json("../saved_games/{}/items/{}.json".format(save_name, item))
 
     def get_current_room(self):
-        return get_room_by_name(self.player.currentRoom, self.rooms)
+        return self.get_room_by_name(self.player.currentRoom)
+
+    # FIXME: Crashes when it tries to print displayName of features without json files
+    def display_current_room(self):
+        current_room = self.get_current_room()
+        current_room.display_room_msg()
+        print "***ROOM FEATURE***"
+        for feature in current_room.features:
+            print self.get_feature_by_name(feature).displayName
+        print "***NEXT ROOMS***"
+        for room in current_room.connectedTo:
+            print self.get_room_by_name(room).displayName
+        print "***ITEMS***"
+        for item in current_room.objects:
+            print self.get_item_by_name(item).displayName
+
+    def execute_action(self, parsed_command):
+        if "verb" not in parsed_command or parsed_command["verb"] is "":
+            method = getattr(Actions, "go")
+        else:
+            method = getattr(Actions, parsed_command["verb"])
+        method(self, parsed_command)
+
+    def get_room_by_name(self, room_name):
+        for room in self.rooms:
+            if room_name.lower() == room.roomName.lower():
+                return room
+
+    def get_item_by_name(self, item_name):
+        for item in self.items :
+            if item_name.lower() == item.name.lower():
+                return item
+
+    def get_feature_by_name(self, feature_name):
+        for feature in self.features:
+            if feature_name.lower() == feature.name.lower():
+                return feature

@@ -1,7 +1,7 @@
 {
   "roomName": "hallway2",
   "connectedTo": ["stewardRoom", "masterBedroom", "guestRoom"],
-  "displayRoomName": "Hallway 2",
+  "displayName": "Hallway 2",
   "features": ["stairs", "doorSR", "doorMB", "doorGR"],
   "objects": [],
   "visited": false,
