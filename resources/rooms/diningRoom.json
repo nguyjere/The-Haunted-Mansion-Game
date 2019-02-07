@@ -2,9 +2,19 @@
   "roomName": "diningRoom",
   "connectedTo": ["livingRoom", "kitchen"],
   "displayRoomName": "Dining Room",
-  "features": ["diningTable", "chairs", "chinaCabinet", "entryLR", "kitchenDoor"],
+  "features": ["diningTable", "chairs", "chinaCabinet"],
   "objects": [],
   "visited": false,
-  "shortMSG": "You are in a dining room. \n There are a dining table, chairs, and a china cabinet.\n You may go check other areas through an entryway at east, or a door at west.\n",
-  "longMSG": "You are in a dining room. \n There are a dining table, chairs, and a china cabinet.\n You may go check other areas through an entryway at east, or a door at west.\n"
+  "longMSG": "You are in the dining room on the 1st floor. \n There are a dining table, chairs, and a china cabinet.\n You may go east to the living room on the 1st floor through the entryway, or go west to the kitchen on the 1st floor through the kitchen door. \n",
+  "shortMSG": "You are in a dining room on the 1st floor. \n Features: dining table, chairs, china cabinet\n Areas you may go to:\n    east - entryway to living room - 1st floor\n    west - kitchen door to kitchen - 1st floor\n",
+  "roomEntry" : {
+                  "entryway": "livingRoom",
+                  "kitchen door": "kitchen"
+                },
+  "directions": {
+                  "east": "livingRoom",
+                  "west": "kitchen"
+                },
+  "locked" : false,
+  "hidden" : false
 }
