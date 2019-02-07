@@ -2,9 +2,17 @@
   "roomName": "basement",
   "connectedTo": ["hallway1"],
   "displayRoomName": "Basement",
-  "features": ["stairs", "piano", "washerMachine"],
+  "features": ["piano", "washerMachine"],
   "objects": ["boltCutter"],
   "visited": false,
-  "shortMSG": "You are in a basement. \n There are a washing machine and a piano.\n You may go to the first floor through stairs.\n",
-  "longMSG": "You are in a basement. \n There are a washing machine and a piano.\n You may go to the first floor through stairs.\n"
+  "shortMSG": "You are in the basement. \n There are a washing machine and a piano.\n You may go up to the hallway 1 on the 1st floor through stairs.\n",
+  "longMSG": "You are in the basement. \n Features: washing machine, piano.\n Areas you may go to: up - stairs to hallway 1 - 1st floor\n",
+  "roomEntry": {
+                "stairs": "hallway1"
+                },
+  "directions": {
+                "up": "hallway1"
+              },
+  "locked" : false,
+  "hidden" : true
 }
