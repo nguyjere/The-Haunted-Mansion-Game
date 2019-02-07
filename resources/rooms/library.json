@@ -2,10 +2,18 @@
   "roomName": "library",
   "connectedTo": ["hallway1", "secretRoom"],
   "displayRoomName": "Library",
-  "features": ["bookshelf", "fireplace", "door"],
+  "features": ["bookshelf", "fireplace"],
   "objects": ["books"],
   "visited": false,
-  "shortMSG": "You are in a library. \n There are a bookshelf and a fireplace.\n You may go check other areas through a door.\n",
-  "longMSG": "You are in a library. \n There are a bookshelf and a fireplace.\n You may go check other areas through a door.\n"
+  "longMSG": "You are in the library on the 1st floor. \n There are a bookshelf and a fireplace.\n You may go west to the hallway 1 through the door.\n",
+  "shortMSG": "You are in the library on the 1st floor. \n Features: bookshelf, fireplace\n Areas you may go to: west - door to hallway 1 - 1st floor\n",
+  "roomEntry": {
+                "door": "hallway1"
+                },
+  "directions": {
+                "west": "hallway1"
+              },
+  "locked" : true,
+  "hidden" : true
 }
 

@@ -2,9 +2,23 @@
   "roomName": "hallway1",
   "connectedTo": ["livingRoom", "bathroom", "library"],
   "displayRoomName": "Hallway 1",
-  "features": ["stairs", "entryway", "doorBR", "doorL"],
+  "features": [],
   "objects": [],
   "visited": false,
-  "shortMSG": "You are in a hallway 1. \n You may go upstairs or check other areas through a entryway, door on the west or door on the east..\n",
-  "longMSG": "You are in a hallway 1. \n You may go upstairs or check other areas through a entryway, door on the west or door on the east..\n"
+  "longMSG": "You are in the hallway 1 on the 1st floor.\n You may go upstairs or\n     east to the library through the library door,\n    west to the bathroom through the bathroom door, or\n    south to the living room through the southern door.\n",
+  "shortMSG": "You are in the hallway 1 on the 1st floor.\n You may go...\n    up - stairs - hallway2 - 2nd floor \n    east - library door - library - 1st floor\n    south - southern door - living room - 1st floor\n    west - bathroom door - bathroom - 1st floor\n",
+  "roomEntry": {
+              "stairs": "hallway2",
+              "library door": "library",
+              "southern door": "livingRoom",
+              "bathroom door": "bathroom"
+        },
+  "directions": {
+                "up": "hallway2",
+                "east": "library",
+                "south": "livingRoom",
+                "west": "bathroom"
+              },
+  "locked" : false,
+  "hidden" : false
 }

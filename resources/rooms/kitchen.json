@@ -1,12 +1,31 @@
 {
   "roomName": "kitchen",
-  "connectedTo": ["diningRoom", "garden"],
+  "connectedTo": [
+    "diningRoom",
+    "garden"
+  ],
   "displayRoomName": "Kitchen",
-  "features": ["island", "backdoor", "frenchDoor", "pantry"],
-  "objects": ["recipeBook", "pictureBook"],
+  "features": [
+    "island",
+    "pantry"
+  ],
+  "objects": [
+    "recipeBook",
+    "pictureBook"
+  ],
   "visited": false,
-  "shortMSG": "You are in a kitchen. \n There are a kitchen island and a pantry.\n You may go check other areas through a backdoor at west side of the kitchen, or a french door at east side of the kitchen.\n",
-  "longMSG": "You are in a kitchen. \n There are a kitchen island and a pantry.\n You may go check other areas through a backdoor at west side of the kitchen, or a french door at east side of the kitchen.\n"
+  "longMSG": "You are in the kitchen on the 1st floor. \n There are a island, and a pantry.\n You may go...\n    east to the dining room on the 1st floor through the kitchen door, or\n    northwest to the garden through the back door. \n",
+  "shortMSG": "You are in a kitchen on the 1st floor. \n Features: island, pantry\n Areas you may go to:\n    east - kitchen door to dining room - 1st floor\n    northwest - back door to garden - 1st floor\n",
+  "roomEntry": {
+    "kitchen door": "diningRoom",
+    "back door": "garden"
+  },
+  "directions": {
+    "east": "diningRoom",
+    "northwest": "garden"
+  },
+  "locked": false,
+  "hidden": true
 }
 
 
