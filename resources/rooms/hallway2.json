@@ -2,9 +2,23 @@
   "roomName": "hallway2",
   "connectedTo": ["stewardRoom", "masterBedroom", "guestRoom"],
   "displayName": "Hallway 2",
-  "features": ["stairs", "doorSR", "doorMB", "doorGR"],
+  "features": [],
   "objects": [],
   "visited": false,
-  "shortMSG": "You are in a hallway on the second floor. \n You may go upstairs or check other areas through a doors on the east, the southwest, or the southeast..\n",
-  "longMSG": "You are in a hallway on the second floor. \n You may go upstairs or check other areas through a doors on the east, the southwest, or the southeast..\n"
+  "longMSG": "You are in the hallway 2 on the 2nd floor.\n You may go downstairs or\n     east to the steward room through the eastern door,\n    southeast to the master bedroom through the southeastern door, or\n    southwest to the guest room through the southwestern door.\n",
+  "shortMSG": "You are in the hallway 2 on the 2nd floor.\n You may go...\n    down - stairs - hallway1 - 1st floor \n    east - eastern door - steward room - 2nd floor\n    southeast - southeastern door - master bedroom - 2nd floor\n    southwest - southwestern door - guest room - 2nd floor\n",
+  "roomEntry": {
+              "stairs": "hallway1",
+              "eastern door": "stewardRoom",
+              "southeastern door": "masterBedroom",
+              "southwestern door": "guestRoom"
+        },
+  "directions": {
+                "down": "hallway1",
+                "east": "stewardRoom",
+                "southeast": "masterBedroom",
+                "southwest": "guestRoom"
+              },
+  "locked" : false,
+  "hidden" : false
 }

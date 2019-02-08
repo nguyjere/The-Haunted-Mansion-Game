@@ -2,9 +2,19 @@
   "roomName": "masterBedroom",
   "connectedTo": ["hallway2","attic"],
   "displayName": "Master Bedroom",
-  "features": ["door","bed","dresser","ladder"],
+  "features": ["bed","dresser"],
   "objects": ["journal"],
   "visited": false,
-  "shortMSG": "You are in a master bedroom. \n There are a ladder, a bed and a mirror.\n You may go to other areas through a door.\n",
-  "longMSG": "You are in a master bedroom. \n There are a ladder, a bed and a mirror.\n You may go to other areas through a door.\n"
+  "shortMSG": "You are in the master bedroom on the 2nd floor. \n There are a bed and a dresser.\n You may go upstairs to the attic, or\n    north to the hallway 2 through the door\n",
+  "longMSG": "You are in the master bedroom on the 2nd floor. \n Features: bed, dresser \n Areas you may go to:\n    up - ladder - attic - 3rd floor\n    north - door - hallway 2 - 2nd floor\n",
+  "roomEntry": {
+            "ladder": "attic",
+            "door": "hallway2"
+          },
+  "directions": {
+                "up": "attic",
+                "north": "hallway2"
+              },
+  "locked" : true,
+  "hidden" : true
 }

@@ -1,10 +1,20 @@
 {
   "roomName": "garden",
-  "connectedTo": ["kitchen"],
+  "connectedTo": ["kitchen", "courtyard"],
   "displayName": "Garden",
-  "features": ["gazebo", "shed", "backdoor", "gardenGate"],
+  "features": ["gazebo", "shed"],
   "objects": ["carBatteryJumper"],
   "visited": false,
-  "shortMSG": "You are in a garden. \n There are a gazebo and a shed.\n You may go check other areas through a backdoor, or a garden gate at south side of the garden.\n",
-  "longMSG": "You are in a garden. \n There are a gazebo and a shed.\n You may go check other areas through a backdoor, or a garden gate at south side of the garden.\n"
+  "longMSG": "You are in the garden. \n There are a gazebo and a shed.\n You may go...\n    south to the kitchen through the backdoor, or\n    southwest to the courtyard through the garden gate.\n",
+  "shortMSG": "You are in the garden. \n Features: gazebo, shed.\n Areas you may go to:\n    south - backdoor to kitchen - 1st floor\n    southwest - garden gate to courtyard\n",
+  "roomEntry": {
+              "backdoor": "kitchen",
+              "garden gate": "courtyard"
+            },
+  "directions": {
+                "south": "kitchen",
+                "southwest": "courtyard"
+              },
+  "locked" : true,
+  "hidden" : true
 }

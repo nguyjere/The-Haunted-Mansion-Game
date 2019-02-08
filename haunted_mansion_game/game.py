@@ -17,7 +17,15 @@ def main_main():
 def select_saved_games():
     print "Here's a list of saved games. Pick one"
     # display list of saved game files
-    return raw_input(">>")
+    for file_name in os.listdir('../saved_games/'):
+        print file_name
+    # prompt player the file name and do file name input validation
+    file_name_matched = False
+    while file_name_matched is False:
+        selected_file_name = raw_input(">>")
+        for file_name in os.listdir('../saved_games/'):
+            if file_name == selected_file_name:
+                return selected_file_name
 
 
 def play(game_state):

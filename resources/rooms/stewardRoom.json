@@ -2,9 +2,17 @@
   "roomName": "stewardRoom",
   "connectedTo": ["hallway2"],
   "displayName": "Steward Room",
-  "features": ["door","bed","desk","fileCabinet", "zombieSteward"],
+  "features": ["desk","fileCabinet","zombieSteward"],
   "objects": ["familyEmblems"],
   "visited": false,
-  "shortMSG": "You are in a steward room. \n There are a desk, a bed and a fileCabinet.\n You may go to other areas through a door.\n",
-  "longMSG": "You are in a steward room. \n There are a desk, a bed and a fileCabinet.\n You may go to other areas through a door.\n"
+  "longMSG": "You are in the steward room on the 2nd floor. \n There are a desk, a bed and a file cabinet...\nand......a Zombie Stewart smiling at you...no, showing his teeth does not mean smiling...\n You may go...\n    north to the hallway 2 through the door\n",
+  "shortMSG": "You are in the steward room on the 2nd floor. \n Features: zombie stewart, bed, desk, fileCabinet \n Areas you may go to:\n    north - door - hallway 2 - 2nd floor\n",
+  "roomEntry": {
+            "door": "hallway2"
+          },
+  "directions": {
+                "north": "hallway2"
+              },
+  "locked" : false,
+  "hidden" : true
 }
