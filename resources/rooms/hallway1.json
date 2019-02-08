@@ -1,7 +1,7 @@
 {
   "roomName": "hallway1",
   "connectedTo": ["livingRoom", "bathroom", "library"],
-  "displayRoomName": "Hallway 1",
+  "displayName": "Hallway 1",
   "features": [],
   "objects": [],
   "visited": false,

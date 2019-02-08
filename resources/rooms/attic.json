@@ -1,7 +1,7 @@
 {
   "roomName": "attic",
   "connectedTo": ["masterBedroom"],
-  "displayRoomName": "Attic",
+  "displayName": "Attic",
   "features": ["dollHouse","chest"],
   "objects": ["oldFamilyPicture","doll"],
   "visited": false,

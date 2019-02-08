@@ -27,7 +27,21 @@ class TestTextParser(unittest.TestCase):
         test_player_obj = Player("player.json")
         command = "look at pool table"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': u'pooltable'}
+        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': u'pooltable', 'object': ''}
+
+    def test_look_wine_bottle(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+        command = "look at wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'winebottle'}
+
+    def test_look_inventory_object(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+        command = "look at doll"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'doll'}
 
     def test_open_french_door(self):
         test_room_obj = Room("barLounge.json")
@@ -48,7 +62,7 @@ class TestTextParser(unittest.TestCase):
         test_player_obj = Player("player.json")
         command = "look"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'preposition':'', 'verb': 'look', 'feature':''}
+        assert parsedCommand == {'preposition':'', 'verb': 'look', 'feature':'', 'object': ''}
 
     def test_meta_command(self):
         test_room_obj = Room("barLounge.json")
@@ -168,6 +182,22 @@ class TestTextParser(unittest.TestCase):
         command = "open recipe Book"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'open', 'feature': '', 'object': 'recipebook'}
+
+    def test_synonym_replacement(self):
+        test_room_obj = Room("barLounge.json")
+        test_player_obj = Player("player.json")
+
+        command = "lose knife"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+
+        command = "eat wine bottle"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'consume', 'feature': '', 'object': 'winebottle'}
+
+        command = "shut recipe book"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'close', 'feature': '', 'object': 'recipebook'}
 
 if __name__ == '__main__':
     unittest.main()

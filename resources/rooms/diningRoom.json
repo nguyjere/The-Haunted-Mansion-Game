@@ -1,7 +1,7 @@
 {
   "roomName": "diningRoom",
   "connectedTo": ["livingRoom", "kitchen"],
-  "displayRoomName": "Dining Room",
+  "displayName": "Dining Room",
   "features": ["diningTable", "chairs", "chinaCabinet"],
   "objects": [],
   "visited": false,

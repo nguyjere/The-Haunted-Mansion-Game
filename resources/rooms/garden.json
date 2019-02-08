@@ -1,7 +1,7 @@
 {
   "roomName": "garden",
   "connectedTo": ["kitchen", "courtyard"],
-  "displayRoomName": "Garden",
+  "displayName": "Garden",
   "features": ["gazebo", "shed"],
   "objects": ["carBatteryJumper"],
   "visited": false,

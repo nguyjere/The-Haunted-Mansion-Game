@@ -1,18 +1,9 @@
 {
   "roomName": "kitchen",
-  "connectedTo": [
-    "diningRoom",
-    "garden"
-  ],
-  "displayRoomName": "Kitchen",
-  "features": [
-    "island",
-    "pantry"
-  ],
-  "objects": [
-    "recipeBook",
-    "pictureBook"
-  ],
+  "connectedTo": ["diningRoom", "garden"],
+  "displayName": "Kitchen",
+  "features": ["island", "pantry"],
+  "objects": ["recipeBook", "pictureBook"],
   "visited": false,
   "longMSG": "You are in the kitchen on the 1st floor. \n There are a island, and a pantry.\n You may go...\n    east to the dining room on the 1st floor through the kitchen door, or\n    northwest to the garden through the back door. \n",
   "shortMSG": "You are in a kitchen on the 1st floor. \n Features: island, pantry\n Areas you may go to:\n    east - kitchen door to dining room - 1st floor\n    northwest - back door to garden - 1st floor\n",

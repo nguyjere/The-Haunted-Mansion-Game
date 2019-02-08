@@ -1,7 +1,7 @@
 {
   "roomName": "masterBedroom",
   "connectedTo": ["hallway2","attic"],
-  "displayRoomName": "Master Bedroom",
+  "displayName": "Master Bedroom",
   "features": ["bed","dresser"],
   "objects": ["journal"],
   "visited": false,
