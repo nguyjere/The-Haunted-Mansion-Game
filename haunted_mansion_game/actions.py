@@ -20,7 +20,6 @@ class Actions:
         # Display new room description
         game_state.display_current_room()
 
-
     @classmethod
     def inventory(cls, game_state, *parsed_command):
         for item in game_state.player.inventory:
@@ -35,8 +34,16 @@ class Actions:
         pass
 
     @classmethod
-    def savegame(cls, game_state):
-        # TODO: Check if play.saveName is not None and Saved, else prompt for save name
+    def savegame(cls, game_state, parsed_command):
+        # Check if play.saveName is not None and Saved, else prompt for save name
+        if game_state.player.saveName is None:
+            print "Enter a game record name"
+            game_file_name = raw_input(">>")
+            game_state.player.saveName = game_file_name
+            game_state.save_game(game_file_name)
+        else:
+            game_state.save_game(game_state.player.saveName)
+            print "saved game state on : " + game_state.player.saveName
         pass
 
     @classmethod
