@@ -21,11 +21,24 @@ def select_saved_games():
         print file_name
     # prompt player the file name and do file name input validation
     file_name_matched = False
-    while file_name_matched is False:
+    prompt_counter = 3
+    while file_name_matched is False and prompt_counter > 0:
         selected_file_name = raw_input(">>")
         for file_name in os.listdir('../saved_games/'):
             if file_name == selected_file_name:
                 return selected_file_name
+        prompt_counter -= 1
+        # if player enter unmatched name for 3 times, let one decide keep retrying or load new game
+        if prompt_counter is 0:
+            print "no matching game state found for 3 tries."
+            print "retry to enter game state name? enter yes to retry. if not yes, will start new game."
+            retry_yes_no = raw_input(">>")
+            if retry_yes_no.lower() == "yes":
+                prompt_counter = 3
+            else:
+                print retry_yes_no.lower()
+                return None
+
 
 
 def play(game_state):
