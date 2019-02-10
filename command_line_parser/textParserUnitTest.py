@@ -8,12 +8,7 @@ textParser = TextParser()
 
 class TestTextParser(unittest.TestCase):
 
-    def test_go_north(self):
-        test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
-        command = "go north"
-        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'direction': 'north', 'verb': 'go', 'room': ''}
+
 
     def test_go_living_room(self):
         test_room_obj = Room("barLounge.json")
@@ -43,22 +38,9 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'doll'}
 
-    def test_look_inventory_object_2(self):
-        test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
-        command = "look at the car key"
-        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'carkey'}
-        command = "take the car key"
-        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'verb': 'take', 'object': u'carkey'}
 
-    def test_open_french_door(self):
-        test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
-        command = "open the french door"
-        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'verb': 'open', 'feature': u'frenchdoor', 'object': ''}
+
+
 
     def test_take_wine_bottle(self):
         test_room_obj = Room("barLounge.json")
@@ -208,6 +190,30 @@ class TestTextParser(unittest.TestCase):
         command = "shut recipe book"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'close', 'feature': '', 'object': 'recipebook'}
+
+    def test_direction_translation(self):
+        test_room_obj = Room("hallway2.json")
+        test_player_obj = Player("player.json")
+
+        command = "down"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': '', 'room': 'hallway1', 'direction': ''}
+
+        command = "go down"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'go', 'room': 'hallway1', 'direction': ''}
+
+        command = "go southwest"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'go', 'room': 'guestRoom', 'direction': ''}
+
+        command = "southwest"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': '', 'room': 'guestRoom', 'direction': ''}
+
+        command = "go south west"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'go', 'room': 'guestRoom', 'direction': ''}
 
 if __name__ == '__main__':
     unittest.main()
