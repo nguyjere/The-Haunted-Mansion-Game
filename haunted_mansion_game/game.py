@@ -40,7 +40,6 @@ def select_saved_games():
                 return None
 
 
-
 def play(game_state):
     text_parser = TextParser()
     game_state.display_current_room()
