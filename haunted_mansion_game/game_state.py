@@ -23,7 +23,7 @@ class GameState:
         self.rooms = []
         self.features = []
         self.items = []
-        self.player = Player("player.json")
+        self.player = Player("player.json", saved_game)
         for file_name in os.listdir('../saved_games/{}/rooms/'.format(saved_game)):
             self.rooms.append(Room(file_name))
         for file_name in os.listdir('../saved_games/{}/features/'.format(saved_game)):
