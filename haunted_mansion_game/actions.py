@@ -101,20 +101,17 @@ class Actions:
 
     @classmethod
     def turnon(cls, game_state, parsed_command):
-        # Example of the structure.
-        if "feature" in parsed_command and parsed_command["feature"] is "TV":
-            # We can refactor these logic under method turnon_TV(cls, game_state, parsed_command)
-            TV = game_state.get_feature_by_name("TV")
-            if TV.status == "off":
-                TV.status = "on"
-                # Maybe change the description as well, so the "look" message change
-                print "You turned on the TV with CNN and the \"Great Wall of America\"."
+        if "feature" in parsed_command:
+            if parsed_command["feature"] is "TV":
+                cls.turnon_tv(game_state)
+            elif parsed_command["feature"] is "washingMachine":
+                pass
             else:
-                print "The TV is already turned on."
-        elif "feature" in parsed_command and parsed_command["feature"] is "washingMachine":
+                print "You can turn that on."
+        elif "object" in parsed_command:
             pass
         else:
-            print "You can turn that on."
+            print "Turn on what?"
 
     @classmethod
     def turnoff(cls, game_state, parsed_command):
@@ -123,3 +120,14 @@ class Actions:
     @classmethod
     def hit(cls, game_state, parsed_command):
         pass
+
+    # This is an example. I don't think we actually have a TV
+    @classmethod
+    def turnon_tv(cls, game_state):
+        TV = game_state.get_feature_by_name("TV")
+        if TV.status == "off":
+            TV.status = "on"
+            # Maybe change the description as well, so the "look" message change
+            print "You turned on the TV with CNN and the \"Great Wall of America\"."
+        else:
+            print "The TV is already turned on."
