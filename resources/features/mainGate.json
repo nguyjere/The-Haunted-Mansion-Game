@@ -1,0 +1,7 @@
+{
+  "name": "mainGate",
+  "displayName" : "main gate",
+  "description" : "This gate is locked with a chain and padlock.",
+  "locked" : true,
+  "status" : ""
+}
