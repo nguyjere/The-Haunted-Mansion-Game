@@ -86,8 +86,8 @@ class TestGame(unittest.TestCase):
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
         game_state.execute_action(parsed_command)
-
-        user_input = "look the car key"
+        # "look the car key" should be invalid. it should be "look at the car key"
+        user_input = "look at the car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
         game_state.execute_action(parsed_command)
