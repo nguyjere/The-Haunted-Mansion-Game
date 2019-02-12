@@ -182,10 +182,22 @@ class TextParser:
 
     def translateDirectionToRoom(self, roomObj, userCommandDict):
         if userCommandDict["direction"]["word"] != "" and userCommandDict["room"]["word"] == "":
-            userCommandDict["room"]["word"] = roomObj.directions[userCommandDict["direction"]["word"]]
-            userCommandDict["room"]["index"] = userCommandDict["direction"]["index"]
-            userCommandDict["direction"]["word"] = ""
-            userCommandDict["direction"]["index"] = ""
+            validDirection = False
+            for key in roomObj.directions:
+                if userCommandDict["direction"]["word"] == key:
+                    validDirection = True
+            if validDirection == True:
+                userCommandDict["room"]["word"] = roomObj.directions[userCommandDict["direction"]["word"]]
+                userCommandDict["room"]["index"] = userCommandDict["direction"]["index"]
+                userCommandDict["direction"]["word"] = ""
+                userCommandDict["direction"]["index"] = ""
+            else:
+                userCommandDict["direction"]["word"] = ""
+                userCommandDict["direction"]["index"] = ""
+                userCommandDict["verb"]["word"] = ""
+                userCommandDict["verb"]["index"] = ""
+                userCommandDict["room"]["word"] = ""
+                userCommandDict["room"]["index"] = ""
 
     '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
