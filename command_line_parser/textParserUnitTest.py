@@ -215,5 +215,16 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'go', 'room': 'guestRoom', 'direction': ''}
 
+    def test_direction_translation_invalid(self):
+        test_room_obj = Room("hallway2.json")
+        test_player_obj = Player("player.json")
+        command = "go north"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {}
+
+        command = "north"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {}
+
 if __name__ == '__main__':
     unittest.main()
