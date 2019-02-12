@@ -1,35 +1,20 @@
 from textParser import TextParser
+from synonymRetriever import SynonymRetriever
 import sys
 sys.path.insert(0, '../haunted_mansion_game')
 from room import *
+from player import *
 
-testRoomObj = Room("barLounge.json")
+testRoomObj = Room("hallway2.json")
+
+playerObj = Player("player.json")
 
 textParser = TextParser()
-
+#synonymRetriever = SynonymRetriever()
+#synonymRetriever.synonymSwap("eat doll")
 
 while True:
 
-    command = textParser.promptUser('Where to? ')
-    parsedCommand = textParser.getCommand(command, testRoomObj)
+    command = textParser.promptUser('What? ')
+    parsedCommand = textParser.getCommand(command, testRoomObj, playerObj)
     print parsedCommand
-
-    command = textParser.promptUser('Look where? ')
-    parsedCommand = textParser.getCommand(command, testRoomObj)
-    print parsedCommand
-
-    command = textParser.promptUser('What object? ')
-    parsedCommand = textParser.getCommand(command, testRoomObj)
-    print parsedCommand
-
-    #command = textParser.promptUser('Where to? ')
-    #parsedCommand = textParser.interpretRoom(command, testRoomObj)
-    #print parsedCommand
-
-    #command = textParser.promptUser('Look where? ')
-    #parsedCommand = textParser.interpretLook(command, testRoomObj)
-    #print parsedCommand
-
-    ##command = textParser.promptUser('Where to? ')
-    ##parsedCommand = textParser.preParseRoomCommand(command)
-    ##print parsedCommand

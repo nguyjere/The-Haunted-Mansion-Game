@@ -50,12 +50,12 @@ class TextParser:
                          "washing", "medicine", "garden", "garage",
                          "main", "dining", "china", "arched",
                          "tool", "back", "book", "fire", "front", "gun", "lab",
-                         "file"]
+                         "file", "console", "car"]
         spaceFeaturesDict = {"doll": "house", "pool": "table", "bar": "counter", "french": "door",
                              "washing": "machine", "medicine": "cabinet", "garden": "gate", "garage": "door",
                              "main": "gate", "dining": "table", "china": "cabinet", "arched": "entryways",
                              "tool": "cabinet", "back": "door", "book": "shelf", "fire": "place", "front": "door",
-                             "gun": "safe", "lab": "table", "file": "cabinet"}
+                             "gun": "safe", "lab": "table", "file": "cabinet", "console": "table", "car": "key"}
         # make all words lowercase
         for word in parsedWords:
             preParsedCommandList.append(word.lower())
@@ -111,6 +111,8 @@ class TextParser:
         parsedWords = self.parseCommand(command)
         preParsedCommandList = []
         spaceRooms = ["dining", "guest", "living", "master", "secret", "steward"]
+        spaceDirections = ["north", "south"]
+
         # make all words lowercase
         for word in parsedWords:
             preParsedCommandList.append(word.lower())
@@ -122,6 +124,16 @@ class TextParser:
                     if preParsedCommandList[roomTypeIndex + 1] == "room":
                         preParsedCommandList[roomTypeIndex] = word + "room"
                         del preParsedCommandList[roomTypeIndex + 1]
+
+        for word in preParsedCommandList:
+            if word in spaceDirections:
+                directionIndex = preParsedCommandList.index(word)
+                if directionIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[directionIndex + 1] == "west" or \
+                            preParsedCommandList[directionIndex + 1] == "east":
+                        preParsedCommandList[directionIndex] = word + preParsedCommandList[directionIndex + 1]
+                        del preParsedCommandList[directionIndex + 1]
+
         return preParsedCommandList
 
     '''
@@ -168,6 +180,13 @@ class TextParser:
                         del preParsedCommandList[ourcommandIndex + 1]
         return preParsedCommandList
 
+    def translateDirectionToRoom(self, roomObj, userCommandDict):
+        if userCommandDict["direction"]["word"] != "" and userCommandDict["room"]["word"] == "":
+            userCommandDict["room"]["word"] = roomObj.directions[userCommandDict["direction"]["word"]]
+            userCommandDict["room"]["index"] = userCommandDict["direction"]["index"]
+            userCommandDict["direction"]["word"] = ""
+            userCommandDict["direction"]["index"] = ""
+
     '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
@@ -184,6 +203,7 @@ class TextParser:
         room = self.findWord(parsedWords, "room", connectedRooms)
         direction = self.findWord(parsedWords, "direction", {})
         userCommandDict = {"verb": verb, "room": room, "direction": direction}
+        self.translateDirectionToRoom(roomObj, userCommandDict)
         valid = self.errorCheckRoomCommand(userCommandDict)
         if valid == True:
             userCommandDict = {"verb": verb["word"], "room": room["word"], "direction": direction["word"]}
