@@ -18,7 +18,8 @@ def select_saved_games():
     print "Here's a list of saved games. Pick one"
     # display list of saved game files
     for file_name in os.listdir('../saved_games/'):
-        print file_name
+        if os.path.isdir("../saved_games/"+file_name) is True:
+            print file_name
     # prompt player the file name and do file name input validation
     file_name_matched = False
     prompt_counter = 3
@@ -40,21 +41,24 @@ def select_saved_games():
                 return None
 
 
-
 def play(game_state):
     text_parser = TextParser()
     game_state.display_current_room()
     while True:
         user_input = raw_input(">>")
+        if user_input.lower().replace(" ","") == "loadgame":
+            game_state = GameState(select_saved_games())
+            game_state.display_current_room()
+            continue
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command:
             print parsed_command
             game_state.execute_action(parsed_command)
-        else:
-            print "I don't understand that"
-        if user_input == "end game":
+        elif user_input == "end game":
             print "You Died"
             break
+        else:
+            print "I don't understand that"
 
 
 if __name__ == "__main__":
