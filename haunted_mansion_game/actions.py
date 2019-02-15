@@ -55,6 +55,9 @@ class Actions:
         elif "object" in parsed_command and parsed_command["object"]:
             item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
+        elif parsed_command["verb"] == "look" and parsed_command["object"] == "" and parsed_command["feature"] == ""\
+                and parsed_command["preposition"] == "":
+            print game_state.display_current_room()
 
     @classmethod
     def take(cls, game_state, parsed_command):
