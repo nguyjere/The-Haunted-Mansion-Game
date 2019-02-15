@@ -1,0 +1,7 @@
+{
+  "name": "gunSafe",
+  "displayName" : "gunSafe",
+  "description" : "I need to enter a 4-digit number into the keypad to unlock this.",
+  "locked" : false,
+  "status" : ""
+}

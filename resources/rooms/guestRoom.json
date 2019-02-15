@@ -2,7 +2,7 @@
   "roomName": "guestroom",
   "connectedTo": ["hallway2"],
   "displayName": "Guestroom",
-  "features": ["bed","mirror","closet"],
+  "features": ["mirror","closet"],
   "objects": ["knife"],
   "visited": false,
   "longMSG": "You are in the guestroom on the 2nd floor. \n There are a closet, a bed and a mirror.\n You may go...\n    north to the hallway 2 through the door\n",

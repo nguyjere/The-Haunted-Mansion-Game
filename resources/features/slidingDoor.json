@@ -1,0 +1,7 @@
+{
+  "name": "slidingDoor",
+  "displayName" : "sliding door",
+  "description" : "A solid door that slides.",
+  "locked" : false,
+  "status" : ""
+}
