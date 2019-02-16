@@ -5,7 +5,7 @@ sys.path.insert(0, '../haunted_mansion_game')
 from room import *
 from player import *
 
-testRoomObj = Room("hallway2.json")
+testRoomObj = Room("barLounge.json")
 
 playerObj = Player("player.json")
 

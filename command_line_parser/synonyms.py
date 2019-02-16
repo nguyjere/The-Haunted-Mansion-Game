@@ -11,7 +11,7 @@ synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw 
          u'deliver the goods', u'displace', u'gain ground', u'get', u'get ahead', u'have', u'impact', u'impel',
          u'injure', u'kill', u'make headway', u'move', u'propel', u'pull ahead', u'succeed',
          u'take in', u'touch', u'touch on', u'win', u'wound'],
- 'consume': [u'devour', u'down', u'go through', u'ingest', u'take in',  u'have', u'squander', u'waste', u'ware',
+ 'consume': [u'devour', u'go through', u'ingest', u'take in',  u'have', u'squander', u'waste', u'ware',
              u'eat up', u'use up', u'eat', u'deplete', u'exhaust', u'run through', u'wipe out', u'absorb', u'destroy',
             u'engage', u'engross', u'expend', u'occupy', u'ruin', u'spend'],
  'drop': [u'sink', u'drop down', u'knock off', u'drop off', u'set down', u'put down', u'unload', u'discharge', u'fell',
@@ -50,7 +50,7 @@ synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw 
  'turn on': [u'switch on', u'depend on', u'devolve on', u'depend upon', u'ride', u'hinge on', u'hinge upon', u'agitate',
              u'rouse', u'charge', u'commove', u'excite', u'charge up', u'arouse', u'sex', u'wind up', u'trip',
              u'trip out', u'get off', u'bring forth', u'change', u'disturb', u'flip', u'produce', u'shake', u'shake up',
-             u'stimulate', u'stir', u'switch', u'throw', u'trouble', u'upset'],
+             u'stimulate', u'stir', u'switch', u'throw', u'trouble', u'upset', u'use', u'start'],
 'turnoff': [u'switch off', u'cut', u'turn out', u'put off', u'flip', u'repel', u'repulse', u'switch',
                          u'throw',
                          u'turn'],
@@ -60,5 +60,5 @@ synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw 
                         u'trip',
                         u'trip out', u'get off', u'bring forth', u'change', u'disturb', u'flip', u'produce', u'shake',
                         u'shake up',
-                        u'stimulate', u'stir', u'switch', u'throw', u'trouble', u'upset']
+                        u'stimulate', u'stir', u'switch', u'throw', u'trouble', u'upset', u'use', u'start']
             }
