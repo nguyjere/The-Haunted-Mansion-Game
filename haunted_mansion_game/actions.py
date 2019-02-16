@@ -122,7 +122,15 @@ class Actions:
 
     @classmethod
     def hit(cls, game_state, parsed_command):
-        pass
+        # getting the car key from the zombie
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+            and "knife" in game_state.player.inventory:
+            game_state.player.add_to_inventory("masterKey")
+            game_state.get_current_room().remove_feature("zombieSteward")
+            print "You killed the zombie. You found a master key among his remains!"
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+            and "knife" not in game_state.player.inventory:
+            print "You need a knife to do damage"
 
     # This is an example. I don't think we actually have a TV
     @classmethod

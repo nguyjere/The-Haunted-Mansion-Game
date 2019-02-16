@@ -140,10 +140,10 @@ class TestTextParser(unittest.TestCase):
     def test_command_on_object_in_inventory(self):
         test_room_obj = Room("barLounge.json")
         test_player_obj = Player("player.json")
-        command = "drop knife"
+        command = "drop doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
-        command = "knife drop"
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'doll'}
+        command = "doll drop"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
@@ -151,11 +151,11 @@ class TestTextParser(unittest.TestCase):
         test_room_obj = Room("barLounge.json")
         test_player_obj = Player("player.json")
 
-        command = "drop knife"
+        command = "drop doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'doll'}
 
-        command = "consume knife"
+        command = "consume doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
@@ -167,7 +167,7 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'consume', 'feature': '', 'object': 'winebottle'}
 
-        command = "turn off knife"
+        command = "turn off doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
@@ -179,9 +179,9 @@ class TestTextParser(unittest.TestCase):
         test_room_obj = Room("barLounge.json")
         test_player_obj = Player("player.json")
 
-        command = "lose knife"
+        command = "lose doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
-        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'knife'}
+        assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'doll'}
 
         command = "eat wine bottle"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
