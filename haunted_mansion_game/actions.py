@@ -105,12 +105,12 @@ class Actions:
     @classmethod
     def turnon(cls, game_state, parsed_command):
         if "feature" in parsed_command:
-            if parsed_command["feature"] is "TV":
-                cls.turnon_tv(game_state)
-            elif parsed_command["feature"] is "washingMachine":
+            if parsed_command["feature"] == "car":
+                cls.start_car(game_state)
+            elif parsed_command["feature"] == "washingMachine":
                 pass
             else:
-                print "You can turn that on."
+                print "You can't turn that on."
         elif "object" in parsed_command:
             pass
         else:
@@ -118,19 +118,56 @@ class Actions:
 
     @classmethod
     def turnoff(cls, game_state, parsed_command):
-        pass
+        if "feature" in parsed_command:
+            if parsed_command["feature"] == "car":
+                cls.turn_off_car(game_state)
+            elif parsed_command["feature"] == "washingMachine":
+                pass
+            else:
+                print "You can't turn that off."
+        elif "object" in parsed_command:
+            pass
+        else:
+            print "Turn off what?"
 
     @classmethod
     def hit(cls, game_state, parsed_command):
         pass
 
-    # This is an example. I don't think we actually have a TV
     @classmethod
-    def turnon_tv(cls, game_state):
-        TV = game_state.get_feature_by_name("TV")
-        if TV.status == "off":
-            TV.status = "on"
-            # Maybe change the description as well, so the "look" message change
-            print "You turned on the TV with CNN and the \"Great Wall of America\"."
+    def start_car(cls, game_state):
+        car = game_state.get_feature_by_name("car")
+        if car.running is False:
+            if "carKey" in game_state.player.inventory and car.jumped is True:
+                car.running = True
+                game_state.player.remove_from_inventory("carKey")
+                print "You turn the key in the ignition, and the car is now running."
+            elif "carKey" in game_state.player.inventory and "carBatteryJumper" in game_state.player.inventory:
+                car.running = True
+                car.jumped = True
+                game_state.player.remove_from_inventory("carKey")
+                car.description = "A 90's Porsche 911. It's currently running."
+                print "You open the door and pop the hood then attach battery jumper to the battery terminals " \
+                      "in the car. Upon turning the keys the dash lights up and the car starts. " \
+                      "The car is now running and you remove the batter jumper."
+            elif "carKey" in game_state.player.inventory and car.jumped is False:
+                car.description = "A 90's Porsche 911. Too bad the battery is dead."
+                print "You open the door and attempt to start the car, but the car does not start, nor does the dash" \
+                      "light up. The battery is probably dead."
+            else:  # Case where the play does not have the car key
+                print "The car is locked. You can't open the car without the car key."
+        else:  # Case where the car is already running
+            print "The car is already running."
+
+    @classmethod
+    def turn_off_car(cls, game_state):
+        car = game_state.get_feature_by_name("car")
+        if car.running is True:
+            game_state.player.add_to_inventory("carKey")
+            car.running = False
+            car.description = "A 90's Porsche 911. It's currently turned off, but it starts perfectly now."
+            print "You turned off the car and pocket the car key."
         else:
-            print "The TV is already turned on."
+            print "The car is already turned off."
+
+

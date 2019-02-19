@@ -1,7 +1,8 @@
 {
   "name": "car",
   "displayName" : "car",
-  "description" : "A 90's Porsche 911. Too bad it's broken.",
-  "locked" : false,
-  "status" : ""
+  "description" : "A 90's Porsche 911.",
+  "status" : "",
+  "jumped": false,
+  "running": false
 }
