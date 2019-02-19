@@ -102,18 +102,18 @@ class GameState:
 
     def poison_effect(self):
         # If player takes 12 steps while poisoned, the game ends
-        if self.player.poisoned_steps == 0:
+        if self.player.poisonedSteps == 0:
             print "Coughing."
-        elif self.player.poisoned_steps == 3:
+        elif self.player.poisonedSteps == 3:
             print "Fatigue."
-        elif self.player.poisoned_steps == 6:
+        elif self.player.poisonedSteps == 6:
             print "Vomiting."
-        elif self.player.poisoned_steps == 9:
+        elif self.player.poisonedSteps == 9:
             print "Your mouth starts to foam with blood"
-        elif self.player.poisoned_steps == 12:
+        elif self.player.poisonedSteps == 12:
             print "You collapse on the ground and seized. You died"
             exit()
-        self.player.poisoned_steps += 1
+        self.player.poisonedSteps += 1
 
     def cure_poison(self):
         if self.player.status == "poisoned":

@@ -4,5 +4,5 @@
   "currentRoom" : "livingRoom",
   "inventory" : [],
   "status" : "Alive",
-  "poisoned_steps": 0
+  "poisonedSteps": 0
 }
