@@ -132,7 +132,8 @@ class Actions:
 
     @classmethod
     def hit(cls, game_state, parsed_command):
-        pass
+        # getting the car key from the zombie
+        cls.hit_zombie(game_state, parsed_command)
 
     @classmethod
     def start_car(cls, game_state):
@@ -168,6 +169,17 @@ class Actions:
             car.description = "A 90's Porsche 911. It's currently turned off, but it starts perfectly now."
             print "You turned off the car and pocket the car key."
         else:
-            print "The car is already turned off."
+            print "The TV is already turned on."
 
+    @classmethod
+    def hit_zombie(cls, game_state, parsed_command):
+        # getting the car key from the zombie
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+                and "knife" in game_state.player.inventory:
+            game_state.player.add_to_inventory("masterKey")
+            game_state.get_current_room().remove_feature("zombieSteward")
+            print "You killed the zombie. You found a master key among his remains!"
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+                and "knife" not in game_state.player.inventory:
+            print "You need a knife to do damage."
 

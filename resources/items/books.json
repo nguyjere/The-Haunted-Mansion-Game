@@ -1,0 +1,6 @@
+{
+  "name": "books",
+  "displayName": "books",
+  "description": "lots of old dusty books",
+  "ourCompatibleCommands": ["open"]
+}

@@ -29,3 +29,6 @@ class Room(MansionObject):
     def remove_item(self, item):
         self.objects.remove(item)
 
+    #used to "kill" the zombie
+    def remove_feature(self, feature):
+        self.features.remove(feature)
