@@ -19,6 +19,8 @@ class Actions:
         game_state.player.currentRoom = new_room.roomName
         # Display new room description
         game_state.display_current_room()
+        if game_state.player.status == "poisoned":
+            game_state.poison_effect()
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
@@ -51,7 +53,6 @@ class Actions:
         if "feature" in parsed_command and parsed_command["feature"]:
             feature = game_state.get_feature_by_name(parsed_command["feature"])
             print feature.description
-        # FIXME: getCommand() for "look at <object>" does not return "object" key
         elif "object" in parsed_command and parsed_command["object"]:
             item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
@@ -92,7 +93,17 @@ class Actions:
 
     @classmethod
     def consume(cls, game_state, parsed_command):
-        pass
+        if "object" in parsed_command:
+            # FIXME: parsedCommand should give wineBottle instead of winebottle
+            if parsed_command["object"] == "winebottle":
+                cls.drink_wine(game_state)
+            elif parsed_command["object"] == "antidote":
+                cls.drink_antidote(game_state)
+            else:
+                print "You cannot consume that."
+        else:
+            print "Consume what?"
+
 
     @classmethod
     def open(cls, game_state, parsed_command):
@@ -170,4 +181,16 @@ class Actions:
         else:
             print "The car is already turned off."
 
+    @classmethod
+    def drink_wine(cls, game_state):
+        item_name = "wineBottle"
+        game_state.player.status = "poisoned"
+        wine_bottle = game_state.get_item_by_name(item_name)
+        game_state.player.remove_from_inventory(wine_bottle.name)
+        print "You drink from the wine bottle, then a few minutes later you start to feel sick."
 
+    @classmethod
+    def drink_antidote(cls, game_state):
+        item_name = "antidote"
+        game_state.cure_poison()
+        game_state.player.remove_from_inventory(item_name)

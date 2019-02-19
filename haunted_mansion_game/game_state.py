@@ -76,6 +76,7 @@ class GameState:
         print "***ITEMS***"
         for item in current_room.objects:
             print self.get_item_by_name(item).displayName
+        print ""
 
     def execute_action(self, parsed_command):
         if "verb" not in parsed_command or parsed_command["verb"] is "":
@@ -98,3 +99,26 @@ class GameState:
         for feature in self.features:
             if feature_name.lower() == feature.name.lower():
                 return feature
+
+    def poison_effect(self):
+        # If player takes 12 steps while poisoned, the game ends
+        if self.player.poisoned_steps == 0:
+            print "Coughing."
+        elif self.player.poisoned_steps == 3:
+            print "Fatigue."
+        elif self.player.poisoned_steps == 6:
+            print "Vomiting."
+        elif self.player.poisoned_steps == 9:
+            print "Your mouth starts to foam with blood"
+        elif self.player.poisoned_steps == 12:
+            print "You collapse on the ground and seized. You died"
+            exit()
+        self.player.poisoned_steps += 1
+
+    def cure_poison(self):
+        if self.player.status == "poisoned":
+            self.player.status = "Alive"
+            print "You feel much better now."
+        else:
+            print "You feel no difference."
+

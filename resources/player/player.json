@@ -2,6 +2,7 @@
   "saveName" : null,
   "previousRoom" : "",
   "currentRoom" : "livingRoom",
-  "inventory" : ["knife", "doll", "masterKey", "wineBottle", "recipeBook"],
-  "status" : "Alive"
+  "inventory" : [],
+  "status" : "Alive",
+  "poisoned_steps": 0
 }
