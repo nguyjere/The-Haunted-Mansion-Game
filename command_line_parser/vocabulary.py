@@ -3,7 +3,7 @@ rooms = ["attic", "bar", "basement", "diningroom", "garage", "garden", "guestroo
 
 verbs = ["look", "go", "take", "help", "inventory", "savegame", "loadgame"]
 
-ourcommands = ["lift", "drop", "push", "pull", "consume", "open", "close", "turnon", "turnoff", "hit"]
+ourcommands = ["lift", "drop", "push", "pull", "consume", "open", "close", "turnon", "turnoff", "hit", "drive"]
 
 ourcommandsSpaced = ["lift", "drop", "push", "pull", "consume", "open", "close", "turn on", "turn off", "hit", 'turn', 'on', 'off']
 
