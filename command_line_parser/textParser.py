@@ -111,6 +111,8 @@ class TextParser:
         parsedWords = self.parseCommand(command)
         preParsedCommandList = []
         spaceRooms = ["dining", "guest", "living", "master", "secret", "steward"]
+        otherSpaceRooms = ["bar", "hallway"]
+        # add handling for bar lounge, hallway1, hallway2
         spaceDirections = ["north", "south"]
 
         # make all words lowercase
@@ -123,6 +125,23 @@ class TextParser:
                 if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
                     if preParsedCommandList[roomTypeIndex + 1] == "room":
                         preParsedCommandList[roomTypeIndex] = word + "room"
+                        del preParsedCommandList[roomTypeIndex + 1]
+
+        for word in preParsedCommandList:
+            if word == "bar":
+                roomTypeIndex = preParsedCommandList.index(word)
+                if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[roomTypeIndex + 1] == "lounge":
+                        preParsedCommandList[roomTypeIndex] = word + "lounge"
+                        del preParsedCommandList[roomTypeIndex + 1]
+            if word == "hallway":
+                roomTypeIndex = preParsedCommandList.index(word)
+                if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[roomTypeIndex + 1] == "1":
+                        preParsedCommandList[roomTypeIndex] = word + "1"
+                        del preParsedCommandList[roomTypeIndex + 1]
+                    elif preParsedCommandList[roomTypeIndex + 1] == "2":
+                        preParsedCommandList[roomTypeIndex] = word + "2"
                         del preParsedCommandList[roomTypeIndex + 1]
 
         for word in preParsedCommandList:
