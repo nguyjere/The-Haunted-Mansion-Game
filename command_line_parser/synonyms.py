@@ -38,7 +38,7 @@ synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw 
           u'deal', u'displace', u'draw close', u'draw near', u'exhort', u'go', u'go up', u'locomote', u'move', u'near',
           u'praise', u'sell', u'struggle', u'trade', u'travel', u'urge', u'urge on'],
  'close': [u'shut', u'close up', u'fold', u'shut down', u'close down', u'conclude', u'come together', u'fill up',
-           u'approach', u'bar', u'barricade', u'block', u'block off', u'block up', u'blockade', u'bring together',
+           u'approach', u'barricade', u'block', u'block off', u'block up', u'blockade', u'bring together',
            u'cease', u'change state', u'come near', u'come on', u'complete', u'draw close', u'draw near', u'end',
            u'engage', u'fill', u'finish', u'go up', u'join', u'move', u'near', u'prosecute', u'pursue', u'stop',
            u'terminate', u'trade', u'turn'],

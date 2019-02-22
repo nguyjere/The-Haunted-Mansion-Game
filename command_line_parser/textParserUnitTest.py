@@ -233,5 +233,26 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'drive', 'feature': 'car', 'object': ''}
 
+    def test_nonstandard_two_word_rooms(self):
+        test_room_obj = Room("livingRoom.json")
+        test_player_obj = Player("player.json")
+        command = "go bar lounge"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'go', 'room': 'barlounge', 'direction': ''}
+
+
+        command = "hallway 1"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': '', 'room': 'hallway1', 'direction': ''}
+
+        command = "hallway1"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': '', 'room': 'hallway1', 'direction': ''}
+
+        test_room_obj = Room("guestRoom.json")
+        command = "go hallway 2"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'go', 'room': 'hallway2', 'direction': ''}
+
 if __name__ == '__main__':
     unittest.main()
