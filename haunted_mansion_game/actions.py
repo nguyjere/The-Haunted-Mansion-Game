@@ -110,6 +110,8 @@ class Actions:
         if "feature" in parsed_command:
             if parsed_command["feature"] == "maingate": # FIXME: parsed_command should be mainGate instead?
                 cls.cut_main_gate_lock(game_state)
+            elif parsed_command["feature"] == "piano":
+                print "There is a boltcutter inside the piano. This might be useful."
             else:
                 print "You can't open that."
         else:
