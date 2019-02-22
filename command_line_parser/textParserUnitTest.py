@@ -226,5 +226,12 @@ class TestTextParser(unittest.TestCase):
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {}
 
+    def test_drive_car(self):
+        test_room_obj = Room("garage.json")
+        test_player_obj = Player("player.json")
+        command = "drive car"
+        parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
+        assert parsedCommand == {'verb': 'drive', 'feature': 'car', 'object': ''}
+
 if __name__ == '__main__':
     unittest.main()
