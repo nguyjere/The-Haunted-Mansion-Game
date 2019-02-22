@@ -11,7 +11,7 @@ synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw 
          u'deliver the goods', u'displace', u'gain ground', u'get', u'get ahead', u'have', u'impact', u'impel',
          u'injure', u'kill', u'make headway', u'move', u'propel', u'pull ahead', u'succeed',
          u'take in', u'touch', u'touch on', u'win', u'wound'],
- 'consume': [u'devour', u'go through', u'ingest', u'take in',  u'have', u'squander', u'waste', u'ware',
+ 'consume': [u'drink', u'devour', u'go through', u'ingest', u'take in',  u'have', u'squander', u'waste', u'ware',
              u'eat up', u'use up', u'eat', u'deplete', u'exhaust', u'run through', u'wipe out', u'absorb', u'destroy',
             u'engage', u'engross', u'expend', u'occupy', u'ruin', u'spend'],
  'drop': [u'sink', u'drop down', u'knock off', u'drop off', u'set down', u'put down', u'unload', u'discharge', u'fell',
