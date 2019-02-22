@@ -1,6 +1,6 @@
 {
   "roomName": "hallway1",
-  "connectedTo": ["livingRoom", "bathroom", "library"],
+  "connectedTo": ["livingRoom", "bathroom", "library", "basement"],
   "displayName": "Hallway 1",
   "features": [],
   "objects": [],
@@ -17,7 +17,8 @@
                 "up": "hallway2",
                 "east": "library",
                 "south": "livingRoom",
-                "west": "bathroom"
+                "west": "bathroom",
+                "down": "basement"
               },
   "locked" : false,
   "hidden" : false
