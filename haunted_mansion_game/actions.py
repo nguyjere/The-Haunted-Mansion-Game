@@ -143,7 +143,8 @@ class Actions:
 
     @classmethod
     def hit(cls, game_state, parsed_command):
-        pass
+        # getting the car key from the zombie
+        cls.hit_zombie(game_state, parsed_command)
 
     @classmethod
     def start_car(cls, game_state):
@@ -188,6 +189,18 @@ class Actions:
         wine_bottle = game_state.get_item_by_name(item_name)
         game_state.player.remove_from_inventory(wine_bottle.name)
         print "You drink from the wine bottle, then a few minutes later you start to feel sick."
+
+    @classmethod
+    def hit_zombie(cls, game_state, parsed_command):
+        # getting the car key from the zombie
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+                and "knife" in game_state.player.inventory:
+            game_state.player.add_to_inventory("masterKey")
+            game_state.get_current_room().remove_feature("zombieSteward")
+            print "You killed the zombie. You found a master key among his remains!"
+        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
+                and "knife" not in game_state.player.inventory:
+            print "You need a knife to do damage."
 
     @classmethod
     def drink_antidote(cls, game_state):
