@@ -107,7 +107,13 @@ class Actions:
 
     @classmethod
     def open(cls, game_state, parsed_command):
-        pass
+        if "feature" in parsed_command:
+            if parsed_command["feature"] == "maingate": # FIXME: parsed_command should be mainGate instead?
+                cls.cut_main_gate_lock(game_state)
+            else:
+                print "You can't open that."
+        else:
+            print "Open what?"
 
     @classmethod
     def close(cls, game_state, parsed_command):
@@ -203,7 +209,59 @@ class Actions:
             print "You need a knife to do damage."
 
     @classmethod
+    def cut_main_gate_lock(cls, game_state):
+        main_gate = game_state.get_feature_by_name("mainGate")
+        if main_gate.locked is True:
+            if "boltCutter" in game_state.player.inventory:
+                main_gate.locked = False
+                main_gate.description = "The gate is wide open to the darkness beyond. You probably don't want " \
+                                        "to go out there; there might be killers and wolfs."
+                print "Using the bolt cutter, you cut the chains off the gate and push the gate open to the endless " \
+                      "path to darkness with creatures. Not a good idea to walk out."
+            else:
+                print "You cannot open the gate. It is locked with a chain and padlock."
+        else:
+            print "The main gate is already wide open"
+
+    @classmethod
+    def drive_car(cls, game_state):
+        car = game_state.get_feature_by_name("car")
+        current_room = game_state.get_current_room()
+        main_gate = game_state.get_feature_by_name("mainGate")
+        if car.running is True:
+            if current_room == "garage":
+                if main_gate.locked is False:
+                    print "You drive the car out of the garage and through the gates, leaving this wrench house behind." \
+                          "Congratulations, you've made it out alive! THE END."
+                    exit()
+                else:
+                    print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked" \
+                          "and you probably don't want to wreck the only vehicle into the hardened gates. You stepped" \
+                          "out of the car into the courtyard"
+                    # Move car to courtyard
+                    courtyard = game_state.get_room_by_name("courtyard")
+                    current_room.features.remove("car")
+                    courtyard.features.append("car")
+                    # Move player to courtyard
+                    current_room.visited = True
+                    game_state.player.previousRoom = game_state.player.currentRoom
+                    game_state.player.currentRoom = courtyard.roomName
+            elif current_room == "courtyard":
+                if main_gate.locked is False:
+                    print "You drive the car through the gates, leaving this wrench house behind." \
+                          "Congratulations, you've made it out alive! THE END."
+                    exit()
+                else:
+                    print "The gate is still locked."
+            else:
+                # Logically this should never happen
+                pass
+        else:
+            print "You cannot drive the car; it is not running. Start the car first."
+            
+    @classmethod
     def drink_antidote(cls, game_state):
         item_name = "antidote"
         game_state.cure_poison()
         game_state.player.remove_from_inventory(item_name)
+
