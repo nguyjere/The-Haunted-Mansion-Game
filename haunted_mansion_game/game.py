@@ -1,6 +1,8 @@
 """
 Contains the main loop of the game and core functions
 """
+import sys
+sys.path.append('../')
 from command_line_parser.textParser import *
 from game_state import *
 
