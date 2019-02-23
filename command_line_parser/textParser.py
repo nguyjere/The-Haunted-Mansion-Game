@@ -420,6 +420,9 @@ class TextParser:
         featureindex = userCommandDict["feature"]["index"]
         objectindex = userCommandDict["object"]["index"]
 
+        if object not in compatibleCommands.keys():
+            return False
+
         if verb != "" and object != "" and verb not in compatibleCommands[object]:
             return False
 
