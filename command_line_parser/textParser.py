@@ -36,6 +36,8 @@ class TextParser:
         finalParsedCommand.update(parsedObjectCommand)
         finalParsedCommand.update(parsedMetaCommand)
         finalParsedCommand.update(parsedOurCommand)
+        if("error" in finalParsedCommand.keys()):
+            finalParsedCommand = {"error": finalParsedCommand["error"]}
         return finalParsedCommand
 
     '''
@@ -300,6 +302,8 @@ class TextParser:
             userCommandDict = {"verb": verb["word"], "object": object["word"], "feature": feature["word"]}
         if valid != True:
             userCommandDict = {}
+        if valid == "error":
+            userCommandDict = {"error": "You must TAKE an item before using it."}
         return userCommandDict
 
     '''
@@ -420,8 +424,8 @@ class TextParser:
         featureindex = userCommandDict["feature"]["index"]
         objectindex = userCommandDict["object"]["index"]
 
-        if object not in compatibleCommands.keys():
-            return False
+        if verb != "" and object != "" and object not in compatibleCommands.keys():
+            return "error"
 
         if verb != "" and object != "" and verb not in compatibleCommands[object]:
             return False

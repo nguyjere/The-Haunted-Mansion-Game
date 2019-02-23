@@ -33,7 +33,7 @@ class TestTextParser(unittest.TestCase):
 
     def test_look_inventory_object(self):
         test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
+        test_player_obj = Player("testPlayer.json")
         command = "look at doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'preposition': 'at', 'verb': 'look', 'feature': '', 'object': u'doll'}
@@ -106,7 +106,7 @@ class TestTextParser(unittest.TestCase):
 
     def test_our_commands(self):
         test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
+        test_player_obj = Player("testPlayer.json")
         command = "consume wine bottle"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'consume', 'object': 'winebottle', 'feature': ''}
@@ -139,7 +139,7 @@ class TestTextParser(unittest.TestCase):
 
     def test_command_on_object_in_inventory(self):
         test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
+        test_player_obj = Player("testPlayer.json")
         command = "drop doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
         assert parsedCommand == {'verb': 'drop', 'feature': '', 'object': 'doll'}
@@ -149,7 +149,7 @@ class TestTextParser(unittest.TestCase):
 
     def test_command_is_compatible_with_object(self):
         test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
+        test_player_obj = Player("testPlayer.json")
 
         command = "drop doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
@@ -177,7 +177,7 @@ class TestTextParser(unittest.TestCase):
 
     def test_synonym_replacement(self):
         test_room_obj = Room("barLounge.json")
-        test_player_obj = Player("player.json")
+        test_player_obj = Player("testPlayer.json")
 
         command = "lose doll"
         parsedCommand = textParser.getCommand(command, test_room_obj, test_player_obj)
