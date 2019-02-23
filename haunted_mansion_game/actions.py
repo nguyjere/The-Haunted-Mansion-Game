@@ -110,6 +110,8 @@ class Actions:
         if "feature" in parsed_command:
             if parsed_command["feature"] == "maingate": # FIXME: parsed_command should be mainGate instead?
                 cls.cut_main_gate_lock(game_state)
+            elif parsed_command["feature"] == "piano":
+                cls.open_piano(game_state)
             else:
                 print "You can't open that."
         else:
@@ -201,6 +203,7 @@ class Actions:
         # getting the car key from the zombie
         if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
                 and "knife" in game_state.player.inventory:
+            # note that the master key is not "in" the room, so we don't need to remove it from the room when the user picks it up
             game_state.player.add_to_inventory("masterKey")
             game_state.get_current_room().remove_feature("zombieSteward")
             print "You killed the zombie. You found a master key among his remains!"
@@ -264,4 +267,10 @@ class Actions:
         item_name = "antidote"
         game_state.cure_poison()
         game_state.player.remove_from_inventory(item_name)
+
+    @classmethod
+    def open_piano(cls, game_state):
+        # note that the boltCutter is not "in" the room, so we don't need to remove it from the room when the user picks it up
+        game_state.player.add_to_inventory("boltCutter")
+        print "You found a boltcutter inside the piano. Might be useful."
 
