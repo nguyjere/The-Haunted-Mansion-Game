@@ -3,7 +3,7 @@
   "connectedTo": ["diningRoom", "barLounge","hallway1", "courtyard", "garage"],
   "displayName": "Living Room",
   "features": ["sofa", "consoleTable"],
-  "objects": ["carKey"],
+  "objects": [],
   "visited": false,
   "longMSG": "You are in the living room.\nThere are a sofa and a console table. \nYou may go...\n    north to the hallway1 through the northern entryway,\n    east to the bar lounge through the french door,\n    southeast to the garage through the house-to-garage door,\n    south to the courtyard through the front door\n    west to the dining room through the western entryway\n",
   "shortMSG": "You are in a living room on the 1st floor. \nFeatures: sofa, chairs, console table\nAreas you may go to:\nnorth - northern entryway to hallway1 - 1st floor\neast - french door to bar lounge - 1st floor\nsoutheast - house-to-garage door to garage - 1st floor\nsouth - front door to courtyard - 1st floor\nwest - western entryway to dining room - 1st floor\n",
