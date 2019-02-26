@@ -112,6 +112,10 @@ class Actions:
                 cls.cut_main_gate_lock(game_state)
             elif parsed_command["feature"] == "piano":
                 cls.open_piano(game_state)
+            elif parsed_command["feature"] == "dresser":
+                cls.open_dresser(game_state)
+            elif parsed_command["feature"] == "chest":
+                cls.open_chest(game_state)
             else:
                 print "You can't open that."
         else:
@@ -273,4 +277,14 @@ class Actions:
         # note that the boltCutter is not "in" the room, so we don't need to remove it from the room when the user picks it up
         game_state.player.add_to_inventory("boltCutter")
         print "You found a boltcutter inside the piano. Might be useful."
+
+    @classmethod
+    def open_dresser(cls, game_state):
+        # note that the carKey is not "in" the room, so we don't need to remove it from the room when the user picks it up
+        game_state.player.add_to_inventory("carKey")
+        print "You found a car key inside the dresser! Looks like it's for a Porsche!"
+
+    @classmethod
+    def open_chest(cls, game_state):
+        print "The chest contains an old piece of paper. It says that your family name is: Imai. This sounds so familiar."
 
