@@ -134,6 +134,12 @@ class TextParser:
                     if preParsedCommandList[roomTypeIndex + 1] == "lounge":
                         preParsedCommandList[roomTypeIndex] = word + "lounge"
                         del preParsedCommandList[roomTypeIndex + 1]
+            if word == "master":
+                roomTypeIndex = preParsedCommandList.index(word)
+                if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
+                    if preParsedCommandList[roomTypeIndex + 1] == "bedroom":
+                        preParsedCommandList[roomTypeIndex] = word + "bedroom"
+                        del preParsedCommandList[roomTypeIndex + 1]
             if word == "hallway":
                 roomTypeIndex = preParsedCommandList.index(word)
                 if roomTypeIndex + 1 <= len(preParsedCommandList) - 1:
@@ -420,7 +426,7 @@ class TextParser:
         featureindex = userCommandDict["feature"]["index"]
         objectindex = userCommandDict["object"]["index"]
 
-        if object not in compatibleCommands.keys():
+        if feature == "" and object not in compatibleCommands.keys():
             return False
 
         if verb != "" and object != "" and verb not in compatibleCommands[object]:
