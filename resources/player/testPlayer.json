@@ -1,0 +1,8 @@
+{
+  "saveName" : null,
+  "previousRoom" : "",
+  "currentRoom" : "livingRoom",
+  "inventory" : ["doll", "wineBottle", "recipeBook"],
+  "status" : "Alive",
+  "poisonedSteps": 0
+}
