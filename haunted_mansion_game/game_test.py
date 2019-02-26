@@ -24,7 +24,7 @@ class TestGame(unittest.TestCase):
 
     def test_pick_up_carkey(self):
         game_state = GameState()
-
+        game_state.get_current_room().include_item("carKey")
         user_input = "take carkey"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
@@ -34,7 +34,7 @@ class TestGame(unittest.TestCase):
 
     def test_pick_up_car_key(self):
         game_state = GameState()
-
+        game_state.get_current_room().include_item("carKey")
         user_input = "take car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
@@ -44,7 +44,7 @@ class TestGame(unittest.TestCase):
 
     def test_drop_car_key(self):
         game_state = GameState()
-
+        game_state.get_current_room().include_item("carKey")
         user_input = "take car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
@@ -73,7 +73,7 @@ class TestGame(unittest.TestCase):
 
     def test_look_at_objects(self):
         game_state = GameState()
-
+        game_state.get_current_room().include_item("carKey")
         user_input = "look at the car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
@@ -81,7 +81,7 @@ class TestGame(unittest.TestCase):
 
     def test_look_at_inventory_objects(self):
         game_state = GameState()
-
+        game_state.get_current_room().include_item("carKey")
         user_input = "take the car key"
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
