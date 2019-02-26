@@ -1,7 +1,7 @@
 {
   "name": "chest",
   "displayName" : "chest",
-  "description" : "A chest that contains stuff",
+  "description" : "A dusty chest that appears unlocked.",
   "locked" : false,
   "status" : ""
 }

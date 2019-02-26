@@ -114,6 +114,8 @@ class Actions:
                 cls.open_piano(game_state)
             elif parsed_command["feature"] == "dresser":
                 cls.open_dresser(game_state)
+            elif parsed_command["feature"] == "chest":
+                cls.open_chest(game_state)
             else:
                 print "You can't open that."
         else:
@@ -281,4 +283,8 @@ class Actions:
         # note that the carKey is not "in" the room, so we don't need to remove it from the room when the user picks it up
         game_state.player.add_to_inventory("carKey")
         print "You found a car key inside the dresser! Looks like it's for a Porsche!"
+
+    @classmethod
+    def open_chest(cls, game_state):
+        print "The chest contains an old piece of paper. It says that your family name is: Imai. This sounds so familiar."
 
