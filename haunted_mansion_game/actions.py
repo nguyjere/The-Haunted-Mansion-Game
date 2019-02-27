@@ -85,6 +85,16 @@ class Actions:
     @classmethod
     def lift(cls, game_state, parsed_command):
         # Check if feature or object then do something
+        if "feature" in parsed_command:
+            if parsed_command["feature"] == "bench":
+                if game_state.player.status == "poisoned":
+                    cls.lift_bench(game_state)
+                else:
+                    print "You're not strong enough to lift that."
+            else:
+                print "You can't lift that."
+        else:
+            print "Lift what?"
         pass
 
     @classmethod
@@ -294,3 +304,8 @@ class Actions:
     def open_pantry(cls, game_state):
         game_state.player.add_to_inventory("recipeBook")
         print "You found a recipe book, titled ALL NATURAL. \nIt does seem to have cooking recipes but herbal mixing formulas. "
+
+    @classmethod
+    def lift_bench(cls, game_state):
+        game_state.player.add_to_inventory("carBatteryJumper")
+        print "You found a car battery jumper!"
