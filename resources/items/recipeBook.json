@@ -1,6 +1,6 @@
 {
   "name": "recipeBook",
   "displayName": "recipe book",
-  "description": "contains the antidote formula",
+  "description": "Titled \"ALL NATURAL\", herbal mixing formulas",
   "ourCompatibleCommands": ["drop", "hit", "open", "close", "consume", "lift"]
 }

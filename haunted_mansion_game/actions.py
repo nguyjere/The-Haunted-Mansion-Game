@@ -116,6 +116,8 @@ class Actions:
                 cls.open_dresser(game_state)
             elif parsed_command["feature"] == "chest":
                 cls.open_chest(game_state)
+            elif parsed_command["feature"] == "pantry":
+                cls.open_pantry(game_state)
             else:
                 print "You can't open that."
         else:
@@ -288,3 +290,7 @@ class Actions:
     def open_chest(cls, game_state):
         print "The chest contains an old piece of paper. It says that your family name is: Imai. This sounds so familiar."
 
+    @classmethod
+    def open_pantry(cls, game_state):
+        game_state.player.add_to_inventory("recipeBook")
+        print "You found a recipe book, titled ALL NATURAL. \nIt does seem to have cooking recipes but herbal mixing formulas. "
