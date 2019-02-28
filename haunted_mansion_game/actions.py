@@ -128,6 +128,8 @@ class Actions:
                 cls.open_chest(game_state)
             elif parsed_command["feature"] == "pantry":
                 cls.open_pantry(game_state)
+            elif parsed_command["feature"] == "medicinecabinet":
+                cls.open_medicineCabinet(game_state)
             else:
                 print "You can't open that."
         else:
@@ -315,6 +317,11 @@ class Actions:
         game_state.player.add_to_inventory("recipeBook")
         print "You found a recipe book, titled ALL NATURAL."
         print "It does seem to have cooking recipes but herbal mixing formulas."
+
+    @classmethod
+    def open_medicineCabinet(cls, game_state):
+        game_state.player.add_to_inventory("antidote")
+        print "You found an antidote. It says it clears an intoxicated condition.\nBut...it is up to you if you trust it or not."
 
     @classmethod
     def lift_bench(cls, game_state):
