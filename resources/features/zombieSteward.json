@@ -1,7 +1,7 @@
 {
   "name": "zombieSteward",
-  "displayName" : "A zombie steward. Damn, it's ugly. I need to put it out of it's misery. Be careful though.",
-  "description" : "",
+  "displayName" : "zombie steward",
+  "description" : "A zombie steward. Damn, it's ugly. I need to put it out of it's misery. Be careful though.",
   "locked" : false,
   "status" : ""
 }
