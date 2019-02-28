@@ -171,6 +171,16 @@ class Actions:
         cls.hit_zombie(game_state, parsed_command)
 
     @classmethod
+    def drive(cls, game_state, parsed_command):
+        if "feature" in parsed_command:
+            if parsed_command["feature"] == "car":
+                cls.drive_car(game_state)
+            else:
+                print "You can't drive that."
+        else:
+            print "Drive what?"
+
+    @classmethod
     def start_car(cls, game_state):
         car = game_state.get_feature_by_name("car")
         if car.running is False:
@@ -212,7 +222,7 @@ class Actions:
         game_state.player.status = "poisoned"
         wine_bottle = game_state.get_item_by_name(item_name)
         game_state.player.remove_from_inventory(wine_bottle.name)
-        print "You drink from the wine bottle, then a few minutes later you start to feel sick."
+        print "You drink from the wine bottle. Suddenly you feel much stronger and lift heavier things."
 
     @classmethod
     def hit_zombie(cls, game_state, parsed_command):
@@ -248,15 +258,15 @@ class Actions:
         current_room = game_state.get_current_room()
         main_gate = game_state.get_feature_by_name("mainGate")
         if car.running is True:
-            if current_room == "garage":
+            if current_room.roomName == "garage":
                 if main_gate.locked is False:
-                    print "You drive the car out of the garage and through the gates, leaving this wrench house behind." \
-                          "Congratulations, you've made it out alive! THE END."
+                    print "You drive the car out of the garage and through the gates, leaving this wrench house behind."
+                    print "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
-                    print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked" \
-                          "and you probably don't want to wreck the only vehicle into the hardened gates. You stepped" \
-                          "out of the car into the courtyard"
+                    print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked "\
+                          "and you probably don't want to wreck the only vehicle into the hardened gates. You stepped "\
+                          "out of the car and out into the courtyard."
                     # Move car to courtyard
                     courtyard = game_state.get_room_by_name("courtyard")
                     current_room.features.remove("car")
@@ -265,7 +275,7 @@ class Actions:
                     current_room.visited = True
                     game_state.player.previousRoom = game_state.player.currentRoom
                     game_state.player.currentRoom = courtyard.roomName
-            elif current_room == "courtyard":
+            elif current_room.roomName == "courtyard":
                 if main_gate.locked is False:
                     print "You drive the car through the gates, leaving this wrench house behind." \
                           "Congratulations, you've made it out alive! THE END."
@@ -303,7 +313,8 @@ class Actions:
     @classmethod
     def open_pantry(cls, game_state):
         game_state.player.add_to_inventory("recipeBook")
-        print "You found a recipe book, titled ALL NATURAL. \nIt does seem to have cooking recipes but herbal mixing formulas. "
+        print "You found a recipe book, titled ALL NATURAL."
+        print "It does seem to have cooking recipes but herbal mixing formulas."
 
     @classmethod
     def lift_bench(cls, game_state):
