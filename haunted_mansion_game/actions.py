@@ -222,7 +222,7 @@ class Actions:
         game_state.player.status = "poisoned"
         wine_bottle = game_state.get_item_by_name(item_name)
         game_state.player.remove_from_inventory(wine_bottle.name)
-        print "You drink from the wine bottle, then a few minutes later you start to feel sick."
+        print "You drink from the wine bottle. Suddenly you feel much stronger and lift heavier things."
 
     @classmethod
     def hit_zombie(cls, game_state, parsed_command):
@@ -313,7 +313,8 @@ class Actions:
     @classmethod
     def open_pantry(cls, game_state):
         game_state.player.add_to_inventory("recipeBook")
-        print "You found a recipe book, titled ALL NATURAL. \nIt does seem to have cooking recipes but herbal mixing formulas. "
+        print "You found a recipe book, titled ALL NATURAL."
+        print "It does seem to have cooking recipes but herbal mixing formulas."
 
     @classmethod
     def lift_bench(cls, game_state):
