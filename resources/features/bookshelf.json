@@ -1,7 +1,7 @@
 {
   "name": "bookshelf",
-  "displayName" : "Looks like whoever lived here is into psychology and medicine.",
-  "description" : "",
+  "displayName" : "bookshelf",
+  "description" : "There are hundreds of books about animals on this bookshelf.",
   "locked" : false,
   "status" : ""
 }

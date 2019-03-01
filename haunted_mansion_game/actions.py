@@ -52,6 +52,8 @@ class Actions:
         if "feature" in parsed_command and parsed_command["feature"]:
             feature = game_state.get_feature_by_name(parsed_command["feature"])
             print feature.description
+            if feature.name == "bookshelf":
+                cls.pick_out_a_book(game_state)
         elif "object" in parsed_command and parsed_command["object"]:
             item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
@@ -330,12 +332,33 @@ class Actions:
     @classmethod
     def unlock_secret_room(cls, game_state):
         library = game_state.get_room_by_name("library")
+        secret_room = game_state.get_room_by_name("secretRoom")
+        secret_room.locked = False
+        secret_room.hidden = False
         library.connectedTo.append("secretRoom")
         library.longMSG += " You can access the secret room through the sliding door.\n"
-        library.shortMSG += "east - sliding door to a secret room - 1st floor\n"
+        library.shortMSG += " east - sliding door to a secret room - 1st floor\n"
         library.roomEntry["sliding door"] = "secretRoom"
-        library.direction["east"] = "secretRoom"
-        library.locked = False
-        library.hidden = False
-        print "As you attempt to pull the book out, you heard a loud click.\n" \
-              "The book shelve slides open revealing another room"
+        library.directions["east"] = "secretRoom"
+        print "As you attempt to pull the book out, you hear a loud click.\n" \
+              "The book shelve slides open revealing another room!"
+
+    @classmethod
+    def pick_out_a_book(cls, game_state):
+        print "Search an animal you want to read about. You might discover something new! (press enter to leave)"
+        secret_room = game_state.get_room_by_name("secretRoom")
+        while True:
+            search_for = raw_input("Animal: ")
+            if search_for == "":
+                break
+            elif search_for.lower() in ["lions", "lion"]:
+                if secret_room.hidden:
+                    cls.unlock_secret_room(game_state)
+                    break
+                else:
+                    print "You already tried to pull that out. It's not actually a book, its a lever."
+            elif search_for.lower() in ["dog", "dogs"]:
+                print "You found a encyclopedia about dogs and now you're able to identify different breeds."
+            # TODO: Add more animal entries
+            else:
+                print "That book is not found here."
