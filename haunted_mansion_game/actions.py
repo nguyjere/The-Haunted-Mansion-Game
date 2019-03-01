@@ -327,3 +327,11 @@ class Actions:
     def lift_bench(cls, game_state):
         game_state.player.add_to_inventory("carBatteryJumper")
         print "You found a car battery jumper!"
+
+
+    @classmethod
+    def familyName(cls, game_state, parsed_command):
+        if parsed_command["familyName"] == "imai":
+            game_state.player.add_to_inventory("masterKey")
+            game_state.get_current_room().remove_feature("zombieSteward")
+            print "You befriended the zombie. He gives you the master key and then disappears."

@@ -80,7 +80,10 @@ class GameState:
 
     def execute_action(self, parsed_command):
         if "verb" not in parsed_command or parsed_command["verb"] is "":
-            method = getattr(Actions, "go")
+            if "familyName" in parsed_command:
+                method = getattr(Actions, "familyName")
+            else:
+                method = getattr(Actions, "go")
         else:
             method = getattr(Actions, parsed_command["verb"])
         method(self, parsed_command)
