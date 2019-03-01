@@ -9,18 +9,17 @@ class Actions:
     @classmethod
     def go(cls, game_state, parsed_command):
         new_room_name = parsed_command["room"]
-        # Update current room to visited
-        current_room = game_state.get_current_room()
-        current_room.visited = True
-        # Update player's previous room to current room
-        game_state.player.previousRoom = game_state.player.currentRoom
-        # Update player's current room to the new room
         new_room = game_state.get_room_by_name(new_room_name)
-        game_state.player.currentRoom = new_room.roomName
-        # Display new room description
-        game_state.display_current_room()
-        if game_state.player.status == "poisoned":
-            game_state.poison_effect()
+        if new_room.locked is False:
+            current_room = game_state.get_current_room()
+            current_room.visited = True
+            game_state.player.previousRoom = game_state.player.currentRoom
+            game_state.player.currentRoom = new_room.roomName
+            game_state.display_current_room()
+            if game_state.player.status == "poisoned":
+                game_state.poison_effect()
+        else:
+            print "This room is locked."
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
@@ -327,3 +326,16 @@ class Actions:
     def lift_bench(cls, game_state):
         game_state.player.add_to_inventory("carBatteryJumper")
         print "You found a car battery jumper!"
+
+    @classmethod
+    def unlock_secret_room(cls, game_state):
+        library = game_state.get_room_by_name("library")
+        library.connectedTo.append("secretRoom")
+        library.longMSG += " You can access the secret room through the sliding door.\n"
+        library.shortMSG += "east - sliding door to a secret room - 1st floor\n"
+        library.roomEntry["sliding door"] = "secretRoom"
+        library.direction["east"] = "secretRoom"
+        library.locked = False
+        library.hidden = False
+        print "As you attempt to pull the book out, you heard a loud click.\n" \
+              "The book shelve slides open revealing another room"
