@@ -218,7 +218,7 @@ class TextParser:
                 userCommandDict["room"]["index"] = userCommandDict["direction"]["index"]
                 userCommandDict["direction"]["word"] = ""
                 userCommandDict["direction"]["index"] = ""
-            else:
+            elif userCommandDict["direction"]["word"] != "back":
                 userCommandDict["direction"]["word"] = ""
                 userCommandDict["direction"]["index"] = ""
                 userCommandDict["verb"]["word"] = ""

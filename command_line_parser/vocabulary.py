@@ -7,7 +7,7 @@ ourcommands = ["lift", "drop", "push", "pull", "consume", "open", "close", "turn
 
 ourcommandsSpaced = ["lift", "drop", "push", "pull", "consume", "open", "close", "turn on", "turn off", "hit", 'turn', 'on', 'off']
 
-directions = ["north", "south", "east", "west", "up", "down", "northwest", "northeast", "southwest", "southeast"]
+directions = ["north", "south", "east", "west", "up", "down", "northwest", "northeast", "southwest", "southeast", "back"]
 
 features = ["feature1"]
 

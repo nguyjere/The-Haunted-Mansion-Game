@@ -1,6 +1,6 @@
 synonyms = {'pull': [u'pull', u'draw', u'force', u'attract', u'pull in', u'draw in', u'perpetrate', u'commit', u'pull out',
           u'get out', u'take out', u'overstretch', u'rend', u'rip', u'rive', u'pluck', u'tear', u'deplume',
-          u'deplumate', u'displume', u'extract', u'pull up', u'draw out', u'act', u'back', u'bust', u'displace',
+          u'deplumate', u'displume', u'extract', u'pull up', u'draw out', u'act', u'bust', u'displace',
          u'endorse', u'hit', u'indorse', u'injure', u'move', u'plump for', u'plunk for', u'rein', u'rein in',
           u'remove', u'root', u'row', u'rupture', u'side', u'snap', u'strip', u'support', u'take away',
           u'withdraw', u'wound'],
