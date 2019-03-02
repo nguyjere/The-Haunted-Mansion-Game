@@ -30,12 +30,14 @@ class TextParser:
         parsedObjectCommand = self.interpretTake(command, roomObj)
         parsedMetaCommand = self.interpretMeta(command, roomObj)
         parsedOurCommand = self.interpretOurCommand(command, roomObj, playerObj)
+        parsedFamilyName = self.interpretFamilyName(command, roomObj)
 
         finalParsedCommand = parsedRoomCommand.copy()
         finalParsedCommand.update(parsedLookCommand)
         finalParsedCommand.update(parsedObjectCommand)
         finalParsedCommand.update(parsedMetaCommand)
         finalParsedCommand.update(parsedOurCommand)
+        finalParsedCommand.update(parsedFamilyName)
         if("error" in finalParsedCommand.keys()):
             finalParsedCommand = {"error": finalParsedCommand["error"]}
         return finalParsedCommand
@@ -226,6 +228,15 @@ class TextParser:
                 userCommandDict["room"]["word"] = ""
                 userCommandDict["room"]["index"] = ""
 
+    def interpretFamilyName(self, command, roomObj):
+        familyname = command.lower()
+        if roomObj.roomName == "stewardRoom" and familyname != "" and "zombieSteward" in roomObj.features:
+            if familyname == "imai":
+                return {"familyName": "imai"}
+            else:
+                return {}
+        else:
+            return {}
     '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
     if interpretRoom returns a non-empty dictionary, then we know the user wants to go to a new room
