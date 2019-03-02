@@ -79,7 +79,7 @@ class Actions:
             item = game_state.get_item_by_name(item_name)
             game_state.player.remove_from_inventory(item.name)
             game_state.get_current_room().include_item(item.name)
-            print "{} is dropped from your inventory.".format(item.name)
+            print "{} is dropped from your inventory.".format(item.displayName)
         else:
             print "You cannot drop that."
 
@@ -131,6 +131,8 @@ class Actions:
                 cls.open_pantry(game_state)
             elif parsed_command["feature"] == "medicinecabinet":
                 cls.open_medicineCabinet(game_state)
+            elif parsed_command["feature"] == "filecabinet":
+                cls.open_fileCabinet(game_state)
             else:
                 print "You can't open that."
         else:
@@ -323,6 +325,16 @@ class Actions:
     def open_medicineCabinet(cls, game_state):
         game_state.player.add_to_inventory("antidote")
         print "You found an antidote. It says it clears an intoxicated condition.\nBut...it is up to you if you trust it or not."
+
+    @classmethod
+    def open_fileCabinet(cls, game_state):
+        fileCabinet = game_state.get_feature_by_name("fileCabinet")
+        if fileCabinet.object:
+            game_state.player.add_to_inventory(fileCabinet.object)
+            fileCabinet.object = None
+            print "You found a family heirloom of a lion!"
+        else:
+            print "There is not thing interesting in this file cabinet."
 
     @classmethod
     def lift_bench(cls, game_state):
