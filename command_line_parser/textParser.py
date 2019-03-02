@@ -173,11 +173,11 @@ class TextParser:
     def preParseMetaCommand(self, command):
         parsedWords = self.parseCommand(command)
         preParsedCommandList = []
-        spaceMeta = ["save", "load"]
+        spaceMeta = ["save", "load", "end"]
         # make all words lowercase
         for word in parsedWords:
             preParsedCommandList.append(word.lower())
-        # savegame loadgame
+        # savegame loadgame #endgame
         for word in preParsedCommandList:
             if word in spaceMeta:
                 metaIndex = preParsedCommandList.index(word)
@@ -420,7 +420,7 @@ class TextParser:
     '''
     def errorCheckMetaCommand(self, userCommandDict):
         verb = userCommandDict["verb"]["word"]
-        if verb == "help" or verb == "inventory" or verb == "savegame" or verb == "loadgame":
+        if verb == "help" or verb == "inventory" or verb == "savegame" or verb == "loadgame" or verb == "endgame":
             return True
         else:
             return False

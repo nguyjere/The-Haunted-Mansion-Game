@@ -53,10 +53,10 @@ def play(game_state):
             game_state.display_current_room()
             continue
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
-        if parsed_command and "error" not in parsed_command.keys():
+        if parsed_command and "error" not in parsed_command.keys() and parsed_command["verb"] != "endgame":
             print parsed_command
             game_state.execute_action(parsed_command)
-        elif user_input == "end game":
+        elif parsed_command["verb"] == "endgame":
             print "You Died"
             break
         elif "error" in parsed_command.keys():
