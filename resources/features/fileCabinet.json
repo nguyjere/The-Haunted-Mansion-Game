@@ -1,7 +1,8 @@
 {
   "name": "fileCabinet",
   "displayName" : "file cabinet",
-  "description" : "There's documents and notes in here that.",
+  "description" : "There might be important documents and notes in here.",
+  "object": "familyEmblem",
   "locked" : false,
   "status" : ""
 }

@@ -9,18 +9,17 @@ class Actions:
     @classmethod
     def go(cls, game_state, parsed_command):
         new_room_name = parsed_command["room"]
-        # Update current room to visited
-        current_room = game_state.get_current_room()
-        current_room.visited = True
-        # Update player's previous room to current room
-        game_state.player.previousRoom = game_state.player.currentRoom
-        # Update player's current room to the new room
         new_room = game_state.get_room_by_name(new_room_name)
-        game_state.player.currentRoom = new_room.roomName
-        # Display new room description
-        game_state.display_current_room()
-        if game_state.player.status == "poisoned":
-            game_state.poison_effect()
+        if new_room.locked is False:
+            current_room = game_state.get_current_room()
+            current_room.visited = True
+            game_state.player.previousRoom = game_state.player.currentRoom
+            game_state.player.currentRoom = new_room.roomName
+            game_state.display_current_room()
+            if game_state.player.status == "poisoned":
+                game_state.poison_effect()
+        else:
+            print "This room is locked."
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
@@ -53,6 +52,8 @@ class Actions:
         if "feature" in parsed_command and parsed_command["feature"]:
             feature = game_state.get_feature_by_name(parsed_command["feature"])
             print feature.description
+            if feature.name == "bookshelf":
+                cls.pick_out_a_book(game_state)
         elif "object" in parsed_command and parsed_command["object"]:
             item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
@@ -78,7 +79,7 @@ class Actions:
             item = game_state.get_item_by_name(item_name)
             game_state.player.remove_from_inventory(item.name)
             game_state.get_current_room().include_item(item.name)
-            print "{} is dropped from your inventory.".format(item.name)
+            print "{} is dropped from your inventory.".format(item.displayName)
         else:
             print "You cannot drop that."
 
@@ -130,6 +131,8 @@ class Actions:
                 cls.open_pantry(game_state)
             elif parsed_command["feature"] == "medicinecabinet":
                 cls.open_medicineCabinet(game_state)
+            elif parsed_command["feature"] == "filecabinet":
+                cls.open_fileCabinet(game_state)
             else:
                 print "You can't open that."
         else:
@@ -324,9 +327,20 @@ class Actions:
         print "You found an antidote. It says it clears an intoxicated condition.\nBut...it is up to you if you trust it or not."
 
     @classmethod
+    def open_fileCabinet(cls, game_state):
+        fileCabinet = game_state.get_feature_by_name("fileCabinet")
+        if fileCabinet.object:
+            game_state.player.add_to_inventory(fileCabinet.object)
+            fileCabinet.object = None
+            print "You found a family heirloom of a lion!"
+        else:
+            print "There is not thing interesting in this file cabinet."
+
+    @classmethod
     def lift_bench(cls, game_state):
         game_state.player.add_to_inventory("carBatteryJumper")
         print "You found a car battery jumper!"
+
 
 
     @classmethod
@@ -335,3 +349,38 @@ class Actions:
             game_state.player.add_to_inventory("masterKey")
             game_state.get_current_room().remove_feature("zombieSteward")
             print "You befriended the zombie. He gives you the master key and then disappears."
+
+    @classmethod
+    def unlock_secret_room(cls, game_state):
+        library = game_state.get_room_by_name("library")
+        secret_room = game_state.get_room_by_name("secretRoom")
+        secret_room.locked = False
+        secret_room.hidden = False
+        library.connectedTo.append("secretRoom")
+        library.longMSG += " You can access the secret room through the sliding door.\n"
+        library.shortMSG += " east - sliding door to a secret room - 1st floor\n"
+        library.roomEntry["sliding door"] = "secretRoom"
+        library.directions["east"] = "secretRoom"
+        print "As you attempt to pull the book out, you hear a loud click.\n" \
+              "The book shelve slides open revealing another room!"
+
+    @classmethod
+    def pick_out_a_book(cls, game_state):
+        print "Search an animal you want to read about. You might discover something new! (press enter to leave)"
+        secret_room = game_state.get_room_by_name("secretRoom")
+        while True:
+            search_for = raw_input("Animal: ")
+            if search_for == "":
+                break
+            elif search_for.lower() in ["lions", "lion"]:
+                if secret_room.hidden:
+                    cls.unlock_secret_room(game_state)
+                    break
+                else:
+                    print "You already tried to pull that out. It's not actually a book, its a lever."
+            elif search_for.lower() in ["dog", "dogs"]:
+                print "You found a encyclopedia about dogs and now you're able to identify different breeds."
+            # TODO: Add more animal entries
+            else:
+                print "That book is not found here."
+
