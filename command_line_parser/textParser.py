@@ -80,7 +80,7 @@ class TextParser:
         preParsedCommandList = []
         oneSpaceObjects = ["wine", "bolt", "recipe", "picture", "herb", "tea", "zombie", "family", "car"]
         oneSpaceObjectsDict = {"wine":"bottle", "bolt":"cutter", "recipe":"book", "picture":"book",
-                            "herb":"bottles", "tea":"kettle", "zombie":"steward", "family":"emblems", "car":"key"}
+                            "herb":"bottles", "tea":"kettle", "zombie":"steward", "family":"emblem", "car":"key"}
         twoSpaceObjects = ["old", "main", "car"]
         twoSpaceObjectsDict = {"old":"familypicture", "main":"gatelock", "car":"batteryjumper"}
         # make all words lowercase
