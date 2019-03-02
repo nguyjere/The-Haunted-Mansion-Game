@@ -225,6 +225,13 @@ class TextParser:
                 userCommandDict["verb"]["index"] = ""
                 userCommandDict["room"]["word"] = ""
                 userCommandDict["room"]["index"] = ""
+            if userCommandDict["direction"]["word"] == "back":
+                userCommandDict["direction"]["word"] = ""
+                userCommandDict["direction"]["index"] = ""
+                userCommandDict["verb"]["word"] = "back"
+                userCommandDict["verb"]["index"] = ""
+                userCommandDict["room"]["word"] = ""
+                userCommandDict["room"]["index"] = ""
 
     '''
     interpretRoom, among other interpret commands can be used in a loop to figure out the user command
@@ -464,6 +471,8 @@ class TextParser:
         roomindex = userCommandDict["room"]["index"]
         directionindex = userCommandDict["direction"]["index"]
 
+        if room == "" and direction == "" and verb == "back":
+            return True
         if room != "" and direction != "" and verb != "":
             return False
         if verb == "go" and room != "" and verbindex < roomindex:
