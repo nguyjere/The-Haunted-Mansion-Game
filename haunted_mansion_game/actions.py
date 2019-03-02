@@ -19,7 +19,18 @@ class Actions:
             if game_state.player.status == "poisoned":
                 game_state.poison_effect()
         else:
-            print "This room is locked."
+            if "masterKey" in game_state.player.inventory:
+                print "You unlocked this room using the master key."
+                new_room.locked = False
+                current_room = game_state.get_current_room()
+                current_room.visited = True
+                game_state.player.previousRoom = game_state.player.currentRoom
+                game_state.player.currentRoom = new_room.roomName
+                game_state.display_current_room()
+                if game_state.player.status == "poisoned":
+                    game_state.poison_effect()
+            else:
+                print "This room is locked."
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
@@ -198,12 +209,12 @@ class Actions:
                 car.jumped = True
                 game_state.player.remove_from_inventory("carKey")
                 car.description = "A 90's Porsche 911. It's currently running."
-                print "You open the door and pop the hood then attach battery jumper to the battery terminals " \
-                      "in the car. Upon turning the keys the dash lights up and the car starts. " \
+                print "You open the door and pop the hood then attach battery jumper to the battery terminals\n" \
+                      "in the car. Upon turning the keys the dash lights up and the car starts.\n" \
                       "The car is now running and you remove the batter jumper."
             elif "carKey" in game_state.player.inventory and car.jumped is False:
                 car.description = "A 90's Porsche 911. Too bad the battery is dead."
-                print "You open the door and attempt to start the car, but the car does not start, nor does the dash" \
+                print "You open the door and attempt to start the car, but the car does not start, nor does the dash\n" \
                       "light up. The battery is probably dead."
             else:  # Case where the play does not have the car key
                 print "The car is locked. You can't open the car without the car key."
@@ -248,9 +259,9 @@ class Actions:
         if main_gate.locked is True:
             if "boltCutter" in game_state.player.inventory:
                 main_gate.locked = False
-                main_gate.description = "The gate is wide open to the darkness beyond. You probably don't want " \
+                main_gate.description = "The gate is wide open to the darkness beyond.\nYou probably don't want " \
                                         "to go out there; there might be killers and wolfs."
-                print "Using the bolt cutter, you cut the chains off the gate and push the gate open to the endless " \
+                print "Using the bolt cutter, you cut the chains off the gate and push the gate open to the endless\n" \
                       "path to darkness with creatures. Not a good idea to walk out."
             else:
                 print "You cannot open the gate. It is locked with a chain and padlock."
@@ -269,8 +280,8 @@ class Actions:
                     print "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
-                    print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked "\
-                          "and you probably don't want to wreck the only vehicle into the hardened gates. You stepped "\
+                    print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked\n"\
+                          "and you probably don't want to wreck the only vehicle into the hardened gates. You stepped\n"\
                           "out of the car and out into the courtyard."
                     # Move car to courtyard
                     courtyard = game_state.get_room_by_name("courtyard")
@@ -282,7 +293,7 @@ class Actions:
                     game_state.player.currentRoom = courtyard.roomName
             elif current_room.roomName == "courtyard":
                 if main_gate.locked is False:
-                    print "You drive the car through the gates, leaving this wrench house behind." \
+                    print "You drive the car through the gates, leaving this wrench house behind.\n" \
                           "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
@@ -341,8 +352,6 @@ class Actions:
         game_state.player.add_to_inventory("carBatteryJumper")
         print "You found a car battery jumper!"
 
-
-
     @classmethod
     def familyName(cls, game_state, parsed_command):
         if parsed_command["familyName"] == "imai":
@@ -384,3 +393,7 @@ class Actions:
             else:
                 print "That book is not found here."
 
+    @classmethod
+    def endgame(cls, game_state, parsed_command):
+        print "Thanks for playing, bye!"
+        exit()
