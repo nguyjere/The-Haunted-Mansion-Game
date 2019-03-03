@@ -220,10 +220,17 @@ class TextParser:
                 userCommandDict["room"]["index"] = userCommandDict["direction"]["index"]
                 userCommandDict["direction"]["word"] = ""
                 userCommandDict["direction"]["index"] = ""
-            else:
+            elif userCommandDict["direction"]["word"] != "back":
                 userCommandDict["direction"]["word"] = ""
                 userCommandDict["direction"]["index"] = ""
                 userCommandDict["verb"]["word"] = ""
+                userCommandDict["verb"]["index"] = ""
+                userCommandDict["room"]["word"] = ""
+                userCommandDict["room"]["index"] = ""
+            if userCommandDict["direction"]["word"] == "back":
+                userCommandDict["direction"]["word"] = ""
+                userCommandDict["direction"]["index"] = ""
+                userCommandDict["verb"]["word"] = "back"
                 userCommandDict["verb"]["index"] = ""
                 userCommandDict["room"]["word"] = ""
                 userCommandDict["room"]["index"] = ""
@@ -475,6 +482,8 @@ class TextParser:
         roomindex = userCommandDict["room"]["index"]
         directionindex = userCommandDict["direction"]["index"]
 
+        if room == "" and direction == "" and verb == "back":
+            return True
         if room != "" and direction != "" and verb != "":
             return False
         if verb == "go" and room != "" and verbindex < roomindex:

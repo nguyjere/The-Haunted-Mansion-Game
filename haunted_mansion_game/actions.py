@@ -33,6 +33,24 @@ class Actions:
                 print "This room is locked."
 
     @classmethod
+    def back(cls, game_state, parsed_command):
+        new_room_name = game_state.player.previousRoom
+        # Update current room to visited
+        current_room = game_state.get_current_room()
+        current_room.visited = True
+        # Update player's previous room to current room
+        game_state.player.previousRoom = game_state.player.currentRoom
+        # Update player's current room to the new room
+        new_room = game_state.get_room_by_name(new_room_name)
+        if new_room:
+            game_state.player.currentRoom = new_room.roomName
+            # Display new room description
+            game_state.display_current_room()
+            if game_state.player.status == "poisoned":
+                game_state.poison_effect()
+
+
+    @classmethod
     def inventory(cls, game_state, *parsed_command):
         for item in game_state.player.inventory:
             item_obj = game_state.get_item_by_name(item)
