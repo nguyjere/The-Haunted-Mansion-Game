@@ -1,7 +1,7 @@
 {
   "name": "poolTable",
   "displayName" : "pool table",
-  "description" : "A table with balls lined up and two cue sticks",
+  "description" : "A billards table with balls lined up and two cue sticks.",
   "locked" : false,
   "status" : ""
 }

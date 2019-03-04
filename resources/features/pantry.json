@@ -1,7 +1,7 @@
 {
   "name": "pantry",
   "displayName" : "pantry",
-  "description" : "",
+  "description" : "An empty pantry containing a dead mouse in a mouse trap.",
   "locked" : false,
   "status" : ""
 }

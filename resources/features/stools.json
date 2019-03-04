@@ -1,7 +1,7 @@
 {
   "name": "stools",
   "displayName" : "stools",
-  "description" : "A row for stools near the bar counter",
+  "description" : "A row of stools near the bar counter.",
   "locked" : false,
   "status" : ""
 }

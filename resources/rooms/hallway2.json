@@ -5,8 +5,8 @@
   "features": [],
   "objects": [],
   "visited": false,
-  "longMSG": "You are in the hallway 2 on the 2nd floor.\n You may go downstairs or\n     east to the steward room through the eastern door,\n    southeast to the master bedroom through the southeastern door, or\n    southwest to the guest room through the southwestern door.\n",
-  "shortMSG": "You are in the hallway 2 on the 2nd floor.\n You may go...\n    down - stairs - hallway1 - 1st floor \n    east - eastern door - steward room - 2nd floor\n    southeast - southeastern door - master bedroom - 2nd floor\n    southwest - southwestern door - guest room - 2nd floor\n",
+  "longMSG": "You are in hallway 2 on the 2nd floor.\n You may go downstairs or\n     east to the steward room through the eastern door,\n    southeast to the master bedroom through the southeastern door, or\n    southwest to the guest room through the southwestern door.\n",
+  "shortMSG": "You are in hallway 2 on the 2nd floor.\n You may go...\n    down - stairs - hallway1 - 1st floor \n    east - eastern door - steward room - 2nd floor\n    southeast - southeastern door - master bedroom - 2nd floor\n    southwest - southwestern door - guest room - 2nd floor\n",
   "roomEntry": {
               "stairs": "hallway1",
               "eastern door": "stewardRoom",
