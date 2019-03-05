@@ -1,6 +1,6 @@
  {
     "name": "masterKey",
     "displayName": "master key",
-    "description": "a key that can unlock rooms",
+    "description": "A key that can unlock any room.",
     "ourCompatibleCommands": ["drop", "consume"]
   }

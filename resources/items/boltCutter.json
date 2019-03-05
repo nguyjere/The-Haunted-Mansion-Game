@@ -1,6 +1,6 @@
 {
   "name": "boltCutter",
   "displayName": "bolt cutter",
-  "description": "an industrial bolt cutter. It can cut any materials",
+  "description": "An industrial bolt cutter. It can cut most materials.",
   "ourCompatibleCommands": ["drop", "lift"]
 }

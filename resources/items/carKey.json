@@ -1,6 +1,6 @@
 {
   "name": "carKey",
   "displayName": "car key",
-  "description": "a car key to start the car in the garage",
+  "description": "A car key for a Porsche.",
   "ourCompatibleCommands": ["drop", "consume"]
 }

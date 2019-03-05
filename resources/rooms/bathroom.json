@@ -5,7 +5,7 @@
   "features": ["medicineCabinet", "sink"],
   "objects": [],
   "visited": false,
-  "shortMSG": "You are in the bathroom on the 1st floor. \n There are a medicine cabinet,and a sink.\n You may go east to the hallway 1 through the door.\n",
+  "shortMSG": "You are in the bathroom on the 1st floor. \n There are a medicine cabinet and a sink.\n You may go east to the hallway 1 through the door.\n",
   "longMSG": "You are in the bathroom on the 1st floor. \n Features: medicine cabinet, sink\n Areas you may go to: east - door to hallway 1 - 1st floor\n",
   "roomEntry": {
                 "door": "hallway1"

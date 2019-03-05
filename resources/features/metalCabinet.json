@@ -1,7 +1,7 @@
 {
   "name": "metalCabinet",
   "displayName" : "metal cabinet",
-  "description" : "A cabinet filled with other lab equipments and bottles of chemicals.",
+  "description" : "A cabinet filled with other lab equipment and bottles of chemicals.",
   "locked" : false,
   "status" : ""
 }

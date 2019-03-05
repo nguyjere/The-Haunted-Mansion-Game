@@ -1,6 +1,6 @@
 {
   "name": "recipeBook",
   "displayName": "recipe book",
-  "description": "Titled \"ALL NATURAL\", herbal mixing formulas",
+  "description": "Titled \"ALL NATURAL\", herbal mixing formulas.",
   "ourCompatibleCommands": ["drop", "hit", "open", "close", "consume", "lift"]
 }

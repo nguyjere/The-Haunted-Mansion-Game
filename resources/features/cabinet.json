@@ -1,7 +1,7 @@
 {
   "name": "cabinet",
   "displayName" : "cabinet",
-  "description" : "Stores stuff, I don't know.",
+  "description" : "A plain looking, unlocked cabinet.",
   "locked" : false,
   "status" : ""
 }
