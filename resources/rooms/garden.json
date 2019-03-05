@@ -3,7 +3,7 @@
   "connectedTo": ["kitchen", "courtyard"],
   "displayName": "Garden",
   "features": ["gazebo", "shed", "bench"],
-  "objects": ["carBatteryJumper"],
+  "objects": [],
   "visited": false,
   "longMSG": "You are in the garden. \n There are a gazebo and a shed.\n You may go...\n    south to the kitchen through the backdoor, or\n    southwest to the courtyard through the garden gate.\n",
   "shortMSG": "You are in the garden. \n Features: gazebo, shed.\n Areas you may go to:\n    south - backdoor to kitchen - 1st floor\n    southwest - garden gate to courtyard\n",
