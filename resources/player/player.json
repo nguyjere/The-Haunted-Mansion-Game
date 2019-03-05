@@ -4,5 +4,7 @@
   "currentRoom" : "livingRoom",
   "inventory" : [],
   "status" : "Alive",
+  "health" : 40,
+  "bleeding" : true,
   "poisonedSteps": 0
 }

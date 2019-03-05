@@ -21,6 +21,6 @@
                 "south": "courtYard",
                 "west": "diningRoom"
               },
-  "locked" : true,
+  "locked" : false,
   "hidden" : true
 }

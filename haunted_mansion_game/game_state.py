@@ -65,6 +65,7 @@ class GameState:
 
     # FIXME: Crashes when it tries to print displayName of features without json files
     def display_current_room(self):
+        print "Health: {}%".format(self.player.health)
         current_room = self.get_current_room()
         current_room.display_room_msg()
         print "***ROOM FEATURE***"
@@ -105,16 +106,16 @@ class GameState:
 
     def poison_effect(self):
         # If player takes 12 steps while poisoned, the game ends
-        if self.player.poisonedSteps == 3:
-            print "You start having a coughing fit."
-        elif self.player.poisonedSteps == 6:
+        self.player.poisonedSteps += 1
+        if self.player.poisonedSteps == 6:
+            print "You feel ill and start having a coughing fit."
+        elif self.player.poisonedSteps == 8:
             print "You puked bile on the floor."
-        elif self.player.poisonedSteps == 9:
+        elif self.player.poisonedSteps == 10:
             print "Your mouth starts to foam with blood."
         elif self.player.poisonedSteps == 12:
             print "You collapse on the ground and seized. You died."
             exit()
-        self.player.poisonedSteps += 1
 
     def cure_poison(self):
         if self.player.status == "poisoned":
@@ -122,4 +123,12 @@ class GameState:
             print "You feel much better now."
         else:
             print "You feel no difference."
+
+    def bleeding_effect(self):
+        self.player.health -= 2
+        if self.player.health <= 0:
+            print "You've bleed out too much. You died."
+            exit()
+        elif self.player.health == 16:
+            print "You've lost a lot of blood. You're in critical health."
 
