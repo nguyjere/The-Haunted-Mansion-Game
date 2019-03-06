@@ -353,13 +353,18 @@ class Actions:
 
     @classmethod
     def open_pantry(cls, game_state):
-        game_state.player.add_to_inventory("recipeBook")
-        print "You found a recipe book, titled ALL NATURAL."
-        print "It does seem to have cooking recipes but herbal mixing formulas."
+        pantry = game_state.get_feature_by_name("pantry")
+        if pantry.object:
+            game_state.player.add_to_inventory(pantry.object)
+            pantry.object = None
+            print "You found a recipe book, titled ALL NATURAL."
+            print "It does seem to have cooking recipes but herbal mixing formulas."
+        else:
+            print "There's nothing here but rotten food and a dead mouse."
 
     @classmethod
     def open_medicineCabinet(cls, game_state):
-        medicine_cabinet = game_state.get_feature_by_name("antidote")
+        medicine_cabinet = game_state.get_feature_by_name("medicineCabinet")
         if medicine_cabinet.object:
             game_state.player.add_to_inventory(medicine_cabinet.object)
             medicine_cabinet.object = None
