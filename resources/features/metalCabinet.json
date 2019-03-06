@@ -3,5 +3,5 @@
   "displayName" : "metal cabinet",
   "description" : "A cabinet filled with other lab equipment and bottles of chemicals.",
   "locked" : false,
-  "status" : ""
+  "status" : "unlocked"
 }
