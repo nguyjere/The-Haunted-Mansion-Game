@@ -422,8 +422,13 @@ class Actions:
 
     @classmethod
     def lift_bench(cls, game_state):
-        game_state.player.add_to_inventory("carBatteryJumper")
-        print "You found a car battery jumper!"
+        bench = game_state.get_feature_by_name("bench")
+        if bench.status == "not_lifted":
+            game_state.player.add_to_inventory("carBatteryJumper")
+            bench.status = "lifted"
+            print "You found a car battery jumper!"
+        else:
+            print "There's nothing else but an old rusted broken shovel."
 
     @classmethod
     def familyName(cls, game_state, parsed_command):
