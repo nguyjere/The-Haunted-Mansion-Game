@@ -1,0 +1,6 @@
+{
+  "name": "lifePotion",
+  "displayName": "lifePotion",
+  "description": "An one time life reviver. Automatically revives you when you died.",
+  "ourCompatibleCommands": ["consume", "drop"]
+}
