@@ -88,6 +88,8 @@ class Actions:
             print feature.description
             if feature.name == "bookshelf":
                 cls.pick_out_a_book(game_state)
+            if feature.name == "labTable":
+                cls.make_life_potion(game_state)
         elif "object" in parsed_command and parsed_command["object"]:
             item = game_state.get_item_by_name(parsed_command["object"])
             print item.description
@@ -169,8 +171,13 @@ class Actions:
                 cls.open_file_cabinet(game_state)
             elif parsed_command["feature"] == "gunsafe":
                 cls.open_gun_safe(game_state)
+            elif parsed_command["feature"] == "metalcabinet":
+                cls.open_metal_cabinet(game_state)
             else:
-                print "You can't open that."
+                if parsed_command["object"] == "picturebook":
+                    cls.find_from_picture_book(game_state)
+                else:
+                    print "You can't open that."
         else:
             print "Open what?"
 
@@ -389,7 +396,13 @@ class Actions:
             file_cabinet.object = None
             print "You found a family heirloom of a lion!"
         else:
-            print "There is not thing interesting in this file cabinet."
+            print "There is nothing interesting in this file cabinet."
+
+    @classmethod
+    def find_from_picture_book(cls, game_state):
+        game_state.player.add_to_inventory("antidote")
+        print "A card has dropped..."
+        print "It seems that this book was a gift from ... Sloth Imai... who is it?"
 
     @classmethod
     def open_gun_safe(cls, game_state):
@@ -452,6 +465,72 @@ class Actions:
             # TODO: Add more animal entries
             else:
                 print "That book is not found here."
+
+    @classmethod
+    def make_life_potion(cls, game_state):
+        metal_cabinet = game_state.get_feature_by_name("metalCabinet")
+        if "recipeBook" in game_state.player.inventory:
+            print "It seems that you have the recipe book, \"ALL NATURAL\"!"
+            print "You might make something new! (press enter to leave)"
+            metal_cabinet.status = "redPowder" #test: once metal cabinet is look-able, this will be deleted.
+            if metal_cabinet.status == "redPowder":
+                print "The red power you have is a sun stone powder. "
+                print "Sun stone is a feldspar crystal that weathers out of certain lava flows in south-central Oregon."
+                print "Let's distill it with water.\nYou've got a life potion."
+                game_state.player.add_to_inventory("lifePotion")
+                print "A life potion is added to your inventory. It will automatically revive you for once."
+                metal_cabinet.status = "locked"
+            elif metal_cabinet.status == "bluePowder":
+                print "The blue power you have is a benitoite power."
+                print "Benitoite gem stone is also called as a \"blue diamond\"."
+                print "It is a rare kind of gem and only found in California."
+                print "Let's distill it with water.\nOh no, it started smoking here..."
+                print "You can't mix the water with non-local items..."
+                game_state.player.status = "poisoned"
+                print "Your health got recovered fully but poisoned by the blue smoke."
+                # TODO : Do recover player's health to full
+                metal_cabinet.status = "locked"
+            elif metal_cabinet.status == "driedLeaves":
+                print "The dried leaf was green tea leaves. You brewed green tea and sipped it. Not bad at all."
+                metal_cabinet.status = "locked"
+            else:
+                print "You don't have no items to distill a potion."
+        else:
+            print "You don't know the book, \"ALL NATURAL\", do you?"
+            print "You can't make anything. Don't waste your time here. Come back later."
+
+    @classmethod
+    def open_metal_cabinet(cls, game_state):
+        metal_cabinet = game_state.get_feature_by_name("metalCabinet")
+        if metal_cabinet.status == "locked":
+            print "Somehow the metal cabinet got locked..."
+        elif metal_cabinet.status in ["redPowder", "bluePowder", "driedLeaf"]:
+            print "You already have selected one. Try to make a potion."
+            cls.make_life_potion(game_state)
+        else:
+            print "There are a blue powder bottle, a red powder bottle and a dried leaves bottle in the each bottle."
+            print "Which one do you need?"
+            picked = False
+            while not picked:
+                picked_bottle = raw_input(">>")
+                if picked_bottle == "":
+                    print "Not interested? Never mind."
+                    break
+                elif picked_bottle.lower() in ["blue", "blue powder", "blue powder bottle", "a blue powder bottle",
+                                               "a blue bottle"]:
+                    metal_cabinet.status = "bluePowder"
+                    picked = True
+                elif picked_bottle.lower() in ["red", "red powder", "red powder bottle", "a red powder bottle",
+                                               "a red bottle"]:
+                    metal_cabinet.status = "redPowder"
+                    picked = True
+                elif picked_bottle.lower() in ["dried leaves", "dried leaves bottle", "a dried leaves bottle"]:
+                    metal_cabinet.status = "driedLeaves"
+                    picked = True
+                else:
+                    print "Re-enter the item you need. If you don't want any of items, press ENTER to close cabinet."
+            if picked:
+                cls.make_life_potion(game_state)
 
     @classmethod
     def endgame(cls, game_state, parsed_command):
