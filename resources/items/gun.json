@@ -1,6 +1,6 @@
 {
   "name": "gun",
   "displayName": "gun",
-  "description": "A .38 revolver.",
+  "description": "A unloaded .38 revolver.",
   "ourCompatibleCommands": []
 }

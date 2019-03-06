@@ -2,7 +2,7 @@
   "roomName": "garden",
   "connectedTo": ["kitchen", "courtyard"],
   "displayName": "Garden",
-  "features": ["gazebo", "shed", "bench"],
+  "features": ["shed", "bench"],
   "objects": [],
   "visited": false,
   "longMSG": "You are in the garden. \n There are a gazebo and a shed.\n You may go...\n    south to the kitchen through the backdoor, or\n    southwest to the courtyard through the garden gate.\n",

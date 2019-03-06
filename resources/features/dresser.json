@@ -2,6 +2,7 @@
   "name": "dresser",
   "displayName" : "dresser",
   "description" : "An old dresser. Maybe there's something useful inside.",
+  "object" : "carKey",
   "locked" : false,
   "status" : ""
 }
