@@ -337,9 +337,13 @@ class Actions:
 
     @classmethod
     def open_piano(cls, game_state):
-        # note that the boltCutter is not "in" the room, so we don't need to remove it from the room when the user picks it up
-        game_state.player.add_to_inventory("boltCutter")
-        print "You found a boltcutter inside the piano. Might be useful."
+        piano = game_state.get_feature_by_name("piano")
+        if piano.object:
+            game_state.player.add_to_inventory(piano.object)
+            piano.object = None
+            print "You found a bolt cutter inside the piano. Might be useful."
+        else:
+            print "There's nothing in here."
 
     @classmethod
     def open_dresser(cls, game_state):
