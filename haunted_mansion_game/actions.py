@@ -18,6 +18,8 @@ class Actions:
             game_state.display_current_room()
             if game_state.player.status == "poisoned":
                 game_state.poison_effect()
+            if game_state.player.bleeding:
+                game_state.bleeding_effect()
         else:
             if "masterKey" in game_state.player.inventory:
                 print "You unlocked this room using the master key."
@@ -29,6 +31,8 @@ class Actions:
                 game_state.display_current_room()
                 if game_state.player.status == "poisoned":
                     game_state.poison_effect()
+                if game_state.player.bleeding:
+                    game_state.bleeding_effect()
             else:
                 print "This room is locked."
 
@@ -48,7 +52,8 @@ class Actions:
             game_state.display_current_room()
             if game_state.player.status == "poisoned":
                 game_state.poison_effect()
-
+            if game_state.player.bleeding:
+                game_state.bleeding_effect()
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
