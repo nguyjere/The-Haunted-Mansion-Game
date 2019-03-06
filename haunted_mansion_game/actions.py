@@ -343,9 +343,13 @@ class Actions:
 
     @classmethod
     def open_dresser(cls, game_state):
-        # note that the carKey is not "in" the room, so we don't need to remove it from the room when the user picks it up
-        game_state.player.add_to_inventory("carKey")
-        print "You found a car key inside the dresser! Looks like it's for a Porsche!"
+        dresser = game_state.get_feature_by_name("dresser")
+        if dresser.object:
+            game_state.player.add_to_inventory(dresser.object)
+            dresser.object = None
+            print "You found a car key inside the dresser! Looks like it's for a Porsche!"
+        else:
+            print "There's only clothes in here. They're not in your size."
 
     @classmethod
     def open_chest(cls, game_state):
