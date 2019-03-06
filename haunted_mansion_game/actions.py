@@ -166,7 +166,9 @@ class Actions:
             elif parsed_command["feature"] == "medicinecabinet":
                 cls.open_medicineCabinet(game_state)
             elif parsed_command["feature"] == "filecabinet":
-                cls.open_fileCabinet(game_state)
+                cls.open_file_cabinet(game_state)
+            elif parsed_command["feature"] == "gunsafe":
+                cls.open_gun_safe(game_state)
             else:
                 print "You can't open that."
         else:
@@ -347,7 +349,7 @@ class Actions:
 
     @classmethod
     def open_chest(cls, game_state):
-        print "The chest contains an old piece of paper. It says that your family name is: Imai. This sounds so familiar."
+        print "The chest is empty, but it has \"4624\" inscribed within the chest."
 
     @classmethod
     def open_pantry(cls, game_state):
@@ -361,14 +363,30 @@ class Actions:
         print "You found an antidote. It says it clears an intoxicated condition.\nBut...it is up to you if you trust it or not."
 
     @classmethod
-    def open_fileCabinet(cls, game_state):
-        fileCabinet = game_state.get_feature_by_name("fileCabinet")
-        if fileCabinet.object:
-            game_state.player.add_to_inventory(fileCabinet.object)
-            fileCabinet.object = None
+    def open_file_cabinet(cls, game_state):
+        file_cabinet = game_state.get_feature_by_name("fileCabinet")
+        if file_cabinet.object:
+            game_state.player.add_to_inventory(file_cabinet.object)
+            file_cabinet.object = None
             print "You found a family heirloom of a lion!"
         else:
             print "There is not thing interesting in this file cabinet."
+
+    @classmethod
+    def open_gun_safe(cls, game_state):
+        gun_safe = game_state.get_feature_by_name("gunSafe")
+        if gun_safe.object and gun_safe.locked:
+            passcode = raw_input("Enter the 4-digit number: ")
+            if passcode == "4624":
+                game_state.player.add_to_inventory(gun_safe.object)
+                gun_safe.object = None
+                gun_safe.locked = False
+                gun_safe.description = "The gun safe is unlocked."
+                print "Beep! The safe unlocked and you found a handgun!"
+            else:
+                print "Access denied."
+        else:
+            print "There's nothing else in this gun safe."
 
     @classmethod
     def lift_bench(cls, game_state):
