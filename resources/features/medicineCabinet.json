@@ -1,7 +1,8 @@
 {
   "name": "medicineCabinet",
   "displayName" : "medicine cabinet",
-  "description" : "There's bottles of blue pills in here.",
+  "description" : "It's a mirrored medicine cabinet that contains personal toiletries.",
+  "object" : "antidote",
   "locked" : false,
   "status" : ""
 }

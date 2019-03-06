@@ -359,8 +359,14 @@ class Actions:
 
     @classmethod
     def open_medicineCabinet(cls, game_state):
-        game_state.player.add_to_inventory("antidote")
-        print "You found an antidote. It says it clears an intoxicated condition.\nBut...it is up to you if you trust it or not."
+        medicine_cabinet = game_state.get_feature_by_name("antidote")
+        if medicine_cabinet.object:
+            game_state.player.add_to_inventory(medicine_cabinet.object)
+            medicine_cabinet.object = None
+            print "You found an antidote. It says it clears an intoxicated condition."
+            print "But...it is up to you if you trust it or not."
+        else:
+            print "There's nothing else but deodorant and hair products."
 
     @classmethod
     def open_file_cabinet(cls, game_state):
