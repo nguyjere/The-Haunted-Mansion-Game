@@ -169,6 +169,8 @@ class Actions:
                 cls.open_file_cabinet(game_state)
             elif parsed_command["feature"] == "gunsafe":
                 cls.open_gun_safe(game_state)
+            elif parsed_command["feature"] == "dollhouse":
+                cls.open_doll_house(game_state)
             else:
                 print "You can't open that."
         else:
@@ -452,6 +454,19 @@ class Actions:
             # TODO: Add more animal entries
             else:
                 print "That book is not found here."
+
+    @classmethod
+    def open_doll_house(cls, game_state):
+        print "Inside the doll house, you see a doll and gaze into her eyes and you can't look away."
+        print "You're paralyzed and frozen still."
+        if game_state.player.bleeding or game_state.player.status == "poisoned":
+            print "You stand there bleeding out, until you die."
+            print "The End."
+        else:
+            print "There's nobody to rescue you. Nobody ever will."
+            print "The End."
+        exit()
+
 
     @classmethod
     def endgame(cls, game_state, parsed_command):
