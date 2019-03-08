@@ -5,7 +5,7 @@
   "features": ["bookshelf", "fireplace"],
   "objects": ["books"],
   "visited": false,
-  "longMSG": "You are in the library on the 1st floor. \n There are a bookshelf and a fireplace.\n You may go west to the hallway 1 through the door.\n",
+  "longMSG": "You are in the library on the 1st floor. \n There is a bookshelf and a fireplace.\n You may go west to the hallway 1 through the door.\n",
   "shortMSG": "You are in the library on the 1st floor. \n Features: bookshelf, fireplace\n Areas you may go to: west - door to hallway 1 - 1st floor\n",
   "roomEntry": {
                 "door": "hallway1"

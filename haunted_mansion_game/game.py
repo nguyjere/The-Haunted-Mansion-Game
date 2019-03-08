@@ -8,7 +8,7 @@ from game_state import *
 
 
 def main_main():
-    print "Title"
+    print "Welcome to The Haunted Python Mansion"
     print "Main Menu"
     print "[1] Start New Game"
     print "[2] Load Game"
@@ -54,7 +54,8 @@ def play(game_state):
             continue
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command and "error" not in parsed_command.keys():
-            print parsed_command
+            # enable for debugging
+            # print parsed_command
             game_state.execute_action(parsed_command)
         elif "error" in parsed_command.keys():
             print parsed_command["error"]

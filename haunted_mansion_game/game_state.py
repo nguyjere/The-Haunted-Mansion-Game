@@ -68,7 +68,9 @@ class GameState:
         print "Health: {}%".format(self.player.health)
         current_room = self.get_current_room()
         current_room.display_room_msg()
-        print "***ROOM FEATURE***"
+        '''
+        FOR DEBUGGING
+        print "***ROOM FEATURES***"
         for feature in current_room.features:
             print self.get_feature_by_name(feature).displayName
         print "***NEXT ROOMS***"
@@ -77,6 +79,7 @@ class GameState:
         print "***ITEMS***"
         for item in current_room.objects:
             print self.get_item_by_name(item).displayName
+        '''
         print ""
 
     def execute_action(self, parsed_command):
