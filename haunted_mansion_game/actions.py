@@ -171,6 +171,8 @@ class Actions:
                 cls.open_file_cabinet(game_state)
             elif parsed_command["feature"] == "gunsafe":
                 cls.open_gun_safe(game_state)
+            elif parsed_command["feature"] == "dollhouse":
+                cls.open_doll_house(game_state)
             elif parsed_command["feature"] == "metalcabinet":
                 cls.open_metal_cabinet(game_state)
             else:
@@ -274,16 +276,26 @@ class Actions:
 
     @classmethod
     def hit_zombie(cls, game_state, parsed_command):
-        # getting the car key from the zombie
-        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
-                and "knife" in game_state.player.inventory:
-            # note that the master key is not "in" the room, so we don't need to remove it from the room when the user picks it up
-            game_state.player.add_to_inventory("masterKey")
-            game_state.get_current_room().remove_feature("zombieSteward")
-            print "You killed the zombie. You found a master key among his remains!"
-        if parsed_command["feature"] == "zombiesteward" and parsed_command["verb"] == "hit" \
-                and "knife" not in game_state.player.inventory:
-            print "You need a knife to do damage."
+        zombie = game_state.get_feature_by_name("zombieSteward")
+        if zombie.status == "dead":
+            print "You hit the zombie, it did nothing because it's beyond dead."
+        else:
+            if "knife" in game_state.player.inventory:
+                print "As you charge with a knife towards toward head, she swings her fist across your jaw."
+                print "You took -10% damage, but you successfully stuck a knife deep into her skull."
+                print "You killed the zombie. You found a master key among his remains!"
+                game_state.player.add_to_inventory("masterKey")
+                game_state.player.remove_from_inventory("knife")
+                zombie.status = "dead"
+            else:
+                print "You punch the zombie but it did not stagger."
+                print "It reacted with a counter punch. You take -10% damage."
+                print "You should find a weapon next time."
+            game_state.player.health -= 10
+            if game_state.player.health <= 0:
+                print "You died."
+                exit()
+
 
     @classmethod
     def cut_main_gate_lock(cls, game_state):
@@ -472,6 +484,18 @@ class Actions:
                 print "That book is not found here."
 
     @classmethod
+    def open_doll_house(cls, game_state):
+        print "Inside the doll house, you see a doll and gaze into her eyes and you can't look away."
+        print "You're paralyzed and frozen still."
+        if game_state.player.bleeding or game_state.player.status == "poisoned":
+            print "You stand there bleeding out, until you die."
+            print "The End."
+        else:
+            print "There's nobody to rescue you. Nobody ever will."
+            print "The End."
+        exit()
+        
+    @classmethod
     def make_life_potion(cls, game_state):
         metal_cabinet = game_state.get_feature_by_name("metalCabinet")
         if "recipeBook" in game_state.player.inventory:
@@ -536,7 +560,7 @@ class Actions:
                     print "Re-enter the item you need. If you don't want any of items, press ENTER to close cabinet."
             if picked:
                 cls.make_life_potion(game_state)
-
+    
     @classmethod
     def endgame(cls, game_state, parsed_command):
         print "Thanks for playing, bye!"
