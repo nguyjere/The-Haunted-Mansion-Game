@@ -54,12 +54,13 @@ class TextParser:
                          "washing", "medicine", "garden", "garage",
                          "main", "dining", "china", "arched",
                          "tool", "back", "book", "fire", "front", "gun", "lab",
-                         "file", "console", "car"]
+                         "file", "console", "car", "metal"]
         spaceFeaturesDict = {"doll": "house", "pool": "table", "bar": "counter", "french": "door",
                              "washing": "machine", "medicine": "cabinet", "garden": "gate", "garage": "door",
                              "main": "gate", "dining": "table", "china": "cabinet", "arched": "entryways",
                              "tool": "cabinet", "back": "door", "book": "shelf", "fire": "place", "front": "door",
-                             "gun": "safe", "lab": "table", "file": "cabinet", "console": "table", "car": "key"}
+                             "gun": "safe", "lab": "table", "file": "cabinet", "console": "table", "car": "key",
+                             "metal": "cabinet"}
         # make all words lowercase
         for word in parsedWords:
             preParsedCommandList.append(word.lower())
