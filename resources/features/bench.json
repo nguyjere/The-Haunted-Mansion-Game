@@ -1,7 +1,7 @@
 {
   "name": "bench",
   "displayName" : "bench",
-  "description" : "A picnic bench. Looks very sturdy and heavy.",
+  "description" : "A picnic bench. Looks very sturdy and heavy. Looks like there's some tool stuck underneath the bench.",
   "locked" : false,
-  "status" : ""
+  "status" : "not_lifted"
 }
