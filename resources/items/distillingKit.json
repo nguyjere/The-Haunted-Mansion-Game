@@ -2,5 +2,5 @@
   "name": "distillingKit",
   "displayName": "distillingKit",
   "description": "A kit to distill spirits.",
-  "ourCompatibleCommands": []
+  "ourCompatibleCommands": ["drop"]
 }
