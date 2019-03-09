@@ -81,9 +81,9 @@ class TextParser:
     def preParseObjectCommand(self, command):
         parsedWords = self.parseCommand(command)
         preParsedCommandList = []
-        oneSpaceObjects = ["wine", "bolt", "recipe", "picture", "herb", "tea", "zombie", "family", "car"]
+        oneSpaceObjects = ["wine", "bolt", "recipe", "picture", "herb", "tea", "zombie", "family", "car", "master"]
         oneSpaceObjectsDict = {"wine":"bottle", "bolt":"cutter", "recipe":"book", "picture":"book",
-                            "herb":"bottles", "tea":"kettle", "zombie":"steward", "family":"emblem", "car":"key"}
+                            "herb":"bottles", "tea":"kettle", "zombie":"steward", "family":"emblem", "car":"key", "master":"key"}
         twoSpaceObjects = ["old", "main", "car"]
         twoSpaceObjectsDict = {"old":"familypicture", "main":"gatelock", "car":"batteryjumper"}
         # make all words lowercase
