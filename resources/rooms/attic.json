@@ -5,8 +5,8 @@
   "features": ["dollHouse","chest"],
   "objects": ["oldFamilyPicture","doll"],
   "visited": false,
-  "longMSG": "You are in the attic on the 3rd floor. It is very dark and dusty. \n There is a chest and a dollHouse.\n You may go down the ladder to the master bedroom.\n",
-  "shortMSG": "You are in the attic on the 3rd floor. \n Features: chest, dollHouse \n Areas you may go to: down - ladder to master bedroom  - 2nd floor\n",
+  "longMSG": "You are in the ATTIC on the 3rd floor. It is very dark and dusty.\nThere is a CHEST and a DOLLHOUSE.\n You may go DOWN the ladder to the MASTER BEDROOM.\n",
+  "shortMSG": "You are in the ATTIC on the 3rd floor.\nFeatures: CHEST, DOLLHOUSE\nAreas you may go to: DOWN/MASTER BEDROOM\n",
   "directions": {
                 "down": "masterBedroom"
               },

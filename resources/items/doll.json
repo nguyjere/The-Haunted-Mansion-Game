@@ -1,6 +1,6 @@
 {
   "name": "doll",
-  "displayName": "doll",
+  "displayName": "DOLL",
   "description": "An old baby doll.",
   "ourCompatibleCommands": ["lift", "drop", "hit"]
 }

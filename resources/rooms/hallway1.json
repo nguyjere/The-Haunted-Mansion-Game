@@ -5,8 +5,8 @@
   "features": [],
   "objects": [],
   "visited": false,
-  "longMSG": "You are in hallway 1 on the 1st floor.\n You may go upstairs or\n    east to the library through the library door,\n    west to the bathroom through the bathroom door, or\n    south to the living room through the southern door.\n",
-  "shortMSG": "You are in hallway 1 on the 1st floor.\n You may go...\n    up - stairs - hallway2 - 2nd floor \n    east - library door - library - 1st floor\n    south - southern door - living room - 1st floor\n    west - bathroom door - bathroom - 1st floor\n",
+  "longMSG": "You are in HALLWAY1 on the 1st floor. It is dead silent.\nYou may go DOWN to the BASEMENT, UP to HALLWAY2, EAST to the LIBRARY, WEST to the BATHROOM, or SOUTH to the LIVING ROOM.\n",
+  "shortMSG": "You are in HALLWAY1 on the 1st floor.\nAreas you may go to: \nDOWN/BASEMENT\nUP/HALLWAY2\nEAST/LIBRARY\nSOUTH/LIVING ROOM,\nWEST/BATHROOM\n",
   "directions": {
                 "up": "hallway2",
                 "east": "library",

@@ -1,6 +1,6 @@
 {
   "name": "distillingKit",
-  "displayName": "distillingKit",
+  "displayName": "DISTILLING KIT",
   "description": "A kit to distill spirits.",
   "ourCompatibleCommands": ["drop"]
 }

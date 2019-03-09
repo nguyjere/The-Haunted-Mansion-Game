@@ -1,6 +1,6 @@
 {
   "name": "knife",
-  "displayName": "knife",
+  "displayName": "KNIFE",
   "description": "A sharp kitchen knife.",
   "ourCompatibleCommands": ["drop" ]
 }

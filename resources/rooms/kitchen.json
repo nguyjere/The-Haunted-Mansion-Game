@@ -5,8 +5,8 @@
   "features": ["island", "pantry"],
   "objects": ["pictureBook", "knife"],
   "visited": false,
-  "longMSG": "You are in the kitchen on the 1st floor. \n There is an island and a pantry.\n You may go...\n    east to the dining room on the 1st floor through the kitchen door, or\n    northwest to the garden through the back door. \n",
-  "shortMSG": "You are in the kitchen on the 1st floor. \n Features: island, pantry\n Areas you may go to:\n    east - kitchen door to dining room - 1st floor\n    northwest - back door to garden - 1st floor\n",
+  "longMSG": "You are in the KITCHEN on the 1st floor. A tea kettle is squealing.\nThere is an ISLAND and a PANTRY.\nYou may go EAST to the DINING ROOM on the 1st floor, or NORTHWEST to the GARDEN.\n",
+  "shortMSG": "You are in the KITCHEN on the 1st floor.\nFeatures: ISLAND, PANTRY\nAreas you may go to:\nEAST/KITCHEN\nNORTHWEST/GARDEN\n",
   "directions": {
     "east": "diningRoom",
     "northwest": "garden"

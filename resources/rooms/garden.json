@@ -5,8 +5,8 @@
   "features": ["shed", "bench"],
   "objects": [],
   "visited": false,
-  "longMSG": "You are in the garden. \n There are a shed and a bench.\n You may go...\n    south to the kitchen through the backdoor, or\n    southwest to the courtyard through the garden gate.\n",
-  "shortMSG": "You are in the garden. \n Features: shed, bench.\n Areas you may go to:\n    south - backdoor to kitchen - 1st floor\n    southwest - garden gate to courtyard\n",
+  "longMSG": "You are in the GARDEN. There are no plants.\nThere are a SHED and a BENCH.\nYou may go SOUTH to the KITCHEN, or SOUTHWEST to the COURTYARD.\n",
+  "shortMSG": "You are in the GARDEN.\nFeatures: SHED, BENCH.\nAreas you may go to:\nSOUTH/KITCHEN\nSOUTHWEST/COURTYARD\n",
   "directions": {
                 "south": "kitchen",
                 "southwest": "courtyard"

@@ -5,8 +5,8 @@
   "features": ["stools","poolTable", "barCounter", "cabinet"],
   "objects": ["wineBottle"],
   "visited": false,
-  "longMSG":"You are in a bar lounge on the 1st floor. \n There is a bar counter, stools, a cabinet, and a pool table.\n You may go to the living room through the french door.\n",
-  "shortMSG": "You are in a bar lounge on the 1st floor. \n Features: bar counter, stools, cabinet, pool table \n Areas you may go to: east - french door to living room - 1st floor \n",
+  "longMSG":"You are in a BAR LOUNGE on the 1st floor. It looks like there was a party.\nThere is a BAR COUNTER, STOOLS, a CABINET, and a POOL TABLE.\nYou may go WEST to the LIVING ROOM.\n",
+  "shortMSG": "You are in a BAR LOUNGE on the 1st floor.\nFeatures: BAR COUNTER, STOOLS, CABINET, POOL TABLE\nAreas you may go to: WEST/LIVING ROOM\n",
   "directions": {
                 "west": "livingRoom"
               },

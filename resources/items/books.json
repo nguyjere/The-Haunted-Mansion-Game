@@ -1,6 +1,6 @@
 {
   "name": "books",
-  "displayName": "books",
+  "displayName": "BOOKS",
   "description": "Lots of old dusty books.",
   "ourCompatibleCommands": ["open", "drop"]
 }

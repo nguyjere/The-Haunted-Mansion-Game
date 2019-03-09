@@ -5,8 +5,8 @@
   "features": ["car", "toolCabinet"],
   "objects": [],
   "visited": false,
-  "longMSG": "You are in a garage on the 1st floor. \n There is a car and a tool cabinet.\n You may go...\n    northwest to the living room through the house-to-garage door, or\n    south to the courtyard through the garage door.\n",
-  "shortMSG": "You are in a garage on the 1st floor. \n Features: car, tool cabinet\n Areas you may go to:\n    north - house-to-garage door to the living room - 1st floor\n    south - garage door to the courtyard - 1st floor\n",
+  "longMSG": "You are in a GARAGE on the 1st floor. A fluorescent light is flickering.\nThere is a CAR and a TOOL CABINET.\nYou may go NORTHWEST to the LIVING ROOM, or SOUTH to the COURTYARD.\n",
+  "shortMSG": "You are in a GARAGE on the 1st floor.\nFeatures: CAR, TOOL CABINET\nAreas you may go to:\nNORTHWEST/LIVING ROOM\nSOUTH/COURTYARD\n",
   "directions": {
                 "northwest": "livingRoom",
                 "south": "courtyard"
