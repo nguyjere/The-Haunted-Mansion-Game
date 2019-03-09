@@ -35,6 +35,26 @@ class TestGame(unittest.TestCase):
                 if feature_obj.displayName not in ["doll house", "gun safe", "metal cabinet"]:
                     game_state.execute_action(parsed_command)
 
+    def test_take_and_drop_all_items(self):
+        game_state = GameState()
+        current_room = game_state.get_current_room()
+        for item in game_state.items:
+            current_room.include_item(item.name)
+        for item in game_state.items:
+            item_obj = game_state.get_item_by_name(item.name)
+            user_input = "take {}".format(item_obj.displayName)
+            parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
+            game_state.execute_action(parsed_command)
+            assert item.name in game_state.player.inventory
+            assert item.name not in current_room.objects
+        for item in game_state.items:
+            item_obj = game_state.get_item_by_name(item.name)
+            user_input = "drop {}".format(item_obj.displayName)
+            parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
+            game_state.execute_action(parsed_command)
+            assert item.name in current_room.objects
+            assert item.name not in game_state.player.inventory
+
     def test_go_dining_room(self):
         game_state = GameState()
 
