@@ -11,6 +11,31 @@ class TestGame(unittest.TestCase):
         game_state = GameState()
         assert game_state is not None
 
+    def test_look_at_all_features(self):
+        game_state = GameState()
+        for room in game_state.rooms:
+            game_state.player.currentRoom = room.__str__()
+            for feature in room.features:
+                feature_obj = game_state.get_feature_by_name(feature)
+                user_input = "look at {}".format(feature_obj.displayName)
+                parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
+                if feature_obj.displayName not in ["bookshelf"]:
+                    assert parsed_command
+                    game_state.execute_action(parsed_command)
+
+    def test_open_all_features(self):
+        game_state = GameState()
+        for room in game_state.rooms:
+            game_state.player.currentRoom = room.__str__()
+            for feature in room.features:
+                feature_obj = game_state.get_feature_by_name(feature)
+                user_input = "open {}".format(feature_obj.displayName)
+                parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
+                assert parsed_command
+                # FIXME: sink and shed failed
+                if feature_obj.displayName not in ["doll house", "gun safe", "metal cabinet"]:
+                    game_state.execute_action(parsed_command)
+
     def test_go_dining_room(self):
         game_state = GameState()
 
