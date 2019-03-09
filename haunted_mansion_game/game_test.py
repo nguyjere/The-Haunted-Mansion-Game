@@ -18,11 +18,8 @@ class TestGame(unittest.TestCase):
             for feature in room.features:
                 feature_obj = game_state.get_feature_by_name(feature)
                 user_input = "look at {}".format(feature_obj.displayName)
-                print user_input
                 parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
-                print parsed_command
-                # FIXME: sink and shed failed
-                if feature_obj.displayName not in ["sink", "shed", "bookshelf"]:
+                if feature_obj.displayName not in ["bookshelf"]:
                     assert parsed_command
                     game_state.execute_action(parsed_command)
 
@@ -33,12 +30,10 @@ class TestGame(unittest.TestCase):
             for feature in room.features:
                 feature_obj = game_state.get_feature_by_name(feature)
                 user_input = "open {}".format(feature_obj.displayName)
-                print user_input
                 parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
-                print parsed_command
                 assert parsed_command
                 # FIXME: sink and shed failed
-                if feature_obj.displayName not in ["doll house", "sink", "shed", "gun safe", "metal cabinet"]:
+                if feature_obj.displayName not in ["doll house", "gun safe", "metal cabinet"]:
                     game_state.execute_action(parsed_command)
 
     def test_go_dining_room(self):
