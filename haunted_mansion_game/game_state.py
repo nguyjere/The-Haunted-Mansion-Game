@@ -68,6 +68,11 @@ class GameState:
         print "Health: {}%".format(self.player.health)
         current_room = self.get_current_room()
         current_room.display_room_msg()
+        if current_room.objects:
+            items_display_names = []
+            for room_object in current_room.objects:
+                items_display_names.append(self.get_item_by_name(room_object).displayName)
+            print "Items in this room: " + ", ".join(items_display_names)
         if self.player.debug:
             print "***ROOM FEATURES***"
             for feature in current_room.features:
