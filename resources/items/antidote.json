@@ -1,6 +1,6 @@
 {
   "name": "antidote",
-  "displayName": "antidote",
+  "displayName": "ANTIDOTE",
   "description": "Clears the intoxicated condition.",
   "ourCompatibleCommands": ["consume", "drop", "open", "close"]
 }

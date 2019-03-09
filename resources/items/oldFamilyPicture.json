@@ -1,6 +1,6 @@
 {
   "name": "oldFamilyPicture",
-  "displayName": "old family picture",
+  "displayName": "OLD FAMILY PICTURE",
   "description": "An old family picture taken at the front of the mansion.",
   "ourCompatibleCommands": ["drop", "consume", "hit"]
 }

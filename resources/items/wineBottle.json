@@ -1,6 +1,6 @@
 {
   "name": "wineBottle",
-  "displayName": "wine bottle",
+  "displayName": "WINE BOTTLE",
   "description": "There's a little bit of vintage wine left. Smells expensive.",
   "ourCompatibleCommands": ["drop", "hit", "open", "close", "consume", "lift"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "pictureBook",
-  "displayName": "picture book",
+  "displayName": "PICTURE BOOK",
   "description": "Has a crazy story you've never heard of about snakes and a lion.",
   "ourCompatibleCommands": ["drop", "hit", "open", "close", "consume", "lift"]
 }

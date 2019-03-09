@@ -1,6 +1,6 @@
 {
   "name": "carBatteryJumper",
-  "displayName": "car battery jumper",
+  "displayName": "CAR BATTERY JUMPER",
   "description": "A car battery jumper to jump start a car.",
   "ourCompatibleCommands": ["drop", "push", "pull", "open", "close", "turnon", "turnoff", "lift"]
 }
