@@ -463,12 +463,12 @@ class Actions:
         secret_room.locked = False
         secret_room.hidden = False
         library.connectedTo.append("secretRoom")
-        library.longMSG += " You can access the secret room through the sliding door.\n"
-        library.shortMSG += " east - sliding door to a secret room - 1st floor\n"
-        library.roomEntry["sliding door"] = "secretRoom"
+        library.longMSG += "You have access to the SECRET ROOM. Go EAST to the SECRET ROOM.\n"
+        library.shortMSG += "EAST - SECRET ROOM - 1st floor\n"
         library.directions["east"] = "secretRoom"
-        print "As you attempt to pull the book out, you hear a loud click.\n" \
-              "The book shelve slides open revealing another room!"
+        print "As you attempt to pull the book out, you hear a loud click.\n"
+        print "The book shelve slides open revealing another room!\n"
+        print "You may go EAST to a SECRET ROOM.\n"
 
     @classmethod
     def pick_out_a_book(cls, game_state):
