@@ -5,11 +5,8 @@
   "features": ["mirror","closet"],
   "objects": ["knife"],
   "visited": false,
-  "longMSG": "You are in the guestroom on the 2nd floor. \n There are a closet and a mirror.\n You may go...\n    north to the hallway 2 through the door\n",
-  "shortMSG": "You are in the guestroom on the 2nd floor. \n Features: closet, mirror \n Areas you may go to:\n    north - door - hallway 2 - 2nd floor\n",
-  "roomEntry": {
-            "door": "hallway2"
-          },
+  "longMSG": "You are in the GUESTROOM on the 2nd floor. The bed is made.\nThere are a CLOSET and a MIRROR.\nYou may go NORTH to HALLWAY2.\n",
+  "shortMSG": "You are in the GUESTROOM on the 2nd floor.\nFeatures: CLOSET, MIRROR\nAreas you may go to:\nNORTH/HALLWAY2\n",
   "directions": {
                 "north": "hallway2"
               },

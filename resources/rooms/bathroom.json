@@ -5,11 +5,8 @@
   "features": ["medicineCabinet", "sink"],
   "objects": [],
   "visited": false,
-  "shortMSG": "You are in the bathroom on the 1st floor. \n There is a medicine cabinet and a sink.\n You may go east to hallway 1 through the door.\n",
-  "longMSG": "You are in the bathroom on the 1st floor. \n Features: medicine cabinet, sink\n Areas you may go to: east - door to hallway 1 - 1st floor\n",
-  "roomEntry": {
-                "door": "hallway1"
-                },
+  "longMSG": "You are in the BATHROOM on the 1st floor. It does not smell good.\nThere is a MEDICINE CABINET and a SINK.\nYou may go EAST to HALLWAY1.\n",
+  "shortMSG": "You are in the BATHROOM on the 1st floor.\nFeatures: MEDICINE CABINET, SINK\nAreas you may go to: EAST/HALLWAY1\n",
   "directions": {
                 "east": "hallway1"
               },

@@ -5,15 +5,8 @@
   "features": ["sofa", "consoleTable"],
   "objects": [],
   "visited": false,
-  "longMSG": "You are in the living room.\nThere is a sofa and a console table. \nYou may go...\n    north to the hallway1 through the northern entryway,\n    east to the bar lounge through the french door,\n    southeast to the garage through the house-to-garage door,\n    south to the courtyard through the front door\n    west to the dining room through the western entryway\n",
-  "shortMSG": "You are in the living room on the 1st floor. \nFeatures: sofa, chairs, console table\nAreas you may go to:\nnorth - northern entryway to hallway1 - 1st floor\neast - french door to bar lounge - 1st floor\nsoutheast - house-to-garage door to garage - 1st floor\nsouth - front door to courtyard - 1st floor\nwest - western entryway to dining room - 1st floor\n",
-  "roomEntry": {
-                "northern entryway": "hallway1",
-                "french door": "barLounge",
-                "garage door": "garage",
-                "front door": "courtyard",
-                "western entryway": "diningRoom"
-                },
+  "longMSG": "You are in the LIVING ROOM. Music is playing from somewhere.\nThere is a SOFA and a CONSOLE TABLE.\nYou may go NORTH to HALLWAY1, EAST to the BAR LOUNGE, SOUTHEAST to the GARAGE, SOUTH to the COURTYARD, or WEST to the DINING ROOM.\n",
+  "shortMSG": "You are in the LIVING ROOM on the 1st floor.\nFeatures: SOFA, CONSOLE TABLE\nAreas you may go to:\nNORTH/HALLWAY1\nEAST/BAR LOUNGE\nSOUTHEAST/GARAGE\nSOUTH/COURTYARD\nWEST/DINING ROOM\n",
   "directions": {
                 "north": "hallway1",
                 "east": "barLounge",
