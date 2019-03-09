@@ -109,7 +109,8 @@ class Actions:
             item = game_state.get_item_by_name(item_name)
             game_state.player.add_to_inventory(item.name)
             game_state.get_current_room().remove_item(item.name)
-            print "{} is added to your inventory.".format(item.name)
+            message = "{} is added to your inventory.".format(item.displayName)
+            print message.capitalize()
         else:
             print "You cannot take that."
 
