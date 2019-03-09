@@ -54,8 +54,8 @@ def play(game_state):
             continue
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command and "error" not in parsed_command.keys():
-            # enable for debugging
-            # print parsed_command
+            if game_state.player.debug:
+                print parsed_command
             game_state.execute_action(parsed_command)
         elif "error" in parsed_command.keys():
             print parsed_command["error"]

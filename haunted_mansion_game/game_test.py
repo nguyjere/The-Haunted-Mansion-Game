@@ -32,7 +32,6 @@ class TestGame(unittest.TestCase):
                 user_input = "open {}".format(feature_obj.displayName)
                 parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
                 assert parsed_command
-                # FIXME: sink and shed failed
                 if feature_obj.displayName not in ["doll house", "gun safe", "metal cabinet"]:
                     game_state.execute_action(parsed_command)
 
