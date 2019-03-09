@@ -57,16 +57,21 @@ class Actions:
 
     @classmethod
     def inventory(cls, game_state, *parsed_command):
-        for item in game_state.player.inventory:
-            item_obj = game_state.get_item_by_name(item)
-            item_name = item_obj.displayName
-            item_desc = item_obj.description
-            print "{} - {}".format(item_name, item_desc)
+        if not game_state.player.inventory:
+            print "Your inventory is empty."
+        else:
+            for item in game_state.player.inventory:
+                item_obj = game_state.get_item_by_name(item)
+                item_name = item_obj.displayName
+                item_desc = item_obj.description
+                print "{} - {}".format(item_name, item_desc)
 
     @classmethod
-    def help(cls, game_state):
-        # TODO: Display list of available verbs
-        pass
+    def help(cls, game_state, parsed_command):
+        message = "Commands: "
+        main_cmd = ["look", "go", "take", "help", "inventory", "savegame", "loadgame", "endgame"]
+        other_cmd = ["lift", "drop", "push", "pull", "consume", "open", "close", "turn on", "turn off", "hit", "drive"]
+        print message + ", ".join(main_cmd) + ", " + ", ".join(other_cmd)
 
     @classmethod
     def savegame(cls, game_state, parsed_command):
