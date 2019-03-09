@@ -83,7 +83,6 @@ class GameState:
             print "***ITEMS***"
             for item in current_room.objects:
                 print self.get_item_by_name(item).displayName
-        print ""
 
     def execute_action(self, parsed_command):
         if "verb" not in parsed_command or parsed_command["verb"] is "":

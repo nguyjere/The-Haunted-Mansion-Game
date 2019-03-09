@@ -121,7 +121,8 @@ class Actions:
             item = game_state.get_item_by_name(item_name)
             game_state.player.remove_from_inventory(item.name)
             game_state.get_current_room().include_item(item.name)
-            print "{} is dropped from your inventory.".format(item.displayName)
+            message = "{} is dropped from your inventory.".format(item.displayName)
+            print message.capitalize()
         else:
             print "You cannot drop that."
 
