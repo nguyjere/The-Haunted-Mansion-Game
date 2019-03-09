@@ -7,12 +7,6 @@
   "visited": false,
   "longMSG": "You are in hallway 1 on the 1st floor.\n You may go upstairs or\n    east to the library through the library door,\n    west to the bathroom through the bathroom door, or\n    south to the living room through the southern door.\n",
   "shortMSG": "You are in hallway 1 on the 1st floor.\n You may go...\n    up - stairs - hallway2 - 2nd floor \n    east - library door - library - 1st floor\n    south - southern door - living room - 1st floor\n    west - bathroom door - bathroom - 1st floor\n",
-  "roomEntry": {
-              "stairs": "hallway2",
-              "library door": "library",
-              "southern door": "livingRoom",
-              "bathroom door": "bathroom"
-        },
   "directions": {
                 "up": "hallway2",
                 "east": "library",

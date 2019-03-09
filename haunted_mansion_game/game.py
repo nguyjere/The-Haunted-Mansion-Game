@@ -5,6 +5,7 @@ import sys
 sys.path.append('../')
 from command_line_parser.textParser import *
 from game_state import *
+import misc.miscDescriptions
 
 
 def main_main():
@@ -45,6 +46,7 @@ def select_saved_games():
 
 def play(game_state):
     text_parser = TextParser()
+    print misc.miscDescriptions.introduction
     game_state.display_current_room()
     while True:
         user_input = raw_input(">>")

@@ -7,9 +7,6 @@
   "visited": false,
   "longMSG": "You are in the attic on the 3rd floor. It is very dark and dusty. \n There is a chest and a dollHouse.\n You may go down the ladder to the master bedroom.\n",
   "shortMSG": "You are in the attic on the 3rd floor. \n Features: chest, dollHouse \n Areas you may go to: down - ladder to master bedroom  - 2nd floor\n",
-  "roomEntry": {
-                "ladder": "masterBedroom"
-                },
   "directions": {
                 "down": "masterBedroom"
               },
