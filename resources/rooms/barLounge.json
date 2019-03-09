@@ -7,9 +7,6 @@
   "visited": false,
   "longMSG":"You are in a bar lounge on the 1st floor. \n There is a bar counter, stools, a cabinet, and a pool table.\n You may go to the living room through the french door.\n",
   "shortMSG": "You are in a bar lounge on the 1st floor. \n Features: bar counter, stools, cabinet, pool table \n Areas you may go to: east - french door to living room - 1st floor \n",
-  "roomEntry": {
-                "french door": "livingRoom"
-                },
   "directions": {
                 "west": "livingRoom"
               },
