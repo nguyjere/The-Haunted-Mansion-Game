@@ -13,5 +13,6 @@ introduction = "\nWhat is going on? This is so strange. The last thing you remem
                "'lift [thing]'\n'drop [thing]'\n'push [thing]'\n'pull [thing]'\n'consume [thing]'\n" \
                "'open [thing]'\n'close [thing]'\n'turn on [thing]'\n'turn off [thing]'\n'hit [thing]'\n" \
                 "'drive [thing]'\n"\
+                "Things you can interact with are in CAPS.\n"\
                 "Keep in mind that commands have synonyms too...\n"\
                 "Good luck.\n\n\n"
