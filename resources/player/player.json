@@ -7,5 +7,5 @@
   "health" : 40,
   "bleeding" : true,
   "poisonedSteps": 0,
-  "debug": true
+  "debug": false
 }
