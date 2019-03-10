@@ -143,6 +143,20 @@ class Actions:
 
     @classmethod
     def push(cls, game_state, parsed_command):
+        # Check if feature or object then do something
+        list_push_able_heavy = ["bench", "bookshelf", "car", "chinacabinet", "dresser", "maingate", "pooltable", "washingmachine"]
+        list_push_able_light = ["bed", "chairs", "consoletable", "desk", "diningtable", "filecabinet", "sofa", "stool"]
+        if "feature" in parsed_command:
+            if parsed_command["feature"] in list_push_able_heavy:
+                    cls.push_feature(game_state, True)
+            elif parsed_command["feature"] in list_push_able_light:
+                    cls.push_feature(game_state, False)
+            elif parsed_command["feature"] == "zombiesteward":
+                    cls.hit_zombie(game_state, parsed_command)
+            else:
+                print "You can't push that."
+        else:
+            print "Push what?"
         pass
 
     @classmethod
@@ -157,7 +171,6 @@ class Actions:
                 print "You cannot consume that."
         else:
             print "Consume what?"
-
 
     @classmethod
     def open(cls, game_state, parsed_command):
@@ -567,6 +580,15 @@ class Actions:
                     print "Re-enter the item you need. If you don't want any of items, press ENTER to close cabinet."
             if picked:
                 cls.make_life_potion(game_state)
+
+    @classmethod
+    def push_feature(cls, game_state, heavy):
+        if heavy:
+            print "You're not strong enough to push that."
+            print "You've wasted your energy. You take -10% damage."
+            game_state.player.health -= 2
+        else:
+            print "Nothing happened."
     
     @classmethod
     def endgame(cls, game_state, parsed_command):
