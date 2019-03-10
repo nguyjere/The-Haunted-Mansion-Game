@@ -135,3 +135,37 @@ class TestGame(unittest.TestCase):
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         assert parsed_command
         game_state.execute_action(parsed_command)
+
+    def test_push_all_features(self):
+        list_push_able_heavy = ["bench", "bookshelf", "car", "chinaCabinet", "dresser", "mainGate", "poolTable", "washingMachine"]
+        game_state = GameState()
+        for room in game_state.rooms:
+            game_state.player.currentRoom = room.__str__()
+            for feature in room.features:
+                pre_life = game_state.player.health
+                print pre_life
+                feature_obj = game_state.get_feature_by_name(feature)
+                print feature_obj.name
+                user_input = "push {}".format(feature_obj.displayName)
+                parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
+                if feature_obj.name in list_push_able_heavy:
+                    assert parsed_command
+                    game_state.execute_action(parsed_command)
+                    post_life = game_state.player.health
+                    print post_life
+                    life_differ = pre_life - post_life
+                    assert life_differ == 2
+                elif feature_obj.name in ["zombieSteward"]:
+                    assert parsed_command
+                    game_state.execute_action(parsed_command)
+                    post_life = game_state.player.health
+                    print post_life
+                    life_differ = pre_life - post_life
+                    assert life_differ == 10
+                else:
+                    assert parsed_command
+                    game_state.execute_action(parsed_command)
+                    post_life = game_state.player.health
+                    print post_life
+                    life_differ = pre_life - post_life
+                    assert life_differ == 0

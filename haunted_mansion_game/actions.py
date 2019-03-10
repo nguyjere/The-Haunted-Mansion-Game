@@ -15,11 +15,11 @@ class Actions:
             current_room.visited = True
             game_state.player.previousRoom = game_state.player.currentRoom
             game_state.player.currentRoom = new_room.roomName
-            game_state.display_current_room()
             if game_state.player.status == "poisoned":
                 game_state.poison_effect()
             if game_state.player.bleeding:
                 game_state.bleeding_effect()
+            game_state.display_current_room()
         else:
             if "masterKey" in game_state.player.inventory:
                 print "You unlocked this room using the master key."
@@ -28,11 +28,11 @@ class Actions:
                 current_room.visited = True
                 game_state.player.previousRoom = game_state.player.currentRoom
                 game_state.player.currentRoom = new_room.roomName
-                game_state.display_current_room()
                 if game_state.player.status == "poisoned":
                     game_state.poison_effect()
                 if game_state.player.bleeding:
                     game_state.bleeding_effect()
+                game_state.display_current_room()
             else:
                 print "This room is locked."
 
@@ -585,8 +585,11 @@ class Actions:
     def push_feature(cls, game_state, heavy):
         if heavy:
             print "You're not strong enough to push that."
-            print "You've wasted your energy. You take -10% damage."
+            print "You've wasted your energy. You take -2% damage."
             game_state.player.health -= 2
+            if game_state.player.health <= 0:
+                print "You died."
+                exit()
         else:
             print "Nothing happened."
     
