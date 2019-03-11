@@ -15,11 +15,11 @@ class Actions:
             current_room.visited = True
             game_state.player.previousRoom = game_state.player.currentRoom
             game_state.player.currentRoom = new_room.roomName
-            game_state.display_current_room()
             if game_state.player.status == "poisoned":
                 game_state.poison_effect()
             if game_state.player.bleeding:
                 game_state.bleeding_effect()
+            game_state.display_current_room()
         else:
             if "masterKey" in game_state.player.inventory:
                 print "You unlocked this room using the master key."
@@ -28,11 +28,11 @@ class Actions:
                 current_room.visited = True
                 game_state.player.previousRoom = game_state.player.currentRoom
                 game_state.player.currentRoom = new_room.roomName
-                game_state.display_current_room()
                 if game_state.player.status == "poisoned":
                     game_state.poison_effect()
                 if game_state.player.bleeding:
                     game_state.bleeding_effect()
+                game_state.display_current_room()
             else:
                 print "This room is locked."
 
@@ -143,6 +143,20 @@ class Actions:
 
     @classmethod
     def push(cls, game_state, parsed_command):
+        # Check if feature or object then do something
+        list_push_able_heavy = ["bench", "bookshelf", "car", "chinacabinet", "dresser", "maingate", "pooltable", "washingmachine"]
+        list_push_able_light = ["bed", "chairs", "consoletable", "desk", "diningtable", "filecabinet", "sofa", "stool"]
+        if "feature" in parsed_command:
+            if parsed_command["feature"] in list_push_able_heavy:
+                    cls.push_feature(game_state, True)
+            elif parsed_command["feature"] in list_push_able_light:
+                    cls.push_feature(game_state, False)
+            elif parsed_command["feature"] == "zombiesteward":
+                    cls.hit_zombie(game_state, parsed_command)
+            else:
+                print "You can't push that."
+        else:
+            print "Push what?"
         pass
 
     @classmethod
@@ -157,7 +171,6 @@ class Actions:
                 print "You cannot consume that."
         else:
             print "Consume what?"
-
 
     @classmethod
     def open(cls, game_state, parsed_command):
@@ -463,12 +476,12 @@ class Actions:
         secret_room.locked = False
         secret_room.hidden = False
         library.connectedTo.append("secretRoom")
-        library.longMSG += " You can access the secret room through the sliding door.\n"
-        library.shortMSG += " east - sliding door to a secret room - 1st floor\n"
-        library.roomEntry["sliding door"] = "secretRoom"
+        library.longMSG += "You have access to the SECRET ROOM. Go EAST to the SECRET ROOM.\n"
+        library.shortMSG += "EAST - SECRET ROOM - 1st floor\n"
         library.directions["east"] = "secretRoom"
-        print "As you attempt to pull the book out, you hear a loud click.\n" \
-              "The book shelve slides open revealing another room!"
+        print "As you attempt to pull the book out, you hear a loud click.\n"
+        print "The book shelve slides open revealing another room!\n"
+        print "You may go EAST to a SECRET ROOM.\n"
 
     @classmethod
     def pick_out_a_book(cls, game_state):
@@ -567,6 +580,18 @@ class Actions:
                     print "Re-enter the item you need. If you don't want any of items, press ENTER to close cabinet."
             if picked:
                 cls.make_life_potion(game_state)
+
+    @classmethod
+    def push_feature(cls, game_state, heavy):
+        if heavy:
+            print "You're not strong enough to push that."
+            print "You've wasted your energy. You take -2% damage."
+            game_state.player.health -= 2
+            if game_state.player.health <= 0:
+                print "You died."
+                exit()
+        else:
+            print "Nothing happened."
     
     @classmethod
     def endgame(cls, game_state, parsed_command):
