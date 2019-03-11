@@ -237,8 +237,15 @@ class Actions:
 
     @classmethod
     def hit(cls, game_state, parsed_command):
-        # getting the car key from the zombie
-        cls.hit_zombie(game_state, parsed_command)
+        if "feature" in parsed_command:
+            if parsed_command["feature"] == "zombiesteward":
+                # getting the car key from the zombie
+                cls.hit_zombie(game_state, parsed_command)
+            else:
+                print "Don't waste your time."
+                game_state.bleeding_effect()
+        else:
+            print "hit what?"
 
     @classmethod
     def drive(cls, game_state, parsed_command):
