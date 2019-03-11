@@ -314,7 +314,10 @@ class Actions:
             game_state.player.health -= 10
             if game_state.player.health <= 0:
                 print "You died."
-                exit()
+                if "lifePotion" in game_state.player.inventory:
+                    game_state.revive()
+                else:
+                    exit()
 
 
     @classmethod
@@ -521,7 +524,7 @@ class Actions:
         if "recipeBook" in game_state.player.inventory:
             print "It seems that you have the recipe book, \"ALL NATURAL\"!"
             print "You might make something new! (press enter to leave)"
-            metal_cabinet.status = "redPowder" #test: once metal cabinet is look-able, this will be deleted.
+            # metal_cabinet.status = "redPowder" #test: once metal cabinet is look-able, this will be deleted.
             if metal_cabinet.status == "redPowder":
                 print "The red power you have is a sun stone powder. "
                 print "Sun stone is a feldspar crystal that weathers out of certain lava flows in south-central Oregon."
@@ -535,9 +538,12 @@ class Actions:
                 print "It is a rare kind of gem and only found in California."
                 print "Let's distill it with water.\nOh no, it started smoking here..."
                 print "You can't mix the water with non-local items..."
-                game_state.player.status = "poisoned"
-                print "Your health got recovered fully but poisoned by the blue smoke."
-                # TODO : Do recover player's health to full
+                game_state.player.health = 100
+                print "Your health got recovered fully."
+                if game_state.player.status != "poisoned":
+                    game_state.player.status = "poisoned"
+                print "But you breathed in blue intoxicated smoke."
+                game_state.poison_effect()
                 metal_cabinet.status = "locked"
             elif metal_cabinet.status == "driedLeaves":
                 print "The dried leaf was green tea leaves. You brewed green tea and sipped it. Not bad at all."
@@ -589,7 +595,10 @@ class Actions:
             game_state.player.health -= 2
             if game_state.player.health <= 0:
                 print "You died."
-                exit()
+                if "lifePotion" in game_state.player.inventory:
+                    game_state.revive()
+                else:
+                    exit()
         else:
             print "Nothing happened."
     
