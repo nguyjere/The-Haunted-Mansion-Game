@@ -120,7 +120,12 @@ class GameState:
             print "Your mouth starts to foam with blood."
         elif self.player.poisonedSteps == 12:
             print "You collapse on the ground and seized. You died."
-            exit()
+            if "lifePotion" in self.player.inventory:
+                self.revive()
+                self.player.poisonedSteps = 1
+                print "But you are still poisoned..."
+            else:
+                exit()
 
     def cure_poison(self):
         if self.player.status == "poisoned":
@@ -133,7 +138,15 @@ class GameState:
         self.player.health -= 2
         if self.player.health <= 0:
             print "You've bleed out too much. You died."
-            exit()
+            if "lifePotion" in self.player.inventory:
+                self.revive()
+            else:
+                exit()
         elif self.player.health == 16:
             print "You've lost a lot of blood. You're in critical health."
+
+    def revive(self):
+        self.player.health = 100
+        self.player.remove_from_inventory("lifePotion")
+        print "The life potion revived you."
 
