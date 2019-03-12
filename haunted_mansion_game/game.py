@@ -51,9 +51,17 @@ def play(game_state):
     while True:
         user_input = raw_input(">>")
         if user_input.lower().replace(" ","") == "loadgame":
-            game_state = GameState(select_saved_games())
-            game_state.display_current_room()
-            continue
+            # confirms with the user that this really is desired
+            print "If the game is not saved, this current game state will be deleted."
+            print "Are you sure to load game? enter yes to loadgame."
+            load_yes_no = raw_input(">>")
+            if load_yes_no.lower() != "yes":
+                game_state.display_current_room()
+                continue
+            else:
+                game_state = GameState(select_saved_games())
+                game_state.display_current_room()
+                continue
         parsed_command = text_parser.getCommand(user_input, game_state.get_current_room(), game_state.player)
         if parsed_command and "error" not in parsed_command.keys():
             if game_state.player.debug:
