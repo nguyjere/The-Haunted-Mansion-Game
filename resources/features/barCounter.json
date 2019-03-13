@@ -1,6 +1,6 @@
 {
   "name": "barCounter",
-  "displayName" : "barCounter",
+  "displayName" : "bar counter",
   "description" : "Has hard liquor, but it seems locked.\nA wine bottle has been left on the counter.",
   "locked" : false,
   "status" : ""
