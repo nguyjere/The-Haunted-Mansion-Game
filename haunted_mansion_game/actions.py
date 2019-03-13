@@ -351,7 +351,15 @@ class Actions:
             if current_room.roomName == "garage":
                 if main_gate.locked is False:
                     print "You drive the car out of the garage and through the gates, leaving this wrench house behind."
-                    print "Congratulations, you've made it out alive! THE END."
+                    if game_state.player.status == "poisoned":
+                        print "You've made it out alive!"
+                        print "You're driving the 90's Porche 911, pushing gas, and accelerating to the full speed."
+                        print "Suddenly the u-pin curve has appeared."
+                        print "You're under intoxicated by alcohol or something else."
+                        print "You've missed turn and fallen off the edge of the cliff with Porche 911..."
+                        print "THE END"
+                    else:
+                        print "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
                     print "You drive the car out of the garage into the courtyard. Unfortunately, the gate is locked\n"\
@@ -367,7 +375,15 @@ class Actions:
                     game_state.player.currentRoom = courtyard.roomName
             elif current_room.roomName == "courtyard":
                 if main_gate.locked is False:
-                    print "You drive the car through the gates, leaving this wrench house behind.\n" \
+                    if game_state.player.status == "poisoned":
+                        print "You've made it out alive!"
+                        print "You're driving the 90's Porche 911, pushing gas, and accelerating to the full speed."
+                        print "Suddenly the u-pin curve has appeared."
+                        print "You're under intoxicated by alcohol or something else."
+                        print "You've missed turn and fallen off the edge of the cliff with Porche 911..."
+                        print "THE END"
+                    else:
+                        print "You drive the car through the gates, leaving this wrench house behind.\n" \
                           "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
