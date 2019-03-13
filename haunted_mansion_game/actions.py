@@ -383,7 +383,7 @@ class Actions:
                         print "You've missed turn and fallen off the edge of the cliff with Porche 911..."
                         print "THE END"
                     else:
-                        print "You drive the car through the gates, leaving this wrench house behind.\n" \
+                        print "You drive the car through the gates, leaving this wretched house behind.\n" \
                           "Congratulations, you've made it out alive! THE END."
                     exit()
                 else:
