@@ -6,7 +6,7 @@
   "objects": ["pictureBook", "knife"],
   "visited": false,
   "longMSG": "You are in the KITCHEN on the 1st floor. A tea kettle is squealing.\nThere is an ISLAND and a PANTRY.\nYou may go EAST to the DINING ROOM on the 1st floor, or NORTHWEST to the GARDEN.\n",
-  "shortMSG": "You are in the KITCHEN on the 1st floor.\nFeatures: ISLAND, PANTRY\nAreas you may go to:\nEAST/KITCHEN\nNORTHWEST/GARDEN\n",
+  "shortMSG": "You are in the KITCHEN on the 1st floor.\nFeatures: ISLAND, PANTRY\nAreas you may go to:\nEAST/DINING ROOM\nNORTHWEST/GARDEN\n",
   "directions": {
     "east": "diningRoom",
     "northwest": "garden"
