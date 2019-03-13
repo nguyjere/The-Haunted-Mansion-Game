@@ -350,7 +350,7 @@ class Actions:
         if car.running is True:
             if current_room.roomName == "garage":
                 if main_gate.locked is False:
-                    print "You drive the car out of the garage and through the gates, leaving this wrench house behind."
+                    print "You drive the car out of the garage and through the gates, leaving this wretched house behind."
                     if game_state.player.status == "poisoned":
                         print "You've made it out alive!"
                         print "You're driving the 90's Porche 911, pushing gas, and accelerating to the full speed."
