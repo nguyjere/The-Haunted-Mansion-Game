@@ -458,7 +458,6 @@ class Actions:
 
     @classmethod
     def find_from_picture_book(cls, game_state):
-        game_state.player.add_to_inventory("antidote")
         print "A card has dropped..."
         print "It seems that this book was a gift from ... Sloth Imai... who is it?"
 
